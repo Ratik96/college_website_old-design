@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>St. Stephen's College</title>
+	{%load staticfiles%}
+	<link async='' rel="shortcut icon" href='{% static "mainsite/images/favicon.ico"%}'> </link>
+	<link rel="stylesheet" type="text/css" href="{% static "mainsite/base.css"%}"></link>
+	<script type="text/javascript" src="{%static 'mainsite/jquery.min.js'%}"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	{%block head%}
+	{%endblock%}
+	</head>
+	
+	<body>
+	<div>
+		<div id='header'>
+			<div>
+				<img src='{%static "mainsite/images/site_header.png"%}' alt='' />
+			</div>
+			<div>
+				<div style='font-size:200%;'>
+				ST. STEPHEN'S COLLEGE
+				</div>
+				
+				<hr>
+				
+				<div style='font-size:90%;'>
+				University Enclave, Delhi-110007
+				</div>
+			</div>
+		</div>
+	<div id='body'>
+	{%block body%}
+	{%endblock%}
+	</div>
+	</body>
+</html>
+
+
