@@ -31,7 +31,7 @@ class paper(models.Model):
 		return self.code
 	code=models.CharField('The paper code',max_length=10)
 	name=models.CharField('The name of paper',max_length=25)
-	course=models.ForeignKey('The course associated with the paper',course)
+	course=models.ForeignKey(course)
 	semester=models.IntegerField('The semester in which the paper appears',default=0)	
 	
 class department(models.Model):
@@ -41,16 +41,6 @@ class department(models.Model):
 	def __unicode__(self):
 		return str(self.name)
 	name=models.CharField(max_length=35)
-
-class society(models.Model):	
-	'''
-	Describes the societies in college
-	'''
-	def __unicode__(self):
-		return self.name
-	name=models.CharField('The society name',max_length=50)
-	founding_date=models.DateField('The founding date of the society')
-	staff_advisor=models.ForeignKey('The current staff advisor for this society',userprofile,related_name='staff_advisor')
 	
 class qualification(models.Model):
 	'''
@@ -76,7 +66,16 @@ class profile(models.Model):
 	joining_date=models.DateField('joining date of the senior member',default=timezone.now())
 	
 	qualifications=models.ManyToManyField(qualification)
-
+class society(models.Model):	
+	'''
+	Describes the societies in college
+	'''
+	def __unicode__(self):
+		return self.name
+	name=models.CharField('The society name',max_length=50)
+	founding_date=models.DateField('The founding date of the society')
+	staff_advisor=models.ForeignKey(profile,related_name='staff_advisor')
+	
 class student(models.Model):
 	'''
 	Students in college
@@ -87,9 +86,6 @@ class student(models.Model):
 	picture=models.ImageField('Picture of the student',upload_to='studentpics')
 	
 	email=models.EmailField('The email of the student')
-
-	
-	
 	
 	course=models.ForeignKey(course,related_name='course')
 	admission_date=models.DateField(default=timezone.now())

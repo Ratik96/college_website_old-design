@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import timezone
 class document(models.Model):
 	'''
 	Abstract class to contain the common things needed for notices etc.

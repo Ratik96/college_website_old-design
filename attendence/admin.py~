@@ -1,0 +1,6 @@
+from django.contrib import admin
+import attendence
+
+admin.site.register(attendence.attend)
+admin.site.register(attendence.student_attendence)
+admin.site.register(attendence.paper_attendence)
