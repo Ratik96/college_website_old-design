@@ -20,26 +20,4 @@ $(function() {
 });
 
 //..............................
-$(document).ready(function()
-{
 
-	$(".menu").click(function()
-	{
-		var X=$(this).attr('id');
-		
-		if(X==1)
-		{
-		$(".submenu").slideUp();
-		$(this).attr('id', '0');
-		}
-		else
-		{
-
-		$(".submenu").slideDown();
-		$(this).attr('id', '1');
-		}
-		
-		});
-
-	
-});

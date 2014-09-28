@@ -1,3 +1,23 @@
 {%extends 'base.html'%}
 
+{%block head%}
+	{%load static%}
+	<link rel="stylesheet" type="text/css" href='{%static "mainsite/home.css"%}'></link>
+{%endblock%}
+
+{%block body%}
+	<div>
+		<div id='slideshow'>
+			{% for name in slideshow%}
+				<img src='{{name.associated_photo.url}}' alt='' />
+			{%endfor%}
+		</div>
+		<div >
+			<ul>
+				
+			</ul>
+		</div>
+	</div>
+{%endblock%}
+
 
