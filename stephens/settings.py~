@@ -37,9 +37,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
+    'office',
     'mainsite',
     'attendence',
-    'office',
+    
 )
 
 MIDDLEWARE_CLASSES = (

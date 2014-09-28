@@ -20,7 +20,7 @@ class photo(models.Model):
 	def __unicode__(self):
 		return self.name
 	name=models.CharField('Name of the photo',max_length=40)
-	associated_photo=models.ImageField('The associated image',upload_to='photos/%Y/%m/%d')
+	associated_photo=models.ImageField('The associated image',upload_to='photos/hompage_slideshow/%Y/%m/%d')
 	alive=models.BooleanField('Is this photo available for public use?',default=True)
 	class Meta:
 		abstract=True

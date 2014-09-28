@@ -1,3 +1,22 @@
 {%extends 'base.html'%}
 
+{%block head%}
+	{%load static%}
+	<link rel="stylesheet" type="text/css" href='{%static "mainsite/home.css"%}'></link>
+	<script type="text/javascript" src="{%static 'mainsite/jquery.min.js'%}"></script>
+{%endblock%}
+
+{%block body%}
+		<div id='slideshow'>
+			{% for name in slideshow%}
+				<img src='{{name.associated_photo.url}}' alt='' />
+			{%endfor%}
+		</div>
+		<div >
+			<ul>
+				
+			</ul>
+		</div>
+{%endblock%}
+
 

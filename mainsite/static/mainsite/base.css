@@ -9,14 +9,16 @@ body>div
 width:750px;
 height:750px;
 margin:auto;
-margin-top:20px;
-
+margin-top:5px;
 background:red;
 }
+body>div>div
+{float:left;
+margin:5px;}
 #header
 {
 color:lightgrey;
-width:100%;
+width:99%;
 height:90px;
 background:rgb(25, 52, 65);
 }
@@ -25,3 +27,9 @@ background:rgb(25, 52, 65);
 margin-left:5px;
 float:left;
 }
+
+#breadcrumbs
+{width:20%;
+background:#051a29;
+min-height:500px;}
+
