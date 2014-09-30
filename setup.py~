@@ -33,7 +33,20 @@ def homepage_slideshow(slideshow_pic_folder='homepage'):
 		a.save()
 function_list.append(homepage_slideshow)
 #------------------------------------------------------------------------------------------------
-
+def principal_desk_notices(principal_desk_folder='principal_desk'):
+	'''sets up the principal desk notices'''
+	filepath=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,principal_desk_folder)
+	files=os.listdir(filepath)
+	for i in files:
+		f=file(os.path.join(filepath,i))
+		a=mainsite.models.principal_desk()
+		a.title=i
+		a.associated_file=File(f)
+		content=f.readlines()
+		f.close()
+		a.description=' '.join(content[:10])
+		a.save()
+function_list.append(principal_desk_notices)
 
 #------------------------------------------------------------------------------------------------
 print '================================================================'
@@ -43,7 +56,7 @@ print '================================================================'
 #------------------------------------------------------------------------------------------------
 def run_function(fn):
 	'''Runs the function and acts as a wrapper'''
-	print 'Setting up '+fn.func_name,
+	print 'Setting up '+fn.func_name.replace('_',' '),
 	fn()
 	print '--------->Done'
 	
