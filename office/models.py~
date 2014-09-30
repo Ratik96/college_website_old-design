@@ -74,7 +74,7 @@ class society(models.Model):
 		return self.name
 	name=models.CharField('The society name',max_length=50)
 	founding_date=models.DateField('The founding date of the society')
-	staff_advisor=models.ForeignKey('Current staff advisor',profile,related_name='staff_advisor')
+	staff_advisor=models.ForeignKey(profile,related_name='staff_advisor')
 	
 class student(models.Model):
 	'''

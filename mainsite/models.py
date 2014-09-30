@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+import datetime
 class document(models.Model):
 	'''
 	Abstract class to contain the common things needed for notices etc.
@@ -45,6 +46,9 @@ class notification(document):
 		if now>one_month_back:
 			return True
 		return False
+	recent.admin_order_field='publish_date'
+	recent.boolean=True
+	recent.short_description='Was published in last one month?'
 		
 class principal_desk(document):
 	'''
@@ -60,4 +64,6 @@ class principal_desk(document):
 		if now>one_month_back:
 			return True
 		return False
-
+	recent.admin_order_field='publish_date'
+	recent.boolean=True
+	recent.short_description='Was published in last one month?'
