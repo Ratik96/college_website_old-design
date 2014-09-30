@@ -9,12 +9,12 @@ body>div
 width:750px;
 height:750px;
 margin:auto;
-margin-top:10px;
-background:red;
+margin-top:5px;
+background:#91AA9D;
 }
 body>div>div
 {float:left;
-margin:5px;}
+margin:2px;}
 #header
 {
 color:lightgrey;

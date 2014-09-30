@@ -26,6 +26,8 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#SITE_ID=1
+
 
 # Application definition
 
@@ -36,10 +38,12 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #'django.contrib.sites',
     
     'office',
     'mainsite',
     'attendence',
+    #'django.contrib.flatpages',
     
 )
 
@@ -50,6 +54,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 )
 
 ROOT_URLCONF = 'stephens.urls'
@@ -84,7 +89,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-MEDIA_ROOT='/home/ghost/Documents/college_site/files'
+MEDIA_ROOT='/home/ghost/Documents/college_site/'
 STATIC_ROOT='/home/ghost/Documents/college_site/static'
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL='/'

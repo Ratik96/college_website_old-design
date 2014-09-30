@@ -1,12 +1,6 @@
-#slideshow
-{
-
-background:yellow;
-
-}
 #slideshow {
     position:relative;
-    width:77%;
+    width:79%;
     height:500px;
     
 }

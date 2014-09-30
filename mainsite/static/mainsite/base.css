@@ -10,11 +10,11 @@ width:750px;
 height:750px;
 margin:auto;
 margin-top:5px;
-background:red;
+background:#91AA9D;
 }
 body>div>div
 {float:left;
-margin:5px;}
+margin:2px;}
 #header
 {
 color:lightgrey;
