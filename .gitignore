@@ -1,0 +1,9 @@
+# Ignore these files from being pushed
+db.sqlite3
+*.pyc
+*.py~
+
+# Ignore these folders from being pushed
+bin
+include
+lib
