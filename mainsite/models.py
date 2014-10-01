@@ -25,6 +25,16 @@ class photo(models.Model):
 	alive=models.BooleanField('Is this photo available for public use?',default=True)
 	class Meta:
 		abstract=True
+	def thumbnail(self):
+	        if self.associated_photo:
+	        	addr=self.associated_photo.url
+	        	addr.strip('/')
+	        	addr='/'+addr
+	                return u'<img src="'+addr+'" width=60 height=60 />'
+	        else:
+	        	return u'No image file found'
+	thumbnail.short_description ='Thumbnail'
+	thumbnail.allow_tags=True
 	
 class home_slideshow_photo(photo):
 	'''

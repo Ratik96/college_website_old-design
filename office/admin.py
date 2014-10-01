@@ -21,6 +21,7 @@ class student_admin(admin.ModelAdmin):
 	list_display=['thumbnail','name','email']
 	list_filter=['course','admission_date']
 	search_fields=['name','email']
+	
 admin.site.register(course)
 admin.site.register(course_type,course_type_admin)
 admin.site.register(paper)

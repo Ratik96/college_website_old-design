@@ -55,6 +55,63 @@ def course_type():
 		a=office.models.course_type()
 		a.name=i
 		a.save()
+function_list.append(course_type)
+#------------------------------------------------------------------------------------------------
+def courses():
+	'''sets up the courses in undergraduate'''
+	names=['B.Sc. Physics','B.Sc. Chemistry','B.Sc. Mathematics','B.Sc. Physical Science','B.A. History','B.A. Philosophy','B.A. Programme']
+	ug_course_type=office.models.course_type.objects.first()
+	for i in names:
+		a=office.models.course()
+		a.name=i
+		a.course_type=ug_course_type
+		a.save()
+function_list.append(courses)
+#------------------------------------------------------------------------------------------------
+def students(student_photo_folder='student_photos'):
+	'''sets up dummy students'''
+	student_list=['Arjoonn Sharma','Atima Shahi']
+	filepath=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,student_photo_folder)
+	files=os.listdir(filepath)
+	for i in files:
+		f=file(os.path.join(filepath,i))
+		a=office.models.student()
+		a.name=i.replace('_',' ')
+		a.picture=File(f)
+		a.email=i+'@gmail.com'
+		a.course=office.models.course.objects.first()
+		a.save()
+		f.close()
+function_list.append(students)
+#------------------------------------------------------------------------------------------------
+def groups():
+	'''sets up the groups'''
+	groupnames=[
+		{'n':'Principal',
+		'p':None},
+		{'n':'Bursar',
+		'p':None},
+		{'n':'Dean(Residence)',
+		'p':None},
+		{'n':'Dean(Academic Affairs)',
+		'p':None},
+		{'n':'Chaplain',
+		'p':None},
+		{'n':'Public Information Officer',
+		'p':None},
+		{'n':'Special Assignments',
+		'p':None},
+		{'n':'Administration',
+		'p':None},
+		{'n':'Staff Advisor',
+		'p':None},
+		{'n':'Faculty',
+		'p':None}]
+	for i in groupnames:
+		a=Group()
+		a.name=i['n']
+		a.save()
+function_list.append(groups)
 #------------------------------------------------------------------------------------------------
 print '================================================================'
 print 'SETTING UP THE WEBSITE'
