@@ -1,8 +1,6 @@
 College Website
 ===========
-This is a repo for St. Stephen's College website. 
-Will be changing over to mysql before going live. 
-
+This is a repo for St. Stephen's College website. Will be changing over to mysql before going live. 
 Dependencies:
 ============
 1. sqlite3
