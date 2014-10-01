@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.utils.safestring import *
 import datetime
 
 
@@ -20,7 +21,7 @@ class course(models.Model):
 	def __unicode__(self):
 		return str(self.name)
 	name=models.CharField(max_length=30)
-	type_of_course=models.ForeignKey(course_type)
+	course_type=models.ForeignKey(course_type,related_name='course_type')
 
 class paper(models.Model):
 	'''
@@ -66,6 +67,17 @@ class profile(models.Model):
 	joining_date=models.DateField('joining date of the senior member',default=timezone.now())
 	
 	qualifications=models.ManyToManyField(qualification)
+	def thumbnail(self):
+	        if self.picture:
+	        	addr=self.picture.url
+	        	addr.strip('/')
+	        	addr='/'+addr
+	                return u'<img src="'+addr+'" width=60 height=60 />'
+	        else:
+	        	return u'No image file found'
+	thumbnail.short_description ='Thumbnail'
+	thumbnail.allow_tags=True
+	
 class society(models.Model):	
 	'''
 	Describes the societies in college
@@ -89,3 +101,14 @@ class student(models.Model):
 	
 	course=models.ForeignKey(course,related_name='course')
 	admission_date=models.DateField(default=timezone.now())
+	def thumbnail(self):
+	        if self.picture:
+      	        	addr=self.picture.url
+	        	addr.strip('/')
+	        	addr='/'+addr
+	                return u'<img src="'+addr+'" width=60 height=60 />'
+
+	        else:
+	        	return u'No image file found'
+	thumbnail.short_description ='Thumbnail'
+	thumbnail.allow_tags=True
