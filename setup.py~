@@ -59,7 +59,7 @@ function_list.append(course_type)
 #------------------------------------------------------------------------------------------------
 def courses():
 	'''sets up the courses in undergraduate'''
-	names=['B.Sc. Physics','B.Sc. Chemistry','B.Sc. Mathematics','B.Sc. Physical Science','B.A. History','B.A. Philosophy','B.A. Programme']
+	names=['B.Sc. Physical Science','B.Sc. Chemistry','B.Sc. Mathematics','B.Sc. Physics','B.A. History','B.A. Philosophy','B.A. Programme']
 	ug_course_type=office.models.course_type.objects.first()
 	for i in names:
 		a=office.models.course()
@@ -112,6 +112,48 @@ def groups():
 		a.name=i['n']
 		a.save()
 function_list.append(groups)
+#------------------------------------------------------------------------------------------------
+def university_papers():
+	'''sets up the papers'''
+	paper_list=['MAPT-101','PHPT-101','CSPT-101','CHPT-101',
+		'MAPT-202','PHPT-202','CSPT-202','CHPT-202',
+		'MAPT-303','PHPT-303','CSPT-303','CHPT-303',
+		'MAPT-404','PHPT-404','CSPT-404','CHPT-404',
+		'MAPT-505','PHPT-505','CSPT-505','CHPT-505',
+		'MAPT-606','PHPT-606','CSPT-606','CHPT-606',
+		]
+	bsc_course=office.models.course.objects.first()
+	for i in paper_list:
+		a=office.models.paper()
+		a.code=i
+		a.name=i
+		a.course=bsc_course
+		a.semester=int(i[-1])
+		a.save()
+function_list.append(university_papers)
+#------------------------------------------------------------------------------------------------
+def departments():
+	'''sets up the departments'''
+	department_list=[
+			'Physical_education',
+			'Physics',
+			'Chemistry',
+			'Mathematics',
+			'History',
+			'Philosophy',
+			'English',
+			'Sanskrit',
+			'Hindi',
+			'Administration Ofice',
+			'Computer Science']
+	for i in department_list:
+		a=office.models.department()
+		a.name=i
+		a.save()
+function_list.append(departments)
+
+#------------------------------------------------------------------------------------------------
+def 
 #------------------------------------------------------------------------------------------------
 print '================================================================'
 print 'SETTING UP THE WEBSITE'
