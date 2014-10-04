@@ -6,7 +6,7 @@ from attendence import views
 
 urlpatterns = patterns(
 	'',
-	url(r'^',views.home,name='attendence_home'),
+	url(r'^(?P<classid>\S+)?$',views.home,name='attendence_home'),
 	
 	
 )

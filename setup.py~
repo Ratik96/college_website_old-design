@@ -153,7 +153,10 @@ def departments():
 function_list.append(departments)
 
 #------------------------------------------------------------------------------------------------
-def 
+def attendence():
+	'''sets up the attendence for the dummy student'''
+	pass
+#function_list.append(attendence)
 #------------------------------------------------------------------------------------------------
 print '================================================================'
 print 'SETTING UP THE WEBSITE'
