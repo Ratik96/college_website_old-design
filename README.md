@@ -6,3 +6,4 @@ Dependencies:
 1. sqlite3
 2. Python 2.7
 3. Django-1.6.5
+4. Pillow
