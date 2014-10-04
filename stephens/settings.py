@@ -42,7 +42,7 @@ INSTALLED_APPS = (
     
     'office',
     'mainsite',
-    'attendence',
+    'attendance',
     'django.contrib.flatpages',
     
 )

@@ -1,20 +1,20 @@
 from django.db import models
 import office
 
-class paper_attendence(models.Model):
-	'''Class to record common characteristics for a paper's attendence records'''
-	date_from=models.DateField('Date of counting first attendence.')
-	date_to=models.DateField('Date of counting last attendence.')
+class paper_attendance(models.Model):
+	'''Class to record common characteristics for a paper's attendance records'''
+	date_from=models.DateField('Date of counting first attendance.')
+	date_to=models.DateField('Date of counting last attendance.')
 	paper=models.ForeignKey(office.models.paper,related_name='paper')
 	
 	lecture=models.PositiveSmallIntegerField('Total Lecture',default=0)
 	tutorial=models.PositiveSmallIntegerField('Total Tutorial',default=0)
 	practical=models.PositiveSmallIntegerField('Total Practical',default=0)
 		
-class student_attendence(models.Model):
-	'''Class to record a student's attendence in a paper'''
+class student_attendance(models.Model):
+	'''Class to record a student's attendance in a paper'''
 	student=models.ForeignKey(office.models.student,related_name='student')
-	class_attendence=models.ForeignKey(paper_attendence,related_name='class_attendence')
+	class_attendance=models.ForeignKey(paper_attendance,related_name='class_attendance')
 	
 	lecture=models.PositiveSmallIntegerField('Lecture Attended',default=0)
 	tutorial=models.PositiveSmallIntegerField('Tutorial Attended',default=0)

@@ -70,7 +70,6 @@ function_list.append(courses)
 #------------------------------------------------------------------------------------------------
 def students(student_photo_folder='student_photos'):
 	'''sets up dummy students'''
-	student_list=['Arjoonn Sharma','Atima Shahi']
 	filepath=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,student_photo_folder)
 	files=os.listdir(filepath)
 	for i in files:
@@ -153,10 +152,31 @@ def departments():
 function_list.append(departments)
 
 #------------------------------------------------------------------------------------------------
-def attendence():
+def student_attendence():
 	'''sets up the attendence for the dummy student'''
-	pass
-#function_list.append(attendence)
+	course=office.models.course.objects.first()
+	papers=office.models.paper.objects.filter(course=course).order_by('-pk')[:4]
+	students=office.models.student.objects.all()
+	for p in papers:
+			pap_attd=attendence.models.paper_attendence()
+			pap_attd.date_from=timezone.now()
+			pap_attd.date_to=timezone.now()
+			pap_attd.paper=p
+			pap_attd.lecture=random.choice(range(40,50))
+			pap_attd.practical=random.choice(range(20,35))
+			pap_attd.tutorial=random.choice(range(7,12))
+			pap_attd.save()
+	for stud in students:
+		pap_attds=attendence.models.paper_attendence.objects.all()
+		for p in pap_attds:
+			a=attendence.models.student_attendence()
+			a.student=stud
+			a.class_attendence=p
+			a.lecture=random.choice(range(int(p.lecture*0.1),(p.lecture)))
+			a.practical=random.choice(range(int(p.practical*0.1),(p.practical)))
+			a.tutorial=random.choice(range(int(p.tutorial*0.1),(p.tutorial)))
+			a.save()
+function_list.append(student_attendence)
 #------------------------------------------------------------------------------------------------
 print '================================================================'
 print 'SETTING UP THE WEBSITE'
