@@ -1,5 +1,5 @@
 from django.shortcuts import render
-import attendance
+import attendance,office
 
 def home(request,studentid=None):
 	'''
@@ -8,7 +8,7 @@ def home(request,studentid=None):
 	
 	
 	-------------------------------------
-	Provides list of student_attendance objects for student if studentid has been provided.
+	Provides list of student_attendance objects for student if studentid has been provided.=student_attendance
 	-------------------------------------
 	
 	'''
@@ -19,7 +19,10 @@ def home(request,studentid=None):
 		except Exception as e:
 			print e
 		else:
-			stud=office.models.otudent.objects.get(pk=roll)
-			attendance.models.student_attendance.objects.filter(student=stud)
-			data['student_attendance']=attendance
+			try:
+				stud=office.models.student.objects.get(pk=roll)
+			except Exception as e:
+				print e
+			else:
+				data['student_attendance']=attendance.models.student_attendance.objects.filter(student=stud)
 	return render(request,'attendance/home.html',data)			

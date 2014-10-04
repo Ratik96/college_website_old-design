@@ -75,7 +75,7 @@ def students(student_photo_folder='student_photos'):
 	for i in files:
 		f=file(os.path.join(filepath,i))
 		a=office.models.student()
-		a.name=i.replace('_',' ')
+		a.name=i.replace('_',' ')[:-4]
 		a.picture=File(f)
 		a.email=i+'@gmail.com'
 		a.course=office.models.course.objects.first()
