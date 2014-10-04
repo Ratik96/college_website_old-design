@@ -1,39 +1,38 @@
 <!DOCTYPE html>
 <html>
-	<head>
+<head>
 	<title>St. Stephen's College</title>
 	{%load staticfiles%}
-	<link async='' rel="shortcut icon" href='{% static "mainsite/images/favicon.ico"%}'> </link>
-	<link rel="stylesheet" type="text/css" href="{% static "mainsite/base.css"%}"></link>
+	<link asynrel="shortcut icon" href='{% static "mainsite/images/favicon.ico"%}'/>
+	<link rel="stylesheet" type="text/css" href="{% static "mainsite/base.css"%}"/>
 	<script type="text/javascript" src="{%static 'mainsite/jquery.min.js'%}"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	{%block head%}
 	{%endblock%}
-	</head>
-	
-	<body>
-	<div>
-		<div id='header'>
-			<div>
-				<img src='{%static "mainsite/images/site_header.png"%}' alt='' />
-			</div>
-			<div>
-				<div style='font-size:200%;'>
-				ST. STEPHEN'S COLLEGE
-				</div>
-				
-				<hr>
-				
-				<div style='font-size:90%;'>
-				University Enclave, Delhi-110007
-				</div>
-			</div>
-		</div>
-		<div id='breadcrumbs'>
-			
-		</div>
-	{%block body%}
-	{%endblock%}
+</head>
+<body>
+	<div id="container">
+		<header>
+			<img id="logo" src='{%static "mainsite/images/site_header.png"%}' alt='College logo' />
+			<p style="font-size: 2em; margin-bottom: 3px;">ST. STEPHEN'S COLLEGE</p>
+			<p style="font-size: 1em;">University Enclave, Delhi - 110007, India</p>
+		</header>
+		<nav>
+			<ul>
+				<li><a href='#'>HOME</a></li>
+				<li><a href='#'>ACADEMICS</li></a>
+				<li><a href='#'>ADMISSIONS</li></a>					
+				<li><a href='#'>SOCIETIES</li></a>
+				<li><a href='#'>DEPARTMENTS</li></a>
+				<!-- <li><a href='#'>EVENTS</li></a> --> 
+				<li><a href='#'>SPORTS</li></a>
+				<li><a href='#'>ARCHIVES</li></a>
+				<li><a href='#'>ALUMNI</li></a>
+				<li><a href='#'>CONTACT</li></a>
+			</ul>
+		</nav>
+		{%block body%}
+		{%endblock%}
 	</div>
 	</body>
 </html>
