@@ -3,6 +3,8 @@ import office
 
 class paper_attendance(models.Model):
 	'''Class to record common characteristics for a paper's attendance records'''
+	def __unicode__(self):
+		return self.paper.__unicode__()
 	date_from=models.DateField('Date of counting first attendance.')
 	date_to=models.DateField('Date of counting last attendance.')
 	paper=models.ForeignKey(office.models.paper,related_name='paper')
@@ -13,6 +15,8 @@ class paper_attendance(models.Model):
 		
 class student_attendance(models.Model):
 	'''Class to record a student's attendance in a paper'''
+	def __unicode__(self):
+		return self.student.name+'-'+self.class_attendance.paper.__unicode__()
 	student=models.ForeignKey(office.models.student,related_name='student')
 	class_attendance=models.ForeignKey(paper_attendance,related_name='class_attendance')
 	

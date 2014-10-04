@@ -1,14 +1,14 @@
 from django.shortcuts import render
-import attendence
+import attendance
 
 def home(request,studentid=None):
 	'''
-	Homepage for attendence.
+	Homepage for attendance.
 	Gives a search function to select students by course and semester if no student id is provided
 	
 	
 	-------------------------------------
-	Provides list of student_attendence objects for student if studentid has been provided.
+	Provides list of student_attendance objects for student if studentid has been provided.
 	-------------------------------------
 	
 	'''
@@ -20,6 +20,6 @@ def home(request,studentid=None):
 			print e
 		else:
 			stud=office.models.otudent.objects.get(pk=roll)
-			attendence.models.student_attendence.objects.filter(student=stud)
-			data['student_attendance']=attendence
+			attendance.models.student_attendance.objects.filter(student=stud)
+			data['student_attendance']=attendance
 	return render(request,'attendance/home.html',data)			
