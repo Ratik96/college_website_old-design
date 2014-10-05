@@ -34,7 +34,7 @@ def admission(request):
 	
 	-------------------------------------------
 	'''
-	
+	return render(request,'mainsite/admission.html',data)
 def academics(request):
 	'''
 	Returns homepage of the academics section.
@@ -49,3 +49,15 @@ def academics(request):
 	data['faculty']=grp.user_set.all()
 	data['courses']=office.models.course.objects.all()
 	return render(request,'mainsite/academics.html',data)
+def society(request):
+	data={}
+	return render(request,'mainsite/society.html',data)
+def department(request):
+	data={}
+	return render(request,'mainsite/society.html',data)
+def event(request):
+	data={}
+	return render(request,'mainsite/society.html',data)
+def society(request):
+	data={}
+	return render(request,'mainsite/society.html',data)

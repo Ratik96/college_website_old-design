@@ -3,7 +3,7 @@
 {%block head%}
 	{%load static%}
 	<link rel="stylesheet" type="text/css" href='{%static "mainsite/home.css"%}'></link>
-	<script type="text/javascript" src="{%static 'mainsite/jquery.min.js'%}"></script>
+	<script type="text/javascript" src="{%static 'mainsite/home.js'%}"></script>
 {%endblock%}
 
 {%block body%}

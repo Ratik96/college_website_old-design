@@ -1,6 +1,6 @@
 #slideshow {
     position:relative;
-    width:79%;
+    width:78%;
     height:500px;
     
 }

@@ -1,6 +1,9 @@
 from django.db import models
+from django import forms
 from django.utils import timezone
 import datetime
+import random
+
 class document(models.Model):
 	'''
 	Abstract class to contain the common things needed for notices etc.
@@ -27,7 +30,7 @@ class photo(models.Model):
 		abstract=True
 	def thumbnail(self):
 	        if self.associated_photo:
-	        	addr=self.picture.url
+	        	addr=self.associated_photo.url
 	        	addr.strip('/')
 	        	addr='/'+addr
 	                return u'<img src="'+addr+'" width=60 height=60 />'
@@ -35,6 +38,7 @@ class photo(models.Model):
 	        	return u'No image file found'
 	thumbnail.short_description ='Thumbnail'
 	thumbnail.allow_tags=True
+	
 class home_slideshow_photo(photo):
 	'''
 	Photos for homepage slideshow
@@ -76,3 +80,29 @@ class principal_desk(document):
 	recent.admin_order_field='publish_date'
 	recent.boolean=True
 	recent.short_description='Was published in last one month?'
+
+class admission_candidate(models.Model):
+	'''
+	model to handle admissions for the college.
+	'''
+	first_name=models.CharField(max_length=40)
+	middle_name=models.CharField(max_length=40)
+	last_name=models.CharField(max_length=40)
+	
+	picture=models.ImageField('Candidate photograph',upload_to='admission_photos/%Y/%m/%d')
+	
+	email=models.EmailField()
+	#SUPER INSECURE PASSWORD FIELD--need to implement setpassword and check password
+	password= models.CharField(max_length=128, widget=forms.PasswordInput)	
+	def thumbnail(self):
+	        if self.picture:
+      	        	addr=self.picture.url
+	        	addr.strip('/')
+	        	addr='/'+addr
+	                return u'<img src="'+addr+'" width=60 height=60 />'
+
+	        else:
+	        	return u'No image file found'
+	thumbnail.short_description ='Thumbnail'
+	thumbnail.allow_tags=True
+

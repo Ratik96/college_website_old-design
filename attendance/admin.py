@@ -11,9 +11,11 @@ class paper_attendance_admin(admin.ModelAdmin):
 	'''Paper attendance admin'''
 	
 	inlines=[student_attendance_inline]
+	
 	list_display=['paper','date_from','date_to']
 	list_filter=['date_from','date_to']
 	search_fields=['paper']
+	
 class student_attendance_admin(admin.ModelAdmin):
 	'''admin for student attendance'''
 	list_filter=['class_attendance']

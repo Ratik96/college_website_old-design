@@ -49,3 +49,21 @@ def academics(request):
 	data['faculty']=grp.user_set.all()
 	data['courses']=office.models.course.objects.all()
 	return render(request,'mainsite/academics.html',data)
+def society(request):
+	data={}
+	return render(request,'mainsite/society.html',data)
+def department(request):
+	data={}
+	return render(request,'mainsite/society.html',data)
+def event(request):
+	data={}
+	return render(request,'mainsite/society.html',data)
+def archive(request):
+	data={}
+	return render(request,'mainsite/society.html',data)
+def alumni(request):
+	data={}
+	return render(request,'mainsite/society.html',data)
+def contact(request):
+	data={}
+	return render(request,'mainsite/society.html',data)

@@ -43,7 +43,7 @@ INSTALLED_APPS = (
     'office',
     'mainsite',
     'attendance',
-    'django.contrib.flatpages',
+    #'django.contrib.flatpages',
     
 )
 
@@ -88,7 +88,7 @@ USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
-
+MEDIA_URL='/media/'
 MEDIA_ROOT='/home/ghost/Documents/college_site/'
 STATIC_ROOT='/home/ghost/Documents/college_site/static'
 STATIC_URL = '/static/'
