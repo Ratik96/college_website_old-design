@@ -36,14 +36,13 @@ nav {
 
 nav ul {
   list-style: none;
-  padding: 10px;
   margin-left: 15px;
 }
 
 nav ul li {
   display: inline;
   margin-left: 1px;
-  padding: 10px;
+  padding: 6px;
   font-size: 0.9em;
 }
 

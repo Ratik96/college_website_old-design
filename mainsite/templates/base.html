@@ -19,16 +19,15 @@
 		</header>
 		<nav>
 			<ul>
-				<li><a href='#'>HOME</a></li>
-				<li><a href='#'>ACADEMICS</li></a>
-				<li><a href='#'>ADMISSIONS</li></a>					
-				<li><a href='#'>SOCIETIES</li></a>
-				<li><a href='#'>DEPARTMENTS</li></a>
-				<!-- <li><a href='#'>EVENTS</li></a> --> 
-				<li><a href='#'>SPORTS</li></a>
-				<li><a href='#'>ARCHIVES</li></a>
-				<li><a href='#'>ALUMNI</li></a>
-				<li><a href='#'>CONTACT</li></a>
+				<li><a href='/'>HOME</a></li>
+				<li><a href='{%url "academics_home"%}'>ACADEMICS</li></a>
+				<li><a href='{%url "admission_home"%}'>ADMISSIONS</li></a>					
+				<li><a href='{%url "society_home"%}'>SOCIETIES</li></a>
+				<li><a href='{%url "department_home"%}'>DEPARTMENTS</li></a>
+				<li><a href='{%url "event_home"%}'>EVENTS</li></a>
+				<li><a href='{%url "archive_home"%}'>ARCHIVES</li></a>
+				<li><a href='{%url "alumni_home"%}'>ALUMNI</li></a>
+				<li><a href='{%url "contact_home"%}'>CONTACT</li></a>
 			</ul>
 		</nav>
 		{%block body%}

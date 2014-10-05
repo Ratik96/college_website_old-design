@@ -8,9 +8,17 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'stephens.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
-
-    url(r'^$',views.home,name='site_home'),
     
+    url(r'^$',views.home,name='site_home'),
     url(r'^notification_rss',feeds.Notifications_feed(),name='notification_feed'),
     url(r'^principal_rss',feeds.Principal_feed(),name='principal_feed'),
+    
+    url(r'^academics',views.academics,name='academics_home'),
+    url(r'^admission',views.admission,name='admission_home'),
+    url(r'^society',views.society,name='society_home'),
+    url(r'^department',views.department,name='department_home'),
+    url(r'^events',views.event,name='event_home'),
+    url(r'^archive',views.archive,name='archive_home'),
+    url(r'^alumni',views.alumni,name='alumni_home'),
+    
 )
