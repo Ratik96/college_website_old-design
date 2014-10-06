@@ -1,11 +1,10 @@
 #slideshow {
-    position:relative;
-    width:78%;
-    height:500px;
-    
+    position: relative;
+    width: 78%;
+    height: 500px;
 }
 
-#slideshow IMG {
+#slideshow img {
     position:absolute;
     top:0;
     left:0;
@@ -14,10 +13,10 @@
     width:100%;
 }
 
-#slideshow IMG.active {
+#slideshow img.active {
     z-index:3;
 }
 
-#slideshow IMG.last-active {
+#slideshow img.last-active {
     z-index:2;
 }

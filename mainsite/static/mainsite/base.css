@@ -35,8 +35,9 @@ nav {
 }
 
 nav ul {
+  padding: 5px 0;
   list-style: none;
-  margin-left: 15px;
+  margin-left: 20px;
 }
 
 nav ul li {
