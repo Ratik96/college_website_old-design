@@ -3,3 +3,9 @@
     height: 38em;  
     margin: 0 auto;
 }
+
+#principal-stuff{
+  color: #ccc;
+  background: #91AA9D;
+  padding: 0 20px;
+}

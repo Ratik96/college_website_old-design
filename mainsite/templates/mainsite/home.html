@@ -9,19 +9,31 @@
 {%endblock%}
 
 {%block body%}
-		<!-- juicyslider: https://github.com/vanting/juicyslider -->
-		<div id="slideshow">
-			<div id="myslider" class="juicyslider">
-				<ul>
-					{% for name in slideshow%}
-						<li><img class="img-responsive" src='{{name.associated_photo.url}}' alt=''></li>
-					{%endfor%}
-				</ul>	
-				<div class="nav next"></div>
-	    	<div class="nav prev"></div>
-	    	<div class="mask"></div>
-			</div>
-		</div>
+<!-- juicyslider: https://github.com/vanting/juicyslider -->
+<div id="slideshow">
+	<div id="myslider" class="juicyslider">
+		<ul>
+			{% for name in slideshow%}
+				<li><img class="img-responsive" src='{{name.associated_photo.url}}' alt=''></li>
+			{%endfor%}
+		</ul>	
+		<div class="nav next"></div>
+  	<div class="nav prev"></div>
+  	<div class="mask"></div>
+	</div>
+</div>
+<div id="principal-stuff">
+	<div class="col-md-6">
+		<h2 class="lead">Heading 1</h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis odio vehicula, lobortis ante hendrerit, sodales dolor. Pellentesque quis massa in tellus vulputate pretium vel id ligula. Suspendisse potenti. Donec efficitur est odio, sit amet varius eros ornare in. </p>
+		<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+	</div>
+	<div class="col-md-6">
+		<h2 class="lead">Heading 2</h2>
+		<p>Donec efficitur est odio, sit amet varius eros ornare in. Vivamus egestas, massa id commodo pharetra, tortor nibh elementum sem, sed lobortis purus nulla eu nulla. Nullam blandit libero a justo convallis rhoncus. </p>
+		<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+	</div>
+</div>
 {%endblock%}
 
 
