@@ -1,5 +1,6 @@
 import os
 import sys
+import shutil
 import random
 import datetime
 if __name__ == "__main__":
@@ -12,20 +13,34 @@ from django.contrib.auth.models import User,Group
 from django.core.management import execute_from_command_line
 from django.utils import timezone
 
+#cleanup of the existing files etc
 try:
 	os.remove(os.path.join(os.getcwd(),'db.sqlite3'))
 except Exception as e:
-	print '----------------------'
+	print '================================================================'
 	print 'Looks like you have already removed the database.'	
 	print 'here is the traceback just for completeness'
-	print '----------------------'
+	print '================================================================'
 	print e
-	print '----------------------'
+	print '================================================================'
 	print 'Moving on'
 else:
 	print 'Removed the existing database'
-	print '----------------------'
+	print '================================================================'
 	print 'Moving on'
+	
+try:
+	print 'Cleaning media root'
+	user=os.environ['USER']
+	path='/home/'+user+'/Documents/college_site'
+	shutil.rmtree(path)
+except Exception as e:
+	print e
+else:
+	print 'Done'
+print '================================================================'
+#cleanup complete
+#create the database tables
 execute_from_command_line(['manage.py','syncdb'])
 #------------------------------------------------------------------------------------------------
 #----------------------------------Now the setup of data starts------------------------------------------

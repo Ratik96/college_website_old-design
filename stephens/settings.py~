@@ -30,7 +30,6 @@ SITE_ID=1
 
 
 # Application definition
-
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -53,14 +52,12 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',   
 )
 
 ROOT_URLCONF = 'stephens.urls'
 
 WSGI_APPLICATION = 'stephens.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
@@ -89,9 +86,15 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 MEDIA_URL='/media/'
+#===================================================================
+MEDIA_ROOT='/Users/ratik/Documents/college_site/'
+STATIC_ROOT='/Users/ratik/Documents/college_site/static'
+if os.environ['USER']=='ghost':
+	MEDIA_ROOT='/home/'+os.environ['USER']+'/Documents/college_site/'
+	STATIC_ROOT='/home/'+os.environ['USER']+'/Documents/college_site/static'
+#===================================================================
 STATIC_URL = '/static/'
-MEDIA_ROOT='/home/'+os.environ['USER']+'/Documents/college_site/'
-STATIC_ROOT='/home/'+os.environ['USER']+'/Documents/college_site/static'
+
 LOGIN_REDIRECT_URL='/'
 LOGIN_URL='/login'
 TEMPLATE_DIRS=[os.path.join(BASE_DIR,'templates')]
