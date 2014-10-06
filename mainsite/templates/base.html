@@ -3,20 +3,28 @@
 <head>
 	<title>St. Stephen's College</title>
 	{%load staticfiles%}
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link asynrel="shortcut icon" href='{% static "mainsite/images/favicon.ico"%}'/>
-	<link rel="stylesheet" type="text/css" href="{% static "mainsite/base.css"%}"/>
+	<link rel="stylesheet" type="text/css" href='{% static "mainsite/bootstrap.min.css" %}'/>
+	<link rel="stylesheet" type="text/css" href='{% static "mainsite/bootstrap-theme.min.css" %}'/>
+	<link rel="stylesheet" type="text/css" href='{% static "mainsite/base.css"%}'/>
+	<link rel="stylesheet" type="text/css" href='{% static "mainsite/base_responsive.css"%}'/>
 	<script type="text/javascript" src="{%static 'mainsite/jquery.min.js'%}"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript" src="{%static 'mainsite/bootstrap.min.js'%}"></script>
+	<script type="text/javascript" src="{%static 'mainsite/base.js'%}"></script>
 	{%block head%}
 	{%endblock%}
 </head>
 <body>
 	<div id="container">
-		<header>
-			<img id="logo" src='{%static "mainsite/images/site_header.png"%}' alt='College logo' />
-			<p style="font-size: 2em; margin-bottom: 3px;">ST. STEPHEN'S COLLEGE</p>
-			<p style="font-size: 1em;">University Enclave, Delhi - 110007, India</p>
-		</header>
+		<a href='/'>
+			<header>
+				<img id="logo" src='{%static "mainsite/images/site_header.png"%}' alt='College logo' />
+				<p>ST. STEPHEN'S COLLEGE</p>
+				<p>University Enclave, Delhi - 110007, India</p>
+			</header>
+		</a>
 		<nav>
 			<ul>
 				<li><a href='/'>HOME</a></li>
@@ -33,7 +41,7 @@
 		{%block body%}
 		{%endblock%}
 	</div>
-	</body>
+</body>
 </html>
 
 

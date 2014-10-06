@@ -89,8 +89,8 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 MEDIA_URL='/media/'
-MEDIA_ROOT='/home/ratik/Documents/college_site/'
-STATIC_ROOT='/home/ratik/Documents/college_site/static'
+MEDIA_ROOT='/Users/ratik/Documents/college_site/'
+STATIC_ROOT='/Users/ratik/Documents/college_site/static'
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL='/'
 LOGIN_URL='/login'

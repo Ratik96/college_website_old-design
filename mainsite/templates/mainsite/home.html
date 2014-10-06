@@ -2,21 +2,26 @@
 
 {%block head%}
 	{%load static%}
-	<link rel="stylesheet" type="text/css" href='{%static "mainsite/home.css"%}'></link>
+	<link rel="stylesheet" type="text/css" href='{%static "mainsite/home.css"%}'/>
+	<link rel="stylesheet" type="text/css" href='{% static "mainsite/juicyslider.css" %}'/>
 	<script type="text/javascript" src="{%static 'mainsite/home.js'%}"></script>
+	<script type="text/javascript" src="{%static 'mainsite/juicyslider.js'%}"></script>
 {%endblock%}
 
 {%block body%}
-		<!-- <div id='slideshow'>
-			{% for name in slideshow%}
-				<img src='{{name.associated_photo.url}}' alt='' />
-			{%endfor%}
+		<!-- juicyslider: https://github.com/vanting/juicyslider -->
+		<div id="slideshow">
+			<div id="myslider" class="juicyslider">
+				<ul>
+					{% for name in slideshow%}
+						<li><img class="img-responsive" src='{{name.associated_photo.url}}' alt=''></li>
+					{%endfor%}
+				</ul>	
+				<div class="nav next"></div>
+	    	<div class="nav prev"></div>
+	    	<div class="mask"></div>
+			</div>
 		</div>
-		<div>
-			<ul>
-				
-			</ul>
-		</div> -->
 {%endblock%}
 
 
