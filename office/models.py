@@ -71,7 +71,6 @@ class profile(models.Model):
 	        if self.picture:
 	        	addr=self.picture.url
 	        	addr.strip('/')
-	        	addr='/'+addr
 	                return u'<img src="'+addr+'" width=60 height=60 />'
 	        else:
 	        	return u'No image file found'
@@ -105,7 +104,6 @@ class student(models.Model):
 	        if self.picture:
       	        	addr=self.picture.url
 	        	addr.strip('/')
-	        	addr='/'+addr
 	                return u'<img src="'+addr+'" width=60 height=60 />'
 
 	        else:

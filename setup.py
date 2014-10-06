@@ -12,7 +12,20 @@ from django.contrib.auth.models import User,Group
 from django.core.management import execute_from_command_line
 from django.utils import timezone
 
-
+try:
+	os.remove(os.path.join(os.getcwd(),'db.sqlite3'))
+except Exception as e:
+	print '----------------------'
+	print 'Looks like you have already removed the database.'	
+	print 'here is the traceback just for completeness'
+	print '----------------------'
+	print e
+	print '----------------------'
+	print 'Moving on'
+else:
+	print 'Removed the existing database'
+	print '----------------------'
+	print 'Moving on'
 execute_from_command_line(['manage.py','syncdb'])
 #------------------------------------------------------------------------------------------------
 #----------------------------------Now the setup of data starts------------------------------------------

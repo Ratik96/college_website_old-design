@@ -1,6 +1,6 @@
 # Ignore these files from being pushed
 *.pyc
-*.py~
+*~
 
 # Ignore these folders from being pushed
 bin
@@ -33,7 +33,7 @@ lib
 ######################
 *.log
 *.sql
-*.sqlite
+*.sqlite3
  
 # OS generated files #
 ######################
