@@ -11,7 +11,7 @@ class Notifications_feed(Feed):
 	description="Updates on changes and additions to notifications by the college."
 
 	def items(self):
-		return mainsite.models.notification.objects.order_by('pinned','-publish_date')[:10]
+		return mainsite.models.notification.objects.filter(principal=False).order_by('-publish_date')[:10]
 	def item_title(self,item):
 		return item.title
 
@@ -30,7 +30,7 @@ class Principal_feed(Feed):
 	description="Updates on changes and additions to the Principal's Desk."
 
 	def items(self):
-		return mainsite.models.principal_desk.objects.order_by('-publish_date')[:10]
+		return mainsite.models.notification.objects.filter(principal=True).order_by('-publish_date')[:10]
 	def item_title(self,item):
 		return item.title
 

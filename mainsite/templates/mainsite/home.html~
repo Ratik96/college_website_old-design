@@ -2,21 +2,42 @@
 
 {%block head%}
 	{%load static%}
-	<link rel="stylesheet" type="text/css" href='{%static "mainsite/home.css"%}'></link>
+	<link rel="stylesheet" type="text/css" href='{%static "mainsite/home.css"%}'/>
+	<link rel="stylesheet" type="text/css" href='{% static "mainsite/juicyslider.css" %}'/>
 	<script type="text/javascript" src="{%static 'mainsite/home.js'%}"></script>
+	<script type="text/javascript" src="{%static 'mainsite/juicyslider.js'%}"></script>
 {%endblock%}
 
 {%block body%}
-		<div id='slideshow'>
+<!-- juicyslider: https://github.com/vanting/juicyslider -->
+<div id="slideshow">
+	<div id="myslider" class="juicyslider">
+		<ul>
 			{% for name in slideshow%}
-				<img src='{{name.associated_photo.url}}' alt='' />
+				<li><img class="img-responsive" src='{{name.associated_photo.url}}' alt=''></li>
 			{%endfor%}
-		</div>
-		<div >
-			<ul>
-				
-			</ul>
-		</div>
+		</ul>	
+		<div class="nav next"></div>
+  	<div class="nav prev"></div>
+  	<div class="mask"></div>
+	</div>
+</div>
+<div id="headings">
+	<div class="col-md-6">
+		<h2 class="lead">Notifications <a href='{%url "notification_feed"%}'><img src={%static "mainsite/images/rss.jpg"%} alt='--rss--' /></a></h2>
+			{%for n in notification%}
+				<a href='{%url "notice_view" n.id%}'>{{n.title|capfirst}}{%if n.recent%}<img src='{%static "mainsite/images/new2.gif"%}' width=30eu alt='*'/>{%endif%}</a><br>
+			{%endfor%}
+		<p><a class="btn btn-default" href="{%url 'notice_home'%}" role="button">More &raquo;</a></p>
+	</div>
+	<div class="col-md-6">
+		<h2 class="lead">Principal's Desk <a href='{%url "principal_feed"%}'><img src={%static "mainsite/images/rss.jpg"%} alt='--rss--' /></a></h2>
+		{%for n in principal_desk%}
+				<a href='{%url "notice_view" n.id%}'>{{n.title|capfirst}}{%if n.recent%}<img src='{%static "mainsite/images/new2.gif"%}' width=30eu alt='*'/>{%endif%}</a><br>
+			{%endfor%}
+		<p><a class="btn btn-default" href="{%url 'principal_home'%}" role="button">More &raquo;</a></p>
+	</div>
+</div>
 {%endblock%}
 
 

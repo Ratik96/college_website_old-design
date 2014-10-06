@@ -1,11 +1,12 @@
 #slideshow {
     width: 100%;
-    height: 38em;  
+    height: 30em;  
     margin: 0 auto;
 }
 
-#principal-stuff{
+#headings{
   color: #ccc;
   background: #91AA9D;
-  padding: 0 20px;
+  padding: 0 5px;
+  text-align:center;
 }

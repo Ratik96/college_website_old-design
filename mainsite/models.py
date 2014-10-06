@@ -50,6 +50,7 @@ class notification(document):
 	'''
 	description=models.TextField('A description of the notification')
 	publish_date=models.DateField(default=timezone.now())
+	principal=models.BooleanField("Is is from the principal's desk",default=False)
 	pinned=models.BooleanField('If this notification is to be permanently pinned on the homepage.',default=False)
 	def recent(self):
 		'''Checks if the record is one month old? Returns true if less than one month old.'''
@@ -61,24 +62,7 @@ class notification(document):
 	recent.admin_order_field='publish_date'
 	recent.boolean=True
 	recent.short_description='Was published in last one month?'
-		
-class principal_desk(document):
-	'''
-	The articles to be uploaded under the principal's desk section.
-	These are never deleted and hidden. They are always available.
-	'''
-	description=models.TextField('A description of the article')
-	publish_date=models.DateField(default=timezone.now())
-	def recent(self):
-		'''Checks if the record is one month old? Returns true if less than one month old.'''
-		now=timezone.now()
-		one_month_back=datetime.datetime(now.date().year,now.date().month-1,now.date().day,now.time().hour,now.time().minute,now.time().second,now.time().microsecond,now.tzinfo)
-		if now>one_month_back:
-			return True
-		return False
-	recent.admin_order_field='publish_date'
-	recent.boolean=True
-	recent.short_description='Was published in last one month?'
+	
 
 class admission_candidate(models.Model):
 	'''

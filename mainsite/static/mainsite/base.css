@@ -20,7 +20,7 @@ header {
   color: white;
   font-family: sans-serif;
   background-color: #3b5c6b;
-  padding: 10px;
+  padding: 5px;
 }
 
 header p:first-of-type {
@@ -36,8 +36,8 @@ header p:last-of-type {
 }
 
 #logo {
-  height: 80px;
-  width: 80px;
+  height: 70px;
+  width: 70px;
   margin: 0 auto;
 }
 

@@ -20,5 +20,11 @@ urlpatterns = patterns('',
     url(r'^events',views.event,name='event_home'),
     url(r'^archive',views.archive,name='archive_home'),
     url(r'^alumni',views.alumni,name='alumni_home'),
+    url(r'^contact',views.contact,name='contact_home'),
+    
+    url(r'^notice/$',views.notice_home,name='notice_home'),
+    url(r'^principal/$',views.principal_home,name='principal_home'),
+    url(r'^notice/(?P<noticeid>\d+)$',views.notice_view,name='notice_view'),
+    url(r'^principal/(?P<noticeid>\d+)$',views.notice_view,name='notice_view'),
     
 )

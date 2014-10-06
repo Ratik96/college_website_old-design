@@ -67,8 +67,9 @@ def principal_desk_notices(principal_desk_folder='principal_desk'):
 	files=os.listdir(filepath)
 	for i in files:
 		f=file(os.path.join(filepath,i))
-		a=mainsite.models.principal_desk()
-		a.title=i
+		a=mainsite.models.notification()
+		a.title=i.split('.')[0].replace('_',' ')
+		a.principal=True
 		a.associated_file=File(f)
 		content=f.readlines()
 		a.description=' '.join(content[:3])[:100]
@@ -205,6 +206,20 @@ def student_attendance():
 			a.tutorial=random.choice(range(int(p.tutorial*0.1),(p.tutorial)))
 			a.save()
 function_list.append(student_attendance)
+#------------------------------------------------------------------------------------------------
+def notifications(folder='notifications'):
+	'''sets up the notifications for the website'''
+	filepath=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,folder)
+	files=os.listdir(filepath)
+	for i in files:
+		a=mainsite.models.notification()
+		a.title=i.split('.')[0].replace('_',' ')
+		a.description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis odio vehicula, lobortis ante hendrerit, sodales dolor. Pellentesque quis massa in tellus vulputate pretium vel id ligula. Suspendisse potenti. Donec efficitur est odio, sit amet varius eros ornare in. </p>'
+		f=file(os.path.join(filepath,i))
+		a.associated_file=File(f)
+		a.save()
+		f.close()
+function_list.append(notifications)
 #------------------------------------------------------------------------------------------------
 print '================================================================'
 print 'SETTING UP THE WEBSITE'
