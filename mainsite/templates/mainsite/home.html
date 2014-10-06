@@ -22,6 +22,7 @@
   	<div class="mask"></div>
 	</div>
 </div>
+<<<<<<< HEAD
 <div id="headings">
 	<div class="col-md-6">
 		<h2 class="lead">Notifications <a href='{%url "notification_feed"%}'><img src={%static "mainsite/images/rss.jpg"%} alt='--rss--' /></a></h2>
@@ -36,6 +37,41 @@
 				<a href='{%url "notice_view" n.id%}'>{{n.title|capfirst}}{%if n.recent%}<img src='{%static "mainsite/images/new2.gif"%}' width=30eu alt='*'/>{%endif%}</a><br>
 			{%endfor%}
 		<p><a class="btn btn-default" href="{%url 'principal_home'%}" role="button">More &raquo;</a></p>
+=======
+<div id="principal-stuff">
+	<div class="col-md-4">
+		<h2 class="lead">Heading 1</h2>
+		<ul>
+			<li>lorem</li>
+			<li>lorem</li>
+			<li>lorem</li>
+			<li>lorem</li>
+			<li>lorem</li>
+		</ul>
+		<p><a class="btn btn-default" href="#" role="button">View more &raquo;</a></p>
+	</div>
+	<div class="col-md-4">
+		<h2 class="lead">Heading 2</h2>
+		<ul>
+			<li>lorem</li>
+			<li>lorem</li>
+			<li>lorem</li>
+			<li>lorem</li>
+			<li>lorem</li>
+		</ul>
+		<p><a class="btn btn-default" href="#" role="button">View more &raquo;</a></p>
+	</div>
+	<div class="col-md-4">
+		<h2 class="lead">Heading 2</h2>
+		<ul>
+			<li>lorem</li>
+			<li>lorem</li>
+			<li>lorem</li>
+			<li>lorem</li>
+			<li>lorem</li>
+		</ul>
+		<p><a class="btn btn-default" href="#" role="button">View more &raquo;</a></p>
+>>>>>>> 53d8e1cd4490ab3c3bf7178b9b60813b10087fec
 	</div>
 </div>
 {%endblock%}
