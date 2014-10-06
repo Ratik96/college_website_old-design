@@ -23,7 +23,7 @@ $(document).ready(function(){
         mode: "cover",
         width: '100%',
         height: '100%',
-        mask: "raster",
+        mask: "none",
         bgcolor: "",
         autoplay: 5000,                        
         shuffle: true,                             
