@@ -89,9 +89,9 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 MEDIA_URL='/media/'
-MEDIA_ROOT='/home/ghost/Documents/college_site/'
-STATIC_ROOT='/home/ghost/Documents/college_site/static'
 STATIC_URL = '/static/'
+MEDIA_ROOT='/home/'+os.environ['USER']+'/Documents/college_site/'
+STATIC_ROOT='/home/'+os.environ['USER']+'/Documents/college_site/static'
 LOGIN_REDIRECT_URL='/'
 LOGIN_URL='/login'
 TEMPLATE_DIRS=[os.path.join(BASE_DIR,'templates')]
