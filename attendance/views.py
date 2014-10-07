@@ -5,8 +5,6 @@ def home(request,studentid=None):
 	'''
 	Homepage for attendance.
 	Gives a search function to select students by course and semester if no student id is provided
-	
-	
 	-------------------------------------
 	Provides list of student_attendance objects for student if studentid has been provided.=student_attendance
 	-------------------------------------
