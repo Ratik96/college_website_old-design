@@ -1,14 +1,20 @@
 {%extends 'base.html'%}
 
 {%block head%}
+  {%load static%}
+  <link rel="stylesheet" type="text/css" href='{%static "mainsite/principal_home.css"%}'/>
+  <link rel="stylesheet" type="text/css" href='{%static "mainsite/principal_home-responsive.css"%}'/>
+  <script type="text/javascript" src="{%static 'mainsite/principal_home.js'%}"></script>
 {%endblock%}
 
 {%block body%}
-	<div>
-	arjoonn
-	{%for notice in principal_desk%}
-		{{notice.title}}
-	{%endfor%}
-	</div>
+  <div id="notice-board">
+    {%for notice in principal_desk%}
+        <div class="notice col-xs-6 col-sm-4"> 
+          <h4>{{notice.title}}</h4>
+          <a href="#" class="btn btn-default notice-link">View notice</a>  
+        </div>
+    {%endfor%}
+  </div>
 {%endblock%}
- 
+
