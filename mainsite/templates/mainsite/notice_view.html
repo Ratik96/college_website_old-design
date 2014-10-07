@@ -1,12 +1,14 @@
 {%extends 'base.html'%}
-<!--
-shows notice with given noticeid
-	
-	--------------------------------------------
-	Provides a notice objects.=notice
-	If no notice found provides
-		'error'=1 for does not exist
-		'error'=2 for notice not alive
-	--------------------------------------------
 
- --!>
+{%block head%}
+{%endblock%}
+
+{%block body%}
+	{%if error%}
+		Error code:{{error}}
+	{%endif%}
+	{%if notice%}
+		
+	{%endif%}
+{%endblock%}
+ 

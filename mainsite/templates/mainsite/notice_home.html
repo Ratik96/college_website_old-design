@@ -1,2 +1,13 @@
 {%extends 'base.html'%}
 
+{%block head%}
+
+{%endblock%}
+
+{%block body%}
+	{%for notice in notifications%}
+		{{notice.title}}
+	{%endfor%}
+	
+{%endblock%}
+

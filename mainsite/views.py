@@ -26,11 +26,11 @@ def notice_home(request):
 	shows all notices which are currently active and issued.
 	
 	--------------------------------------------
-	Provides a list of notice objects.=notification
+	Provides a list of notice objects.=notifications
 	--------------------------------------------
 	'''
 	data={}
-	data['notification']=mainsite.models.notification.objects.filter(principal=False).filter(alive=True).order_by('-publish_date','pinned')
+	data['notifications']=mainsite.models.notification.objects.filter(principal=False).filter(alive=True).order_by('-publish_date','pinned')
 	return render(request,'mainsite/notice_home.html',data)
 def principal_home(request):
 	'''
