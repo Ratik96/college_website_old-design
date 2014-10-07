@@ -20,8 +20,6 @@ def home(request):
 	data['notification']=mainsite.models.notification.objects.filter(principal=False).filter(alive=True).order_by('pinned','-publish_date')[:5]
 	data['principal_desk']=mainsite.models.notification.objects.filter(principal=True).filter(alive=True).order_by('-publish_date')[:5]
 	
-	
-	
 	return render(request,'mainsite/home.html',data)
 def notice_home(request):
 	'''
