@@ -110,3 +110,38 @@ class student(models.Model):
 	        	return u'No image file found'
 	thumbnail.short_description ='Thumbnail'
 	thumbnail.allow_tags=True
+class admission_candidate(models.Model):
+	'''
+	model to represent an admission candidate
+	'''
+	def get_hash(string):
+		'''returns the hash of a string.
+		length=56, sha224 implementation'''
+		return hashlib.sha224(string).hexdigest()
+	def set_password(self,string):
+		'''
+		sets the password value  to the hash of the given string
+		'''
+		self.password=get_hash(string)
+	def check_password(self,string):
+		'''
+		checks if string is same as the password by comparing hashes
+		'''
+		current=self.password
+		entered=get_hash(string)
+		if current==entered:
+			return True
+		return False
+	
+	first_name=models.CharField(max_length=40)
+	middle_name=models.CharField(max_length=40)
+	last_name=models.CharField(max_length=40)
+	
+	picture=models.ImageField(upload_to='admission_candidates')
+	
+	email=models.EmailField()
+	password=models.CharField(max_length=56)
+	
+	course=models.ForeignKey(course,related_name='course')
+	
+
