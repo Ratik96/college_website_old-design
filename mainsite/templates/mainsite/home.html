@@ -24,7 +24,16 @@
 	</div>
 </div>
 <div id="headings">
-	<div class="col-md-6">
+	<div class="col-md-4">
+		<h1 style="margin-right: 5px;">Quick Links</h1>
+		<ol>
+			<li><a href='#'>Attendance</a></li>
+			<li><a href='#'>Office</a></li>
+			<li><a href='#'>Events</a></li>
+			<li><a href='#'>e-Library</a></li>
+		</ol>
+	</div>
+	<div class="col-md-4">
 		<h1 style="margin-right: 5px;">Notifications<a href='{%url "notification_feed"%}'><img src={%static "mainsite/images/rss.jpg"%} alt='--rss--' style="margin-left: 10px;" /></a></h1>
 		<ol>
 			{%for n in notification%}
@@ -33,7 +42,7 @@
 		</ol>
 		<p><a class="btn btn-default" href="{%url 'notice_home'%}" role="button">More.. &raquo;</a></p>
 	</div>
-	<div class="col-md-6">
+	<div class="col-md-4">
 		<h1 style="margin-right: 5px;">Principal's Desk <a href='{%url "principal_feed"%}'><img src={%static "mainsite/images/rss.jpg"%} alt='--rss--' style="margin-left: 10px;" /></a></h1>
 		<ol>
 			{%for n in principal_desk%}

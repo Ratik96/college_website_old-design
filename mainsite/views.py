@@ -78,6 +78,7 @@ def admission(request):
 	
 	-------------------------------------------
 	'''
+	data={}
 	return render(request,'mainsite/admission.html',data)
 def academics(request):
 	'''

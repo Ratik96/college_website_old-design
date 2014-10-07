@@ -23,6 +23,7 @@ ol li {
 h1 {
   font-size: 2em;
   border-bottom: 2px dashed #ccc;
+  text-align:center;
 }
 
 #slideshow {
