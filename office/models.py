@@ -110,6 +110,7 @@ class student(models.Model):
 	        	return u'No image file found'
 	thumbnail.short_description ='Thumbnail'
 	thumbnail.allow_tags=True
+	
 class admission_candidate(models.Model):
 	'''
 	model to represent an admission candidate
@@ -142,6 +143,6 @@ class admission_candidate(models.Model):
 	email=models.EmailField()
 	password=models.CharField(max_length=56)
 	
-	course=models.ForeignKey(course,related_name='course')
+	course=models.ForeignKey(course,related_name='course_applied')
 	
 
