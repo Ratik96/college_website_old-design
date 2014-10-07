@@ -1,13 +1,20 @@
 {%extends 'base.html'%}
 
 {%block head%}
-
+  {%load static%}
+  <link rel="stylesheet" type="text/css" href='{%static "mainsite/notice_home.css"%}'/>
+  <link rel="stylesheet" type="text/css" href='{%static "mainsite/notice_home-responsive.css"%}'/>
+  <script type="text/javascript" src="{%static 'mainsite/notice_home.js'%}"></script>
 {%endblock%}
 
 {%block body%}
-	{%for notice in notifications%}
-		{{notice.title}}
-	{%endfor%}
-	
+  <div id="notice-board">
+    {%for notice in notifications%}
+        <div class="notice col-xs-6 col-sm-4"> 
+          <h4>{{notice.title}}</h4>
+          <a href="{%url "notice_view" notice.id%}" class="btn btn-default notice-link">View notice</a>  
+        </div>
+    {%endfor%}
+  </div>
 {%endblock%}
 
