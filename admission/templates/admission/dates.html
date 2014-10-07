@@ -1,0 +1,12 @@
+{%extends 'admission/home.html'%}
+
+
+{%block admission_head%}
+{%endblock%}
+
+
+{%block admission_body%}
+	{%for d in dates%}
+		{{d.date}}=={{d.activity}}
+	{%endfor%}
+{%endblock%}

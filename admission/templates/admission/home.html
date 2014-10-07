@@ -1,0 +1,19 @@
+{%extends 'base.html'%}
+
+{%block head%}
+	{%block admission_head%}
+	{%endblock%}
+{%endblock%}
+
+{%block body%}
+	<ol>
+		<li><a href='{%url "admission_procedure"%}'>Procedure</a></li>
+		<li><a href='{%url "admission_dates"%}'>Important Dates</a></li>
+		<li><a href='{%url "admission_notices"%}'>Admission Notices</a></li>
+		<li><a href='{%url "admission_cutoff"%}'>Cutoffs</a></li>
+		<li><a href='{%url "admission_result"%}'>Results</a></li>
+		<li><a href='{%url "admission_faq"%}'>FAQ</a></li>
+	</ol>
+	{%block admission_body%}
+	{%endblock%}
+{%endblock%}

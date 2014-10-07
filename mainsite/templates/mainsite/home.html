@@ -37,7 +37,7 @@
 		<h1 style="margin-right: 5px;">Notifications<a href='{%url "notification_feed"%}'><img src={%static "mainsite/images/rss.jpg"%} alt='--rss--' style="margin-left: 10px;" /></a></h1>
 		<ol>
 			{%for n in notification%}
-				<li><a href='{%url "notice_view" n.id%}'>{{n.title|capfirst}}{%if n.recent%}<img src='{%static "mainsite/images/new2.gif"%}' width=30eu alt='*' style="margin-left: 5px;" />{%endif%}</a></li>
+				<li><a target='_blank' href="https://docs.google.com/viewer?url={{domain_name|add:n.associated_file.url|urlencode}}">{{n.title|capfirst}}{%if n.recent%}<img src='{%static "mainsite/images/new2.gif"%}' width=30eu alt='*' style="margin-left: 5px;" />{%endif%}</a></li>
 			{%endfor%}
 		</ol>
 		<p><a class="btn btn-default" href="{%url 'notice_home'%}" role="button">More.. &raquo;</a></p>
@@ -46,7 +46,7 @@
 		<h1 style="margin-right: 5px;">Principal's Desk <a href='{%url "principal_feed"%}'><img src={%static "mainsite/images/rss.jpg"%} alt='--rss--' style="margin-left: 10px;" /></a></h1>
 		<ol>
 			{%for n in principal_desk%}
-				<li><a href='{%url "notice_view" n.id%}'>{{n.title|capfirst}}{%if n.recent%}<img src='{%static "mainsite/images/new2.gif"%}' width=30eu alt='*' style="margin-left: 5px;" />{%endif%}</a></li>
+				<li><a target='_blank' href="https://docs.google.com/viewer?url={{domain_name|add:n.associated_file.url|urlencode}}">{{n.title|capfirst}}{%if n.recent%}<img src='{%static "mainsite/images/new2.gif"%}' width=30eu alt='*' style="margin-left: 5px;" />{%endif%}</a></li>
 			{%endfor%}
 		</ol>
 		<p><a class="btn btn-default" href="{%url 'principal_home'%}" role="button">More.. &raquo;</a></p>

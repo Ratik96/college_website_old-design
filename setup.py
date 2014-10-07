@@ -7,7 +7,7 @@ if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "stephens.settings")
 
 from django.core.files import File
-import mainsite,attendance,office,events
+import mainsite,attendance,office,events,admission
 
 from django.contrib.auth.models import User,Group
 from django.core.management import execute_from_command_line
@@ -220,6 +220,30 @@ def notifications(folder='notifications'):
 		a.save()
 		f.close()
 function_list.append(notifications)
+#------------------------------------------------------------------------------------------------
+def admission_important_dates():
+	'''
+	sets up important dates regarding admissions
+	'''
+	filepath=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'admission_dates')
+	f=file(filepath)
+	l=f.readlines()
+	f.close()
+	now=timezone.now()
+	next_month=datetime.datetime(now.date().year,now.date().month+1,now.date().day,now.time().hour,now.time().minute,now.time().second,now.time().microsecond,now.tzinfo)
+	for i in l:
+		a=admission.models.dates()
+		a.date=timezone.now()
+		a.activity=i
+		a.valid_upto=next_month
+		a.save()
+function_list.append(admission_important_dates)
+#------------------------------------------------------------------------------------------------
+def admission_notices():
+	'''
+	sets up the notices regarding admissions
+	'''
+	pass
 #------------------------------------------------------------------------------------------------
 print '================================================================'
 print 'SETTING UP THE WEBSITE'

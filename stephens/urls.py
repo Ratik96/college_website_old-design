@@ -12,6 +12,7 @@ urlpatterns = patterns(
 	url(r'^office/',include('office.urls')),
 	url(r'^attendance/',include('attendance.urls')),
 	url(r'^admin/', include(admin.site.urls)),
+	url(r'^admissions/',include('admission.urls')),
 	#url(r'^site/',include('django.contrib.flatpages.urls')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
