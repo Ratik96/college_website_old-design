@@ -114,6 +114,13 @@ class student(models.Model):
 class admission_candidate(models.Model):
 	'''
 	model to represent an admission candidate
+	-----------------------------------------
+	Things to be supplied by candidate
+	1. name
+	2. valid email id
+	3. photograph
+	4. marksheets
+	5. payment challans
 	'''
 	def get_hash(string):
 		'''returns the hash of a string.
@@ -138,11 +145,18 @@ class admission_candidate(models.Model):
 	middle_name=models.CharField(max_length=40)
 	last_name=models.CharField(max_length=40)
 	
-	picture=models.ImageField(upload_to='admission_candidates')
+	picture=models.ImageField(upload_to='admissions/photos/%Y/%m/%d')
 	
 	email=models.EmailField()
 	password=models.CharField(max_length=56)
 	
 	course=models.ForeignKey(course,related_name='course_applied')
 	
-
+	
+	
+	document_1=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None)
+	document_1=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None)
+	document_1=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None)
+	document_1=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None)
+	
+	

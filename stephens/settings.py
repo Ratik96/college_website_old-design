@@ -100,4 +100,6 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL='/'
 LOGIN_URL='/login'
 TEMPLATE_DIRS=[os.path.join(BASE_DIR,'templates')]
+#the domain name to be associated with the file viewers
+domain_name='http://localhost:8000'
 

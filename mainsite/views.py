@@ -1,5 +1,5 @@
 from django.shortcuts import render
-import mainsite,office
+import mainsite,office,stephens
 from django.contrib.auth.models import User,Group
 
 
@@ -16,11 +16,12 @@ def home(request):
 	
 	'''
 	data={}
+	data['domain_name']=stephens.settings.domain_name
 	data['slideshow']=mainsite.models.home_slideshow_photo.objects.filter(alive=True)
 	data['notification']=mainsite.models.notification.objects.filter(principal=False).filter(alive=True).order_by('pinned','-publish_date')[:5]
 	data['principal_desk']=mainsite.models.notification.objects.filter(principal=True).filter(alive=True).order_by('-publish_date')[:5]
-	
 	return render(request,'mainsite/home.html',data)
+	
 def notice_home(request):
 	'''
 	shows all notices which are currently active and issued.
@@ -30,6 +31,7 @@ def notice_home(request):
 	--------------------------------------------
 	'''
 	data={}
+	data['domain_name']=stephens.settings.domain_name
 	data['notifications']=mainsite.models.notification.objects.filter(principal=False).filter(alive=True).order_by('-publish_date','pinned')
 	return render(request,'mainsite/notice_home.html',data)
 def principal_home(request):
@@ -41,6 +43,7 @@ def principal_home(request):
 	--------------------------------------------
 	'''
 	data={}
+	data['domain_name']=stephens.settings.domain_name
 	data['principal_desk']=mainsite.models.notification.objects.filter(principal=True).filter(alive=True).order_by('-publish_date','pinned')
 	return render(request,'mainsite/principal_home.html',data)
 def notice_view(request,noticeid):
@@ -55,6 +58,7 @@ def notice_view(request,noticeid):
 	--------------------------------------------
 	'''
 	data={}
+	data['domain_name']=stephens.settings.domain_name
 	try:
 		notice=mainsite.models.notification.objects.get(pk=noticeid)
 	except Exception as e:
@@ -79,6 +83,7 @@ def admission(request):
 	-------------------------------------------
 	'''
 	data={}
+	data['domain_name']=stephens.settings.domain_name
 	return render(request,'mainsite/admission.html',data)
 def academics(request):
 	'''
@@ -90,25 +95,32 @@ def academics(request):
 	-------------------------------------------
 	'''
 	data={}
+	data['domain_name']=stephens.settings.domain_name
 	grp=Group.objects.get(name='Faculty')
 	data['faculty']=grp.user_set.all()
 	data['courses']=office.models.course.objects.all()
 	return render(request,'mainsite/academics.html',data)
 def society(request):
 	data={}
+	data['domain_name']=stephens.settings.domain_name
 	return render(request,'mainsite/society.html',data)
 def department(request):
 	data={}
+	data['domain_name']=stephens.settings.domain_name
 	return render(request,'mainsite/society.html',data)
 def event(request):
 	data={}
+	data['domain_name']=stephens.settings.domain_name
 	return render(request,'mainsite/society.html',data)
 def archive(request):
 	data={}
+	data['domain_name']=stephens.settings.domain_name
 	return render(request,'mainsite/society.html',data)
 def alumni(request):
 	data={}
+	data['domain_name']=stephens.settings.domain_name
 	return render(request,'mainsite/society.html',data)
 def contact(request):
 	data={}
+	data['domain_name']=stephens.settings.domain_name
 	return render(request,'mainsite/society.html',data)
