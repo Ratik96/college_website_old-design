@@ -27,7 +27,7 @@ def notice(request):
 	'''
 	data={}
 	data['domain_name']=stephens.settings.domain_name
-	
+	data['notices']=admission.models.notice.objects.filter(publish_date__lte=timezone.now())
 	return render(request,'admission/notices.html',data)
 def cutoff(request):
 	'''

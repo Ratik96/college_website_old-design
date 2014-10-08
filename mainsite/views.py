@@ -46,31 +46,7 @@ def principal_home(request):
 	data['domain_name']=stephens.settings.domain_name
 	data['principal_desk']=mainsite.models.notification.objects.filter(principal=True).filter(alive=True).order_by('-publish_date','pinned')
 	return render(request,'mainsite/principal_home.html',data)
-def notice_view(request,noticeid):
-	'''
-	shows notice with given noticeid
-	
-	--------------------------------------------
-	Provides a notice objects.=notice
-	If no notice found provides
-		'error'=1 for does not exist
-		'error'=2 for notice not alive
-	--------------------------------------------
-	'''
-	data={}
-	data['domain_name']=stephens.settings.domain_name
-	try:
-		notice=mainsite.models.notification.objects.get(pk=noticeid)
-	except Exception as e:
-		print e
-		data['error']=1
-	else:
-		if notice.alive:
-			data['notice']=notice
-		else:
-			print 'Notice with notice id =',noticeid,' not alive'
-			data['error']=2
-	return render(request,'mainsite/notice_view.html',data)		
+
 
 def admission(request):
 	'''

@@ -243,6 +243,60 @@ def admission_notices():
 	'''
 	sets up the notices regarding admissions
 	'''
+	filepath=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'admission_notices')
+	files_available=os.listdir(filepath)
+	for i in files_available:
+		a=admission.models.notice()
+		a.title=i
+		a.description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis odio vehicula, lobortis ante hendrerit, sodales dolor. Pellentesque quis massa in tellus vulputate pretium vel id ligula. Suspendisse potenti. Donec efficitur est odio, sit amet varius eros ornare in. </p>'
+		a.publish_date=timezone.now()
+		f=file(os.path.join(filepath,i))
+		a.associated_file=File(f)
+		a.save()
+		f.close()
+function_list.append(admission_notices)
+#------------------------------------------------------------------------------------------------
+def admission_categories():
+	'''
+	sets up the admission categories
+	'''
+	filepath=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'admission_cutoff')
+	f=file(os.path.join(filepath,'category'))
+	l=f.readlines()
+	f.close()
+	for i in l:
+		a=admission.models.category()
+		a.name,a.code=i.split(',')
+		a.save()
+function_list.append(admission_categories)		
+#------------------------------------------------------------------------------------------------
+def admission_cutoff_and_courses():
+	'''
+	sets up the courses and the cutoffs in the college
+	'''
+	for c in office.models.course.objects.all():
+		cs=admission.models.cutoff_subject()
+		cs.valid_upto=timezone.now()
+		cs.course=c
+		cs.save()
+		for i in admission.models.category.objects.all():
+			a=admission.models.category_cutoff()
+			a.category=i
+			a.cutoff_subject=cs
+			x=random.random()
+			a.science=random.choice([70,60,80])+(x*19)
+			x=random.random()
+			a.humanities=random.choice([70,60,80])+(x*19)
+			x=random.random()
+			a.commerce=random.choice([70,60,80])+(x*19)
+			a.save()
+	
+function_list.append(admission_cutoff_and_courses)
+#------------------------------------------------------------------------------------------------
+def admission_results():
+	'''
+	sets up the results in the interviews and such
+	'''
 	pass
 #------------------------------------------------------------------------------------------------
 print '================================================================'
