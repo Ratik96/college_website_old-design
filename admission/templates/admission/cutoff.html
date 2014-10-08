@@ -6,5 +6,19 @@
 
 
 {%block admission_body%}
-CUTOFF
+
+	{%for course in courses%}
+	{{course.course}} {{course.valid_upto}}
+	{%endfor%}
+
+	{% regroup cutoffs by cutoff_subject as subject_cutoff%}
+	<ol>
+	{%for sub in subject_cutoff%}
+		<li>{{sub.grouper}}<ol>
+			{%for category in sub.list%}
+				<li>{{category.category}},{{category.science}},{{category.commerce}},{{category.humanities}}</li>
+			{%endfor%}
+		</ol></li>
+	{%endfor%}
+	</ol>
 {%endblock%}

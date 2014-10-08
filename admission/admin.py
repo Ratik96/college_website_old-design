@@ -25,6 +25,7 @@ class admission_candidate_admin(admin.ModelAdmin):
 	'''
 	admin for admission_candidate
 	'''
+	exclude=['cutoff_status']
 	list_display=['email','stream','course','category','clear_cutoff']
 	list_filter=['stream','course','category']
 	search_fields=['first_name','middle_name','last_name','email']

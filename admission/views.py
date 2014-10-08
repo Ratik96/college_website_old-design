@@ -17,6 +17,9 @@ def procedure(request):
 def dates(request):
 	'''
 	returns important dates related to admissions
+	-------------------------------
+	Provides a list of dates object=dates
+	-------------------------------
 	'''
 	data={}
 	data['dates']=admission.models.dates.objects.filter(valid_upto__gte=timezone.now())
@@ -24,6 +27,9 @@ def dates(request):
 def notice(request):
 	'''
 	notices regarding admissions
+	----------------------------------
+	Provides a list of notices=notices
+	----------------------------------
 	'''
 	data={}
 	data['domain_name']=stephens.settings.domain_name
@@ -31,13 +37,23 @@ def notice(request):
 	return render(request,'admission/notices.html',data)
 def cutoff(request):
 	'''
-	cutoffs of this and previous years
+	cutoffs of this year
+	-------------------------------------
+	Provides a list of category cutoffs=cutoffs
+	Provides a list of subjects and their cutoff validation dates=courses
+	-------------------------------------
 	'''
 	data={}
+	data['courses']=admission.models.cutoff_subject.objects.all()
+	data['cutoffs']=admission.models.category_cutoff.objects.filter(cutoff_subject__valid_upto__gte=timezone.now()).order_by('cutoff_subject','category')
 	return render(request,'admission/cutoff.html',data)
+	
 def result(request):
 	'''
 	results of this and previous years
+	-------------------------------------
+	Provides a list of admitted candidates=admitted_candidates
+	-------------------------------------
 	'''
 	data={}
 	return render(request,'admission/result.html',data)

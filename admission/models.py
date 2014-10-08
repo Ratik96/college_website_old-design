@@ -144,15 +144,17 @@ class admission_candidate(models.Model):
 			(2,'Commerce'),
 			(3,'Humanities')
 			]
+			
 	stream=models.SmallIntegerField('Stream applicable to you',choices=STREAM_CHOICES)
 	course=models.ForeignKey(office.models.course,related_name='course_applied',help_text='Course you want to apply for')
 	category=models.ForeignKey(category,related_name='category_applied',help_text='Category applicable to you')
 	bfs=models.FloatField("Best Four Subject's Marks")
 	cutoff_status=models.BooleanField(default=False)
+
 	
 	document_1=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None)
-	document_1=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None)
-	document_1=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None)
-	document_1=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None)
+	document_2=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None)
+	document_3=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None)
+	document_4=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None)
 	
 	
