@@ -1,17 +1,18 @@
 {%extends 'admission/home.html'%}
 
-
 {%block admission_head%}
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href='{% static "admission/cutoff.css"%}'>
+	<link rel="stylesheet" type="text/css" href='{% static "admission/cutoff-responsive.css"%}'>
 {%endblock%}
 
 
 {%block admission_body%}
+	<!-- {%for course in courses%}
+		{{course.course}} {{course.valid_upto}}
+	{%endfor%} -->
 
-	{%for course in courses%}
-	{{course.course}} {{course.valid_upto}}
-	{%endfor%}
-
-	{% regroup cutoffs by cutoff_subject as subject_cutoff%}
+	<!-- {% regroup cutoffs by cutoff_subject as subject_cutoff%}
 	<ol>
 	{%for sub in subject_cutoff%}
 		<li>{{sub.grouper}}<ol>
@@ -20,5 +21,83 @@
 			{%endfor%}
 		</ol></li>
 	{%endfor%}
-	</ol>
+	</ol> -->
+
+	<!-- <div class="table-responsive" style="width: 70%; margin: 0 auto;">
+	  <table class="table table-bordered" style="text-align: center;">
+	  	<thead>
+		    <tr>
+		      <th colspan="4" style="font-size: 3em;" class="lead">Economics</th>
+		    </tr>
+  		</thead>
+		  <tbody>
+		    <tr style="font-weight: bold; font-size: 1.4em;">
+		      <td>Category</td>
+		      <td>Science (BFS)</td>
+		      <td>Commerce (BFS)</td>
+		      <td>Humanities (BFS)</td>
+		    </tr>
+		    <tr>
+		      <td>GEN</td>
+		      <td></td>
+		      <td></td>
+		      <td></td>
+		    </tr>
+		    <tr>
+		      <td>SC</td>
+		      <td></td>
+		      <td></td>
+		      <td></td>
+		    </tr>
+		    <tr>
+		      <td>ST</td>
+		      <td></td>
+		      <td></td>
+		      <td></td>
+		    </tr>
+		    <tr>
+		      <td>COTH</td>
+		      <td></td>
+		      <td></td>
+		      <td></td>
+		    </tr>
+		    <tr>
+		      <td>CNI</td>
+		      <td></td>
+		      <td></td>
+		      <td></td>
+		    </tr>
+		    <tr>
+		      <td>CNID</td>
+		      <td></td>
+		      <td></td>
+		      <td></td>
+		    </tr>
+		    <tr>
+		      <td>CST</td>
+		      <td></td>
+		      <td></td>
+		      <td></td>
+		    </tr>
+		    <tr>
+		      <td>CPwD</td>
+		      <td></td>
+		      <td></td>
+		      <td></td>
+		    </tr>
+		    <tr>
+		      <td>PwD</td>
+		      <td></td>
+		      <td></td>
+		      <td></td>
+		    </tr>
+		    <tr>
+		      <td>URDU</td>
+		      <td></td>
+		      <td></td>
+		      <td></td>
+		    </tr>
+		  </tbody>	
+	  </table>
+	</div> -->
 {%endblock%}

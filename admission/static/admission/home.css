@@ -28,12 +28,12 @@ body {
   text-decoration: underline;
 }
 
-ol {
+#nav-helper {
   list-style: none;
   margin-top: 20px;
 }
 
-ol li {
+#nav-helper li {
   background-color: rgba(128, 191, 210, 0.95);
   padding: 10px;
   width: 95%;

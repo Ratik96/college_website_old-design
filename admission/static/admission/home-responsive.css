@@ -1,9 +1,9 @@
 @media (min-width: 800px) {
-  ol {
+  #nav-helper {
     margin: 20px 0;
     margin-left: 50px;
   }
-  ol li {
+  #nav-helper li {
     width: inherit;
     display: inline-block;
     padding: 20px;
