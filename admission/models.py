@@ -1,7 +1,12 @@
 from django.db import models
 from django.utils import timezone
 import office
-
+def get_hash(string):
+		'''returns the hash of a string.
+		length=56, sha224 implementation'''
+		import hashlib
+		return hashlib.sha224(string).hexdigest()
+		
 class dates(models.Model):
 	'''
 	The important dates related to admissions
@@ -11,8 +16,7 @@ class dates(models.Model):
 	date=models.DateField()
 	activity=models.CharField(max_length=100)
 	valid_upto=models.DateField()
-	
-	
+
 class category(models.Model):
 	'''
 	stores the various quotas for admission
@@ -55,6 +59,12 @@ class notice(models.Model):
 	associated_file=models.FileField(upload_to='admissions/notice')
 	
 	publish_date=models.DateField(default=timezone.now())
+
+class results(models.Model):
+	'''
+	students selected in to courses
+	'''
+	pass
 	
 class admission_candidate(models.Model):
 	'''
@@ -67,10 +77,8 @@ class admission_candidate(models.Model):
 	4. marksheets
 	5. payment challans
 	'''
-	def get_hash(string):
-		'''returns the hash of a string.
-		length=56, sha224 implementation'''
-		return hashlib.sha224(string).hexdigest()
+	def __unicode__(self):
+		return str(self.first_name)+str(self.middle_name)+str(self.last_name)
 	def set_password(self,string):
 		'''
 		sets the password value  to the hash of the given string
@@ -85,19 +93,62 @@ class admission_candidate(models.Model):
 		if current==entered:
 			return True
 		return False
+	def clear_cutoff(self):
+		'''
+		checks if candidate clears cutoff
+		'''
+		old_value=self.cutoff_status
+		new_value=old_value
+		if len(category_cutoff.objects.all())==0:
+			new_value=False#ie no cutoffs have been declared
+			
+		cutoff=category_cutoff.objects.filter(cutoff_subject__course=self.course).filter(category=self.category).filter(cutoff_subject__valid_upto__lte=timezone.now())[0]
+		
+		if self.stream==1:#from science
+			if self.bfs>=cutoff.science:
+				new_value=True
+			else:
+				new_value=False
+		if self.stream==2:#from commerce
+			if self.bfs>=cutoff.commerce:
+				new_value=True
+			else:
+				new_value=False
+		if self.stream==3:#from humanities
+			if self.bfs>=cutoff.humanities:
+				new_value=True
+			else:
+				new_value=False
+		if new_value==old_value:
+			return new_value
+		else:
+			self.cutoff_status=new_value
+			self.save()
+			return new_value
+			
+		
+	clear_cutoff.boolean=True
+	clear_cutoff.short_description='Has cleared course cutoff?'
+	clear_cutoff.admin_order_field='cutoff_status'
+	
 	
 	first_name=models.CharField(max_length=40)
-	middle_name=models.CharField(max_length=40)
-	last_name=models.CharField(max_length=40)
-	
+	middle_name=models.CharField(max_length=40,blank=True)
+	last_name=models.CharField(max_length=40,blank=True)
 	picture=models.ImageField(upload_to='admissions/photos/%Y/%m/%d')
-	
 	email=models.EmailField()
 	password=models.CharField(max_length=56)
 	
-	course=models.ForeignKey(office.models.course,related_name='course_applied')
-	
-	
+	STREAM_CHOICES=[
+			(1,'Sciences'),
+			(2,'Commerce'),
+			(3,'Humanities')
+			]
+	stream=models.SmallIntegerField('Stream applicable to you',choices=STREAM_CHOICES)
+	course=models.ForeignKey(office.models.course,related_name='course_applied',help_text='Course you want to apply for')
+	category=models.ForeignKey(category,related_name='category_applied',help_text='Category applicable to you')
+	bfs=models.FloatField("Best Four Subject's Marks")
+	cutoff_status=models.BooleanField(default=False)
 	
 	document_1=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None)
 	document_1=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None)

@@ -284,20 +284,46 @@ def admission_cutoff_and_courses():
 			a.category=i
 			a.cutoff_subject=cs
 			x=random.random()
-			a.science=random.choice([70,60,80])+(x*19)
+			a.science=round(random.choice([70,60,80])+(x*19),2)
 			x=random.random()
-			a.humanities=random.choice([70,60,80])+(x*19)
+			a.humanities=round(random.choice([70,60,80])+(x*19),2)
 			x=random.random()
-			a.commerce=random.choice([70,60,80])+(x*19)
+			a.commerce=round(random.choice([70,60,80])+(x*19),2)
 			a.save()
 	
 function_list.append(admission_cutoff_and_courses)
 #------------------------------------------------------------------------------------------------
-def admission_results():
+def admission_candidates():
 	'''
 	sets up the results in the interviews and such
 	'''
-	pass
+	filepath=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'admission_candidates')
+	files=os.listdir(filepath)
+	courses_available=office.models.course.objects.all()
+	category_available=admission.models.category.objects.all()
+	for i in files:
+		ac=admission.models.admission_candidate()
+		temp_name=i.strip('.jpg').split('_')
+		ac.firstname=temp_name[0]
+		ac.lastname=temp_name[-1]
+		try:
+			ac.middlename=temp_name[1] if temp_name[1]!=temp_name[-1] else ''
+		except:
+			pass
+		f=file(os.path.join(filepath,i))
+		ac.picture=File(f)
+		ac.email=i+'@gmail.com'
+		ac.set_password('arjoonnsharma')
+		ac.stream=random.choice([1,2,3])
+		ac.course=random.choice(courses_available)
+		ac.category=random.choice(category_available)
+		ac.bfs=round((80+(random.random()*20)),2)
+		ac.save()
+		f.close()
+function_list.append(admission_candidates)
+		
+			
+			
 #------------------------------------------------------------------------------------------------
 print '================================================================'
 print 'SETTING UP THE WEBSITE'
