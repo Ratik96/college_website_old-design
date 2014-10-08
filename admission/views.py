@@ -52,11 +52,14 @@ def result(request):
 	'''
 	results of this and previous years
 	-------------------------------------
-	Provides a list of admitted candidates=admitted_candidates
+	Provides a list of admitted candidates=admitted
 	-------------------------------------
 	'''
 	data={}
+	data['admitted']=admission.models.admission_candidate.objects.filter(cutoff_status=True).filter(admitted=True)
+	print data['admitted']
 	return render(request,'admission/result.html',data)
+	
 def faq(request):
 	'''
 	retunrs teh frequently asked questions

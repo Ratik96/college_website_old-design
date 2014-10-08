@@ -150,7 +150,7 @@ class admission_candidate(models.Model):
 	category=models.ForeignKey(category,related_name='category_applied',help_text='Category applicable to you')
 	bfs=models.FloatField("Best Four Subject's Marks")
 	cutoff_status=models.BooleanField(default=False)
-
+	admitted=models.BooleanField(default=False)
 	
 	document_1=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None)
 	document_2=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None)

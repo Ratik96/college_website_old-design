@@ -6,5 +6,15 @@
 
 
 {%block admission_body%}
-RESULT
+	{%regroup admitted by course as course_list%}
+	<ol>
+	{%for course in course_list%}
+		<li><ol>
+		{{course.grouper}}
+			{%for candidate in course.list%}
+				<li>{{candidate.email}}</li>
+			{%endfor%}
+		</ol></li>
+	{%endfor%}
+	</ol>
 {%endblock%}
