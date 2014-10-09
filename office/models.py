@@ -99,6 +99,7 @@ class student(models.Model):
 	email=models.EmailField('The email of the student')
 	
 	course=models.ForeignKey(course,related_name='course')
+	current_semester=models.SmallIntegerField(default=1)
 	admission_date=models.DateField(default=timezone.now())
 	def thumbnail(self):
 	        if self.picture:
