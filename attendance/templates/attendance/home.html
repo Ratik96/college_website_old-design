@@ -7,20 +7,20 @@
 {%endblock%}
 
 {%block body%}
-	<select>
-		{%for course in courses%}
-			<option value={{course.id}}>{{course.name}}</option>
-		{%endfor%}
-	</select>
-	<select>
-		{%for semester in semesters%}
-			<option value={{semester}}>{{semester}}</option>
-		{%endfor%}
-	</select>
-	<button>
-	Get class List
-	</button>
-	
+	<form action="{%url 'get_students'%}" method='post'>
+		{%csrf_token%}
+		<select name='course'>
+			{%for course in courses%}
+				<option value={{course.id}}>{{course.name}}</option>
+			{%endfor%}
+		</select>
+			<select name='semester'>
+			{%for semester in semesters%}
+				<option value={{semester}}>{{semester}}</option>
+			{%endfor%}
+		</select>
+		<input type='submit' value='Go' />
+	</form>
 	{%block attendance_body%}
 	{%endblock%}
 

@@ -7,9 +7,6 @@
 {%block attendance_body%}
 	{%if student_attendance%}
 	<div id="chart_div"></div>
-	<div id='picture_container'>
-		<img src='/{{student_attendance.0.student.picture.url}}'/>
-	</div>
 	<script>
 	      google.load('visualization', '1.0', {'packages':['corechart']});
 	      google.setOnLoadCallback(drawChart);
@@ -29,6 +26,5 @@
 		chart.draw(data, options);
 	      }
 	</script>
-	
 	{%endif%}
 {%endblock%}

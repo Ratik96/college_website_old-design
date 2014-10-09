@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import json
 from django.http import HttpResponse
+from django.views.decorators.http import require_http_methods
 import attendance,office
 
 def home(request):
@@ -36,8 +37,8 @@ def student_id(request,studentid):
 		data['student_attendance']=attendance.models.student_attendance.objects.filter(student=stud)
 	return render(request,'attendance/student.html',data)
 	
-
-def get_student(request,course,semester):
+@require_http_methods(['POST'])
+def get_student(request):
 	'''
 	meant for ajax requests.
 	returns the list of students available for a combination of course and semester
@@ -47,4 +48,21 @@ def get_student(request,course,semester):
 	'''
 	data={}
 	
+	try:
+		course=office.models.course.objects.get(pk=request.POST['course'])
+		semester=request.POST['semester']
+	except Exception as e:
+		print e
+	else:
+		try:
+			students=office.models.student.objects.filter(course=course).filter(current_semester=semester)
+			stu=[]
+			for i in students:
+				x={}
+				x['name']=i.name
+				x['id']=i.id
+				stu.append(x)
+			data['students']=stu
+		except Exception as e:
+			print e
 	return HttpResponse(json.dumps(data),content_type='application/json')
