@@ -304,10 +304,10 @@ def admission_candidates():
 	for i in files:
 		ac=admission.models.admission_candidate()
 		temp_name=i.strip('.jpg').split('_')
-		ac.firstname=temp_name[0]
-		ac.lastname=temp_name[-1]
+		ac.first_name=temp_name[0]
+		ac.last_name=temp_name[-1]
 		try:
-			ac.middlename=temp_name[1] if temp_name[1]!=temp_name[-1] else ''
+			ac.middle_name=temp_name[1] if temp_name[1]!=temp_name[-1] else ''
 		except:
 			pass
 		f=file(os.path.join(filepath,i))
@@ -324,6 +324,31 @@ function_list.append(admission_candidates)
 		
 			
 			
+#------------------------------------------------------------------------------------------------
+def FAQ():
+	'''
+	sets up the faq for the website
+	'''
+	filepath=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'admission_FAQ')
+	q_file=file(os.path.join(filepath,'question'))
+	lines=q_file.readlines()
+	q_file.close()
+	q_a=[]
+	temp=[]
+	for i,k in enumerate(lines):
+		if i%2==0:
+			temp.append(k)
+		if i%2!=0:
+			temp.append(k)
+			q_a.append(temp)
+			temp=[]
+	for k,i in enumerate(q_a):
+		a=admission.models.q_a()
+		a.question=i[0]
+		a.answer=i[1]
+		a.rank=k
+		a.save()
+function_list.append(FAQ)
 #------------------------------------------------------------------------------------------------
 print '================================================================'
 print 'SETTING UP THE WEBSITE'

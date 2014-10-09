@@ -59,13 +59,16 @@ class notice(models.Model):
 	associated_file=models.FileField(upload_to='admissions/notice')
 	
 	publish_date=models.DateField(default=timezone.now())
+class q_a(models.Model):
+	'''
+	question answer model.
+	contains the question text along with answer text and a rank value.
+	Rank is where the question is displayed
+	'''
+	question=models.TextField()
+	answer=models.TextField()
+	rank=models.SmallIntegerField()
 
-class results(models.Model):
-	'''
-	students selected in to courses
-	'''
-	pass
-	
 class admission_candidate(models.Model):
 	'''
 	model to represent an admission candidate

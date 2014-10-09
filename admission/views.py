@@ -62,8 +62,13 @@ def result(request):
 	
 def faq(request):
 	'''
-	retunrs teh frequently asked questions
+	retunrs the frequently asked questions with answers.
+	User can ask a new question.
+	-------------------------------------
+	Provides a list of q_a objects=q_a
+	-------------------------------------
 	'''
 	data={}
+	data['q_a']=admission.models.q_a.objects.order_by('rank')
 	return render(request,'admission/faq.html',data)
 	

@@ -6,5 +6,10 @@
 
 
 {%block admission_body%}
-FAQ
+	{%for q in q_a%}
+		{{q.question}}
+		---------------
+		{{q.answer}}
+		<hr>
+	{%endfor%}
 {%endblock%}
