@@ -8,26 +8,15 @@
 
 
 {%block admission_body%}
-	<!-- {%for course in courses%}
-		{{course.course}} {{course.valid_upto}}
-	{%endfor%} -->
+	<!-- {{courses.first.valid_upto}} -->
 
-	<!-- {% regroup cutoffs by cutoff_subject as subject_cutoff%}
-	<ol>
+	{% regroup cutoffs by cutoff_subject as subject_cutoff%}
 	{%for sub in subject_cutoff%}
-		<li>{{sub.grouper}}<ol>
-			{%for category in sub.list%}
-				<li>{{category.category}},{{category.science}},{{category.commerce}},{{category.humanities}}</li>
-			{%endfor%}
-		</ol></li>
-	{%endfor%}
-	</ol> -->
-
-	<!-- <div class="table-responsive" style="width: 70%; margin: 0 auto;">
+	<div class="table-responsive" style="width: 70%; margin: 0 auto;">
 	  <table class="table table-bordered" style="text-align: center;">
 	  	<thead>
 		    <tr>
-		      <th colspan="4" style="font-size: 3em;" class="lead">Economics</th>
+		      <th colspan="4" style="font-size: 3em;" class="lead">{{sub.grouper}}</th>
 		    </tr>
   		</thead>
 		  <tbody>
@@ -37,67 +26,18 @@
 		      <td>Commerce (BFS)</td>
 		      <td>Humanities (BFS)</td>
 		    </tr>
-		    <tr>
-		      <td>GEN</td>
-		      <td></td>
-		      <td></td>
-		      <td></td>
-		    </tr>
-		    <tr>
-		      <td>SC</td>
-		      <td></td>
-		      <td></td>
-		      <td></td>
-		    </tr>
-		    <tr>
-		      <td>ST</td>
-		      <td></td>
-		      <td></td>
-		      <td></td>
-		    </tr>
-		    <tr>
-		      <td>COTH</td>
-		      <td></td>
-		      <td></td>
-		      <td></td>
-		    </tr>
-		    <tr>
-		      <td>CNI</td>
-		      <td></td>
-		      <td></td>
-		      <td></td>
-		    </tr>
-		    <tr>
-		      <td>CNID</td>
-		      <td></td>
-		      <td></td>
-		      <td></td>
-		    </tr>
-		    <tr>
-		      <td>CST</td>
-		      <td></td>
-		      <td></td>
-		      <td></td>
-		    </tr>
-		    <tr>
-		      <td>CPwD</td>
-		      <td></td>
-		      <td></td>
-		      <td></td>
-		    </tr>
-		    <tr>
-		      <td>PwD</td>
-		      <td></td>
-		      <td></td>
-		      <td></td>
-		    </tr>
-		    <tr>
-		      <td>URDU</td>
-		      <td></td>
-		      <td></td>
-		      <td></td>
-		    </tr>
-		  </tbody>	
-	  </table>
-	</div> -->
+		    
+			{%for category in sub.list%}
+				<tr>
+				<td>{{category.category}}</td>
+				<td>{{category.science}}</td>
+				<td>{{category.commerce}}</td>
+				<td>{{category.humanities}}</td>
+				</tr>
+
+			{%endfor%}
+		</tbody>	
+		</table>
+	</div> 
+	{%endfor%}
 {%endblock%}
