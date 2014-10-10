@@ -12,22 +12,29 @@
 
 {%block body%}
 	<script>var student_att="{%url 'student_id' 0%}".replace('0/','');</script>
-	<form id='selectorForm' action="{%url 'attendance_home'%}" method='post'>
+	<form class="form-horizontal" id='selectorForm' action="{%url 'attendance_home'%}" method='POST' role="form">
 		{%csrf_token%}
-		<select name='course'>
-			{%for course in courses%}
-				<option value={{course.id}}>{{course.name}}</option>
-			{%endfor%}
-		</select>
-			<select name='semester'>
-			{%for semester in semesters%}
-				<option value={{semester}}>{{semester}}</option>
-			{%endfor%}
-		</select>
-		<input type='submit' value='Go' />
+		<div class="form-group">
+			<label class="sr-only" for="courseSelect">Course</label>
+			<select name='course' class="form-control" id="courseSelect">
+				{%for course in courses%}
+					<option value={{course.id}}>{{course.name}}</option>
+				{%endfor%}
+			</select>
+		</div>
+		<div class="form-group">
+			<label class="sr-only" for="semSelect">Semester</label>
+			<select name='semester' class="form-control" class="semSelect">
+				{%for semester in semesters%}
+					<option value={{semester}}>{{semester}}</option>
+				{%endfor%}
+			</select>
+		</div>
+		<button type="submit" class="btn btn-default">Go</button>
 	</form>
-	<div id='namecloud'></div>
-	
+	<div id='namecloud'>
+		
+	</div>
 	{%block attendance_body%}
 	{%endblock%}
 {%endblock%}
