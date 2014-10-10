@@ -79,7 +79,8 @@ def admission_form(request):
 	Register a new user if needed.
 	'''
 	if request.method=='GET':
-		
+		data={}
+		#need to find out the exact use of a login system for admission
 	if request.method=='POST':
 		form=admission.forms.candidate(request.POST)
 		if form.is_valid():

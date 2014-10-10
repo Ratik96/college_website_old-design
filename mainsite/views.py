@@ -17,7 +17,7 @@ def home(request):
 	'''
 	data={}
 	data['domain_name']=stephens.settings.domain_name
-	data['slideshow']=mainsite.models.home_slideshow_photo.objects.filter(alive=True)
+	data['slideshow']=mainsite.models.home_slideshow_photo.objects.all()
 	data['notification']=mainsite.models.notification.objects.filter(principal=False).filter(alive=True).order_by('pinned','-publish_date')[:5]
 	data['principal_desk']=mainsite.models.notification.objects.filter(principal=True).filter(alive=True).order_by('-publish_date')[:5]
 	return render(request,'mainsite/home.html',data)
@@ -73,9 +73,10 @@ def academics(request):
 	data={}
 	data['domain_name']=stephens.settings.domain_name
 	grp=Group.objects.get(name='Faculty')
-	data['faculty']=grp.user_set.all()
+	data['faculty']=grp.user_set.filter(is_active=True)
 	data['courses']=office.models.course.objects.all()
 	return render(request,'mainsite/academics.html',data)
+	
 def society(request):
 	data={}
 	data['domain_name']=stephens.settings.domain_name

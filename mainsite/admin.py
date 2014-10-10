@@ -3,10 +3,9 @@ from mainsite.models import *
 
 class home_slideshow_photo_admin(admin.ModelAdmin):
 	'''Admin for home_slideshow_photo'''
-	fields=['name','associated_photo','alive','description']
-	list_display=['thumbnail','name','associated_photo','description','alive']
-	list_filter=['alive']
-	search_fields=['name']
+	fields=['name','associated_photo','description']
+	list_display=['thumbnail','name','associated_photo','description']
+	search_fields=['name','description']
 class notification_admin(admin.ModelAdmin):
 	'''Admin for notification'''
 	fields=['title','associated_file','alive','description','publish_date','pinned']

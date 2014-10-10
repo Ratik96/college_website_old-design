@@ -130,7 +130,17 @@ class admission_candidate(models.Model):
 			self.cutoff_status=new_value
 			self.save()
 			return new_value
-			
+	def thumbnail(self):
+	        if self.picture:
+      	        	addr=self.picture.url
+	        	addr.strip('/')
+	        	
+	                return u'<img src="'+addr+'" width=60 height=60 />'
+
+	        else:
+	        	return u'No image file found'
+	thumbnail.short_description ='Thumbnail'
+	thumbnail.allow_tags=True
 		
 	clear_cutoff.boolean=True
 	clear_cutoff.short_description='Has cleared course cutoff?'

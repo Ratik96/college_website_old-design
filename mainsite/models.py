@@ -25,7 +25,6 @@ class photo(models.Model):
 		return self.name
 	name=models.CharField('Name of the photo',max_length=40)
 	associated_photo=models.ImageField('The associated image',upload_to='photos/hompage_slideshow/%Y/%m/%d')
-	alive=models.BooleanField('Is this photo available for public use?',default=True)
 	class Meta:
 		abstract=True
 	def thumbnail(self):
@@ -62,30 +61,4 @@ class notification(document):
 	recent.admin_order_field='publish_date'
 	recent.boolean=True
 	recent.short_description='Was published in last one month?'
-	
-
-class admission_candidate(models.Model):
-	'''
-	model to handle admissions for the college.
-	'''
-	first_name=models.CharField(max_length=40)
-	middle_name=models.CharField(max_length=40)
-	last_name=models.CharField(max_length=40)
-	
-	picture=models.ImageField('Candidate photograph',upload_to='admission_photos/%Y/%m/%d')
-	
-	email=models.EmailField()
-	#SUPER INSECURE PASSWORD FIELD--need to implement setpassword and check password
-	#password= models.CharField(max_length=128, widget=forms.PasswordInput)	
-	def thumbnail(self):
-	        if self.picture:
-      	        	addr=self.picture.url
-	        	addr.strip('/')
-	        	
-	                return u'<img src="'+addr+'" width=60 height=60 />'
-
-	        else:
-	        	return u'No image file found'
-	thumbnail.short_description ='Thumbnail'
-	thumbnail.allow_tags=True
 
