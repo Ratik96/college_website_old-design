@@ -4,13 +4,15 @@ import admission,stephens
 
 def home(request):
 	'''
-	admissions homepage
+	admissions homepage.
+	Try to implement as a flatpage...
 	'''
 	data={}
 	return render(request,'admission/home.html',data)
 def procedure(request):
 	'''
 	view defines the procedure for admission
+	To be flatpaged....
 	'''
 	data={}
 	return render(request,'admission/procedure.html',data)
@@ -71,4 +73,9 @@ def faq(request):
 	data={}
 	data['q_a']=admission.models.q_a.objects.order_by('rank')
 	return render(request,'admission/faq.html',data)
-	
+def admission_form(request):
+	'''
+	Displays the admission form on login.
+	Register a new user if needed.
+	'''
+	pass

@@ -99,6 +99,8 @@ class admission_candidate(models.Model):
 	def clear_cutoff(self):
 		'''
 		checks if candidate clears cutoff
+		Returns True if candidate clears cutoff for his/her category 
+		Returns False if category cutoff is not cleared. OR if cutoffs are not yet defined
 		'''
 		old_value=self.cutoff_status
 		new_value=old_value
@@ -152,8 +154,9 @@ class admission_candidate(models.Model):
 	course=models.ForeignKey(office.models.course,related_name='course_applied',help_text='Course you want to apply for')
 	category=models.ForeignKey(category,related_name='category_applied',help_text='Category applicable to you')
 	bfs=models.FloatField("Best Four Subject's Marks")
-	cutoff_status=models.BooleanField(default=False)
-	admitted=models.BooleanField(default=False)
+	
+	cutoff_status=models.BooleanField(default=False)#status of cutoff clearence
+	admitted=models.BooleanField(default=False)#status of admission
 	
 	document_1=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None)
 	document_2=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None)
