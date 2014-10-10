@@ -48,6 +48,7 @@ def cutoff(request):
 	data={}
 	data['courses']=admission.models.cutoff_subject.objects.all()
 	data['cutoffs']=admission.models.category_cutoff.objects.filter(cutoff_subject__valid_upto__gte=timezone.now()).order_by('cutoff_subject','category')
+	data['categories']=admission.models.category.objects.all();
 	return render(request,'admission/cutoff.html',data)
 	
 def result(request):

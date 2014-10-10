@@ -26,14 +26,14 @@
 			<label class="sr-only" for="semSelect">Semester</label>
 			<select name='semester' class="form-control" class="semSelect">
 				{%for semester in semesters%}
-					<option value={{semester}}>{{semester}}</option>
+					<option value={{semester}}>Semester {{semester}}</option>
 				{%endfor%}
 			</select>
 		</div>
 		<button type="submit" class="btn btn-default">Go</button>
 	</form>
 	<div id='namecloud'>
-		
+		<!-- This div gets populated using Ajax -->
 	</div>
 	{%block attendance_body%}
 	{%endblock%}
