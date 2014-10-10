@@ -1,14 +1,18 @@
 {%extends 'base.html'%}
 {%block head%}
 	{%load static%}
-<<<<<<< HEAD
-		<script type='text/javascript' src='{%static "attendence/home.js"%}'></script>
+		<script type='text/javascript' src='{%static "attendance/home.js"%}'></script>
+		<script src="http://malsup.github.com/jquery.form.js"></script> 
+		<link rel="stylesheet" type="text/css" href='{% static "attendance/home.css" %}'>
+		<script type='text/javascript' src='{%static "attendance/home.js"%}'></script>
+
 	{%block attendance_head%}
 	{%endblock%}
 {%endblock%}
 
 {%block body%}
-	<form action="{%url 'get_students'%}" method='post'>
+	<script>var student_att="{%url 'student_id' 0%}".replace('0/','');</script>
+	<form id='selectorForm' action="{%url 'attendance_home'%}" method='post'>
 		{%csrf_token%}
 		<select name='course'>
 			{%for course in courses%}
@@ -22,46 +26,9 @@
 		</select>
 		<input type='submit' value='Go' />
 	</form>
+	<div id='namecloud'></div>
+	
 	{%block attendance_body%}
 	{%endblock%}
-
-=======
-	<link rel="stylesheet" type="text/css" href='{% static "attendance/home.css" %}'>
-	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-	<script type='text/javascript' src='{%static "attendance/home.js"%}'></script>
-
 {%endblock%}
 
-{%block body%}
-	<!--
-	put a form here to select students using course and semester
-	display student list as a link cloud. Each link goes to student id.
-	-->
-
-	{%if student_attendance%}
-	<div id="chart_div"></div>
-	<div id='picture_container'>
-		<img src='/{{student_attendance.0.student.picture.url}}'/>
-	</div>
-	<script>
-	  google.load('visualization', '1.0', {'packages':['corechart']});
-	  google.setOnLoadCallback(drawChart);
-	  function drawChart() {
-			var data = new google.visualization.DataTable();
-			data.addColumn('string', 'Type');
-			data.addColumn('number', 'Value');
-			var total_attend={%for i in student_attendance%}{{i.lecture}}+{{i.tutorial}}+{{i.practical}}+{%endfor%}0;
-			var total_classes={%for i in student_attendance%}{{i.class_attendance.lecture}}+{{i.class_attendance.tutorial}}+{{i.class_attendance.practical}}+{%endfor%}0;
-			data.addRows([
-			  ['Attended', total_attend],
-			  ['Missed', total_classes-total_attend],
-			]);
-			var options = {'title':'Overall attendence',
-				       'pieHole':0.2};
-			var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-			chart.draw(data, options);
-	  }
-	</script>
-	{%endif%}
->>>>>>> 35aea16c5118c1e451a4085b1ca436f1acfaab1b
-{%endblock%}

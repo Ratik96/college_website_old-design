@@ -26,5 +26,47 @@
 		chart.draw(data, options);
 	      }
 	</script>
+	
+	<table>
+		<thead>
+			<tr>
+				<td>Paper</td>
+				<td>L</td>
+				<td>P</td>
+				<td>T</td>
+				<td>TL</td>
+				<td>TP</td>
+				<td>TT</td>
+				<td>ECA L</td>
+				<td>ECA P</td>
+				<td>ECA T</td>
+			</tr>
+		</thead>
+		<tbody>
+			{%for i in student_attendance%}
+			<tr>
+				<td>{{i.class_attendance.paper}}</td>
+				<td>{{i.lecture}}</td>
+				<td>{{i.practical}}</td>
+				<td>{{i.tutorial}}</td>
+				<td>{{i.class_attendance.lecture}}</td>
+				<td>{{i.class_attendance.practical}}</td>
+				<td>{{i.class_attendance.tutorial}}</td>
+				<td>{{i.a_lecture}}</td>
+				<td>{{i.a_practical}}</td>
+				<td>{{i.a_tutorial}}</td>
+			</tr>
+			{%endfor%}
+		</tbody>
+		<div>
+		T=Tutorial
+		L=Lecture
+		P=Practical
+		TT=Total Tutorials
+		TL=Total Lectures
+		TP=Total Practicals
+		</div>
+		
+	</table>
 	{%endif%}
 {%endblock%}
