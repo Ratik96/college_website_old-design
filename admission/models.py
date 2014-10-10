@@ -136,14 +136,15 @@ class admission_candidate(models.Model):
 	clear_cutoff.short_description='Has cleared course cutoff?'
 	clear_cutoff.admin_order_field='cutoff_status'
 	
-	
+	#candidate personal information
 	first_name=models.CharField(max_length=40)
 	middle_name=models.CharField(max_length=40,blank=True)
 	last_name=models.CharField(max_length=40,blank=True)
-	picture=models.ImageField(upload_to='admissions/photos/%Y/%m/%d')
-	email=models.EmailField()
-	password=models.CharField(max_length=56)
+	picture=models.ImageField(upload_to='admissions/photos/%Y/%m/%d',help_text='Photograph of candidate taken in last 6 months')
+	email=models.EmailField(unique=True,help_text='working email ID')
+	password=models.CharField(max_length=56)#use the set_password and check_password methods
 	
+	#admission indormation
 	STREAM_CHOICES=[
 			(1,'Sciences'),
 			(2,'Commerce'),
@@ -157,10 +158,17 @@ class admission_candidate(models.Model):
 	
 	cutoff_status=models.BooleanField(default=False)#status of cutoff clearence
 	admitted=models.BooleanField(default=False)#status of admission
+	#document scans
+	document_1=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None,help_text='Scanned copy of supporting document 1')
+	document_2=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None,help_text='Scanned copy of supporting document 2')
+	document_3=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None,help_text='Scanned copy of supporting document 3(optional)')
+	document_4=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None,help_text='Scanned copy of supporting document 4(optional)')
 	
-	document_1=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None)
-	document_2=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None)
-	document_3=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None)
-	document_4=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None)
-	
-	
+	def save(self,*args,**kwargs):
+		'''
+		custom save method.
+		basically sets the password field to a hash value
+		'''
+		string=self.password
+		self.set_password(string)
+		super(admission_candidate,self).save(*args,**kwargs)

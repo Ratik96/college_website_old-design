@@ -8,8 +8,6 @@
 
 
 {%block admission_body%}
-	<!-- {{courses.first.valid_upto}} -->
-
 	{% regroup cutoffs by cutoff_subject as subject_cutoff%}
 	{%for sub in subject_cutoff%}
 	<div class="table-responsive" style="width: 70%; margin: 0 auto;">

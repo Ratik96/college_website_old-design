@@ -78,4 +78,10 @@ def admission_form(request):
 	Displays the admission form on login.
 	Register a new user if needed.
 	'''
-	pass
+	if request.method=='GET':
+		
+	if request.method=='POST':
+		form=admission.forms.candidate(request.POST)
+		if form.is_valid():
+			form.save()
+		
