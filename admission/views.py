@@ -80,9 +80,11 @@ def admission_form(request):
 	'''
 	if request.method=='GET':
 		data={}
+		data['admission_form']=admission.models.candidate()
+		return render(request,'admission/form.html',data)
 		#need to find out the exact use of a login system for admission
 	if request.method=='POST':
-		form=admission.forms.candidate(request.POST)
+		form=admission.models.candidate(request.POST)
 		if form.is_valid():
 			form.save()
 		

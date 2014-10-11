@@ -1,0 +1,14 @@
+{%extends 'admission/home.html'%}
+
+{%block admission_head%}
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href='{%static "admission/form.css"%}'>
+{%endblock%}
+
+{%block admission_body%}
+	<form action="{%url 'admission_form'%}"method="post"{%if form.is_multipart%}enctype="multipart/form-data"{%endif%}>
+		{%csrf_token%}
+		{{admission_form}}
+		<input type='submit' val='Submit' />
+	</form>
+{%endblock%}

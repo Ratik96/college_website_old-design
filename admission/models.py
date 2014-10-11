@@ -1,4 +1,5 @@
 from django.db import models
+from django import forms
 from django.utils import timezone
 import office
 def get_hash(string):
@@ -182,3 +183,9 @@ class admission_candidate(models.Model):
 		string=self.password
 		self.set_password(string)
 		super(admission_candidate,self).save(*args,**kwargs)
+
+
+class candidate(forms.ModelForm):
+	class Meta:
+		model=admission_candidate
+		exclude=['cutoff_status','admitted']
