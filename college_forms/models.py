@@ -5,10 +5,19 @@ from django.utils import timezone
 class basic_form(models.Model):
 	'''
 	The basics any form will have.
+	The forms can be saved and later submitted.
 	'''
-	user=models.ForeignKey(User,help_text='Applicant filling out form')
+	firstname=models.CharField(max_length=40,blank=True)
+	lastname=models.CharField(max_length=40,blank=True)
+	email=models.EmailField(blank=True)
+	
+	submit=models.BooleanField(default=True)
 	submission_date=models.DateField(default=timezone.now())
 	document1=models.ImageField(upload_to='forms',help_text='Supporting document 1 scanned copy',blank=True,default=None,null=True)
 	document2=models.ImageField(upload_to='forms',help_text='Supporting document 2 scanned copy',blank=True,default=None,null=True)
 	
-	
+class admission_model(basic_form):
+	'''
+	Admission_form
+	'''
+	pass

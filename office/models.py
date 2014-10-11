@@ -58,15 +58,11 @@ class profile(models.Model):
 	Each associated with a user id.
 	'''
 	def __unicode__(self):
-		return str(self.title)+' '+str(self.user.firstname)+' '+str(self.user.lastname)
+		return str(self.title)+' '+str(self.user.first_name)+' '+str(self.user.last_name)
 	user=models.OneToOneField(User)
-	title=models.CharField('Titles bestowed on the senior member',max_length=50,default='M.')
+	title=models.CharField('Titles like Mr.',max_length=50,default='M.')
 	picture=models.ImageField('The profile picture of the senior member',upload_to='userpics',default=None)
 	
-	dept=models.ForeignKey(department,related_name='dept')
-	joining_date=models.DateField('joining date of the senior member',default=timezone.now())
-	
-	qualifications=models.ManyToManyField(qualification)
 	def thumbnail(self):
 	        if self.picture:
 	        	addr=self.picture.url
@@ -87,27 +83,17 @@ class society(models.Model):
 	founding_date=models.DateField('The founding date of the society')
 	staff_advisor=models.ForeignKey(profile,related_name='staff_advisor')
 	
-class student(models.Model):
+class student(profile):
 	'''
 	Students in college
 	'''
-	def __unicode__(self):
-		return str(self.name)
-	name=models.CharField(max_length=40)
-	picture=models.ImageField('Picture of the student',upload_to='studentpics')
-	
-	email=models.EmailField('The email of the student')
-	
 	course=models.ForeignKey(course,related_name='course')
 	current_semester=models.SmallIntegerField(default=1)
+	
 	admission_date=models.DateField(default=timezone.now())
-	def thumbnail(self):
-	        if self.picture:
-      	        	addr=self.picture.url
-	        	addr.strip('/')
-	                return u'<img src="'+addr+'" width=60 height=60 />'
-
-	        else:
-	        	return u'No image file found'
-	thumbnail.short_description ='Thumbnail'
-	thumbnail.allow_tags=True
+class faculty(profile):
+	'''
+	Faculty of college
+	'''
+	dept=models.ForeignKey(department,related_name='dept')
+	qualification=models.ForeignKey(qualification,related_name='qual')

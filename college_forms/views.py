@@ -1,3 +1,7 @@
 from django.shortcuts import render
 
-# Create your views here.
+def admission(request):
+	'''
+	admission_form
+	'''
+	pass

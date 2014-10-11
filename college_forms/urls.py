@@ -3,6 +3,6 @@ from college_forms import views
 
 urlpatterns = patterns(
 	'',
-	url('^admission$',),
+	url('^admission$',views.admission,name='admission_form'),
 	
 	)

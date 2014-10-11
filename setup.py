@@ -103,12 +103,18 @@ def students(student_photo_folder='student_photos'):
 	files=os.listdir(filepath)
 	for i in files:
 		f=file(os.path.join(filepath,i))
+		u=User()
+		u.username=i[:-4]
+		u.email=i+'@gmail.com'
+		u.set_password('asd')
+		u.save()
+		
 		a=office.models.student()
-		a.name=i.replace('_',' ')[:-4]
+		a.user=u
 		a.picture=File(f)
-		a.email=i+'@gmail.com'
 		a.course=office.models.course.objects.first()
 		a.save()
+		
 		f.close()
 function_list.append(students)
 #------------------------------------------------------------------------------------------------
@@ -134,6 +140,8 @@ def groups():
 		{'n':'Staff Advisor',
 		'p':None},
 		{'n':'Faculty',
+		'p':None},
+		{'n':'Students',
 		'p':None}]
 	for i in groupnames:
 		a=Group()
