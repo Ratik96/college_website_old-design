@@ -19,7 +19,7 @@ class paper_attendance_admin(admin.ModelAdmin):
 class student_attendance_admin(admin.ModelAdmin):
 	'''admin for student attendance'''
 	list_filter=['class_attendance']
-	search_fields=['student__name']
+	search_fields=['student__user']
 
 admin.site.register(attendance.models.student_attendance,student_attendance_admin)
 admin.site.register(attendance.models.paper_attendance,paper_attendance_admin)

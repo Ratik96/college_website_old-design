@@ -16,7 +16,7 @@ class paper_attendance(models.Model):
 class student_attendance(models.Model):
 	'''Class to record a student's attendance in a paper'''
 	def __unicode__(self):
-		return self.student.name+'-'+self.class_attendance.paper.__unicode__()
+		return self.student.__unicode__()+'-'+self.class_attendance.paper.__unicode__()
 	student=models.ForeignKey(office.models.student,related_name='student')
 	class_attendance=models.ForeignKey(paper_attendance,related_name='class_attendance')
 	

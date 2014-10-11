@@ -10,5 +10,4 @@ urlpatterns = patterns('',
 	url(r'^cutoff/$',views.cutoff,name='admission_cutoff'),
 	url(r'^result/$',views.result,name='admission_result'),
 	url(r'^faq/$',views.faq,name='admission_faq'),
-	url(r'^form/$',views.admission_form,name='admission_form'),
 )

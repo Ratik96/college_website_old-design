@@ -7,7 +7,7 @@ if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "stephens.settings")
 
 from django.core.files import File
-import mainsite,attendance,office,events,admission
+import mainsite,attendance,office,events,admission,college_forms
 
 from django.contrib.auth.models import User,Group
 from django.core.management import execute_from_command_line
@@ -105,6 +105,7 @@ def students(student_photo_folder='student_photos'):
 		f=file(os.path.join(filepath,i))
 		u=User()
 		u.username=i[:-4]
+		u.first_name=i[:-4]
 		u.email=i+'@gmail.com'
 		u.set_password('asd')
 		u.save()
@@ -310,7 +311,7 @@ def admission_candidates():
 	courses_available=office.models.course.objects.all()
 	category_available=admission.models.category.objects.all()
 	for i in files:
-		ac=admission.models.admission_candidate()
+		ac=college_forms.models.admission_candidate()
 		temp_name=i.strip('.jpg').split('_')
 		ac.first_name=temp_name[0]
 		ac.last_name=temp_name[-1]
@@ -321,7 +322,7 @@ def admission_candidates():
 		f=file(os.path.join(filepath,i))
 		ac.picture=File(f)
 		ac.email=i+'@gmail.com'
-		ac.set_password('arjoonnsharma')
+		ac.password='arjoonn'
 		ac.stream=random.choice([1,2,3])
 		ac.course=random.choice(courses_available)
 		ac.category=random.choice(category_available)
