@@ -6,7 +6,6 @@
 	<link rel="stylesheet" type="text/css" href='{% static "admission/cutoff-responsive.css"%}'>
 {%endblock%}
 
-
 {%block admission_body%}
 	{% regroup cutoffs by cutoff_subject as subject_cutoff%}
 	{%for sub in subject_cutoff%}
