@@ -13,7 +13,7 @@
 	  <table class="table table-bordered" style="text-align: center;">
 	  	<thead>
 		    <tr>
-		      <th colspan="4" style="font-size: 3em;" class="lead">{{sub.grouper}}</th>
+		      <th colspan="4" style="font-size: 3em;" class="lead">{{sub.grouper}}<sub> <!-- dummy --> valid_upto</sub></th>
 		    </tr>
   		</thead>
 		  <tbody>
@@ -23,16 +23,14 @@
 		      <td>Commerce (BFS)</td>
 		      <td>Humanities (BFS)</td>
 		    </tr>
-		    
-			{%for category in sub.list%}
-				<tr>
-				<td>{{category.category}}</td>
-				<td>{{category.science}}</td>
-				<td>{{category.commerce}}</td>
-				<td>{{category.humanities}}</td>
-				</tr>
-
-			{%endfor%}
+				{%for category in sub.list%}
+					<tr>
+						<td>{{category.category}}</td>
+						<td>{{category.science}}</td>
+						<td>{{category.commerce}}</td>
+						<td>{{category.humanities}}</td>
+					</tr>
+				{%endfor%}
 		</tbody>	
 		</table>
 	</div> 
