@@ -25,6 +25,7 @@ class course(models.Model):
 		return str(self.name)
 	name=models.CharField(max_length=30)
 	course_type=models.ForeignKey(course_type,related_name='course_type')
+	description=models.TextField(blank=True)#description of the course
 
 class paper(models.Model):
 	'''
@@ -63,9 +64,11 @@ class profile(models.Model):
 	def __unicode__(self):
 		return str(self.title)+' '+str(self.user.first_name)+' '+str(self.user.last_name)
 	user=models.OneToOneField(User)
+	nickname=models.CharField(max_length=10)#for url
 	title=models.CharField('Titles like Mr.',max_length=50,default='M.')
 	picture=models.ImageField('The profile picture of the senior member',upload_to='userpics',default=None)
-	
+	def get_absolute_url(self):
+		return reverse('profile_detail',args=[self.nickname])
 	def thumbnail(self):
 	        if self.picture:
 	        	addr=self.picture.url

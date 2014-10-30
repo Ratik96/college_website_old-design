@@ -27,4 +27,6 @@ urlpatterns = patterns('',
     url(r'^notice/$',views.notice_home,name='notice_home'),
     url(r'^principal/$',views.principal_home,name='principal_home'),
     
+    url(r'^profile/(?P<nick>\S+)/$',views.profile_detail,name='profile_detail'),
+    
 )

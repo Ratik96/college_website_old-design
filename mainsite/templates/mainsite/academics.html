@@ -8,7 +8,11 @@
 	<div id='Faculty'>'
 	<ol>
 		{%for i in faculty%}
+		<li>
+			<a href={{i.get_absolute_url}}>
 			{{i.title}}{{i.user.first_name}}
+			</a>
+		</li>
 		{%endfor%}
 	</ol>
 	</div>

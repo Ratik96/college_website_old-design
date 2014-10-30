@@ -1,4 +1,5 @@
 from django.shortcuts import render,get_object_or_404
+from django.http import Http404
 import mainsite,office,stephens
 from django.contrib.auth.models import User,Group
 
@@ -109,3 +110,16 @@ def contact(request):
 	data={}
 	data['domain_name']=stephens.settings.domain_name
 	return render(request,'mainsite/society.html',data)
+def profile_detail(request,nick):
+	'''
+	Profile of a person
+	'''
+	data={}
+	try:
+		data['profile']=office.models.faculty.objects.get(nickname=nick)
+	except:
+		try:
+			data['profile']=office.models.student.objects.get(nickname=nick)
+		except:
+			raise Http404
+	return render(request,'mainsite/profile.html',data)

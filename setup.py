@@ -223,6 +223,7 @@ def faculty():
 		prof.dept=office.models.department.objects.first()
 		prof.user=user
 		prof.title=unicode(detail[0])
+		prof.nickname=unicode(detail[1].strip())
 		prof.picture=picture
 		prof.save()
 function_list.append(faculty)
