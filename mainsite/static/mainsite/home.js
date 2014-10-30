@@ -7,8 +7,8 @@ $(document).ready(function(){
     bgcolor: "",
     autoplay: 10000,                        
     shuffle: true,                             
-    show: {effect: 'puff', duration: 2000},     
-    hide: {effect: 'drop', duration: 2000},
+    show: {effect: 'fade', duration: 2000},     
+    hide: {effect: 'fade', duration: 2000},
   });
 });
 
