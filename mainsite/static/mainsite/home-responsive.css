@@ -1,8 +1,4 @@
 @media (min-width: 768px) { 
-  #headings {
-    padding: 0;
-  } 
-
   h1 {
     margin-bottom: 20px;
   }

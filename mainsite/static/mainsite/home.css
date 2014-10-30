@@ -8,7 +8,12 @@ a {
 }
 
 a:hover {
+  text-decoration: underline !important;  
+}
+
+.link:hover {
   text-decoration: underline !important;
+  color: white !important;
 }
 
 ol { 
@@ -17,22 +22,31 @@ ol {
 
 ol li {
   margin: 5px 0;
-  font-size: 1.1em;
+  font-size: 1.25em;
 }
 
-h1 {
+ol li:last-child {
+  margin-bottom: 20px;
+}
+
+.col h1 {
   font-size: 2em;
-  border-bottom: 2px dashed #ccc;
-  text-align:center;
+  padding: 10px;
+  text-decoration: underline;
 }
 
 #slideshow {
-    width: 100%;
-    height: 30em;  
-    margin: 0 auto;
+  width: 100%;
+  height: 40em;  
+  margin: 0 auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
-#headings {
-  padding: 20px;
-  background-color: #3b5c6b;
+.container {
+  background-color: #273e49;
+  margin-bottom: 15px;
+  width: 100%;
+  padding-bottom: 40px;
 }
+
