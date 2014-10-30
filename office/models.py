@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.utils.safestring import *
+
+from django.core.urlresolvers import reverse
+
 import datetime
 
 
@@ -72,17 +75,7 @@ class profile(models.Model):
 	        	return u'No image file found'
 	thumbnail.short_description ='Thumbnail'
 	thumbnail.allow_tags=True
-	
-class society(models.Model):	
-	'''
-	Describes the societies in college
-	'''
-	def __unicode__(self):
-		return self.name
-	name=models.CharField('The society name',max_length=50)
-	founding_date=models.DateField('The founding date of the society')
-	staff_advisor=models.ForeignKey(profile,related_name='staff_advisor')
-	
+		
 class student(profile):
 	'''
 	Students in college
@@ -96,4 +89,17 @@ class faculty(profile):
 	Faculty of college
 	'''
 	dept=models.ForeignKey(department,related_name='dept')
-	qualification=models.ForeignKey(qualification,related_name='qual')
+	qualification=models.ForeignKey(qualification,related_name='qual',blank=True,null=True)
+class society(models.Model):	
+	'''
+	Describes the societies in college
+	'''
+	def __unicode__(self):
+		return self.name
+	name=models.CharField('The society name',max_length=50)
+	nickname=models.CharField(max_length=10)#nickname for url
+	description=models.TextField()
+	founding_date=models.DateField('The founding date of the society')
+	staff_advisor=models.ForeignKey(faculty,related_name='staff_advisor')
+	def get_absolute_url(self):
+		return reverse('society_detail',args=[self.nickname])

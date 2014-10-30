@@ -41,7 +41,13 @@ else:
 print '================================================================'
 #cleanup complete
 #create the database tables
-execute_from_command_line(['manage.py','syncdb'])
+execute_from_command_line(['manage.py','syncdb','--noinput'])
+sup=User()
+sup.is_staff=True
+sup.is_superuser=True
+sup.set_password('asd')
+sup.username='ghost'
+sup.save()
 #------------------------------------------------------------------------------------------------
 #----------------------------------Now the setup of data starts------------------------------------------
 #------------------------------------------------------------------------------------------------
@@ -190,6 +196,38 @@ def departments():
 function_list.append(departments)
 
 #------------------------------------------------------------------------------------------------
+def faculty():
+	'''
+	adds faculty'''
+	prof_path=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'profile')
+	profiles=os.listdir(prof_path)#list of profiles
+	for i in profiles:#for every profile
+		curr_profile=os.path.join(prof_path,i)
+		details=os.path.join(curr_profile,'title')#path to title file
+		pic=os.path.join(curr_profile,'profile.jpg')#path to profile picture
+		#input details
+		f_d=file(details)
+		detail=f_d.readlines()
+		f_d.close()
+		f_p=file(pic)
+		picture=File(f_p)
+		#assign to database
+		user=User()
+		user.username=unicode(detail[1])
+		user.first_name=unicode(i)
+		user.set_password('asd')
+		user.email=unicode(detail[2])
+		user.save()
+		
+		prof=office.models.faculty()
+		prof.dept=office.models.department.objects.first()
+		prof.user=user
+		prof.title=unicode(detail[0])
+		prof.picture=picture
+		prof.save()
+function_list.append(faculty)
+#------------------------------------------------------------------------------------------------
+
 def student_attendance():
 	'''sets up the attendance for the dummy students'''
 	course=office.models.course.objects.first()
@@ -359,6 +397,50 @@ def FAQ():
 		a.save()
 function_list.append(FAQ)
 #------------------------------------------------------------------------------------------------
+def societies():
+	'''
+	adds societies for the college
+	'''
+	soc_path=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'Societies')
+	socs=os.listdir(soc_path)
+	for i in socs:
+		cur_path=os.path.join(soc_path,i)
+		accepted="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'"
+		accepted+='":,.!@#$%^&*()_+=-'
+		accepted+='\n'
+		files=os.listdir(cur_path)
+		for k in files:
+			if ('D' or 'd') in k:
+				f_d=file(os.path.join(cur_path,k))
+			else:
+				f_nick=file(os.path.join(cur_path,k))
+		det=f_d.readlines()
+		det_new=[]
+		for k in det:
+			temp=''
+			for j in k:
+				if j in accepted:
+					temp+=j
+			temp+='\n'
+			det_new.append(temp)
+		det=det_new
+		try:
+			nicks=f_nick.readlines()[0].strip()
+		except :
+			nicks=i.strip().replace(' ','')[:10].strip()
+		f_d.close()
+		f_nick.close()
+		#accepted the nicknames and details
+		soc=office.models.society()
+		soc.name=i.strip()
+		soc.nickname=nicks
+		soc.founding_date=timezone.now()
+		soc.staff_advisor=office.models.faculty.objects.first()
+		soc.description=unicode(''.join(det_new))
+		soc.save()
+function_list.append(societies)
+#------------------------------------------------------------------------------------------------
+
 print '================================================================'
 print 'SETTING UP THE WEBSITE'
 print '================================================================'

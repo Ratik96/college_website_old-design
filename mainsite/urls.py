@@ -13,8 +13,11 @@ urlpatterns = patterns('',
     url(r'^notification_rss',feeds.Notifications_feed(),name='notification_feed'),
     url(r'^principal_rss',feeds.Principal_feed(),name='principal_feed'),
     
-    url(r'^academics',views.academics,name='academics_home'),
-    url(r'^societies',views.society,name='society_home'),
+    url(r'^academics/$',views.academics,name='academics_home'),
+
+    url(r'^society/$',views.society,name='society_home'),
+    url(r'^society/(?P<nick>\S+)/$',views.society_detail,name='society_detail'),
+
     url(r'^departments',views.department,name='department_home'),
     url(r'^events',views.event,name='event_home'),
     url(r'^archive',views.archive,name='archive_home'),

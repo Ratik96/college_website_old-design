@@ -5,9 +5,19 @@
 {%endblock%}
 
 {%block body%}
+	<div id='Faculty'>'
 	<ol>
 		{%for i in faculty%}
-			{{i}}
+			{{i.title}}{{i.user.first_name}}
 		{%endfor%}
 	</ol>
+	</div>
+	
+	<div id='course'>
+		<ol>
+			{%for i in courses%}
+			<li>{{i}}</li>
+			{%endfor%}
+		</ol>
+	</div>
 {%endblock%}

@@ -8,7 +8,7 @@ def home(request):
 	Shows the available forms
 	'''
 	data={}
-	data['forms']=
+	data['forms']=None
 	return render(request,'college_forms/home.html',data)
 def admission(request):
 	'''

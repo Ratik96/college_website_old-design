@@ -1,1 +1,16 @@
 {%extends 'base.html'%}
+{%block body%}
+{%if societies%}
+	<ol>
+		{%for i in societies%}
+			<li><a href={{i.get_absolute_url}}>{{i}}</a></li>
+		{%endfor%}
+	</ol>
+{%endif%}
+
+{%if society%}
+	{{society.name}}
+	{{society.description}}
+{%endif%}
+
+{%endblock%}

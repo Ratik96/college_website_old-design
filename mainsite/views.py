@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 import mainsite,office,stephens
 from django.contrib.auth.models import User,Group
 
@@ -72,14 +72,22 @@ def academics(request):
 	'''
 	data={}
 	data['domain_name']=stephens.settings.domain_name
-	grp=Group.objects.get(name='Faculty')
-	data['faculty']=grp.user_set.filter(is_active=True)
+	data['faculty']=office.models.faculty.objects.all()
 	data['courses']=office.models.course.objects.all()
 	return render(request,'mainsite/academics.html',data)
 	
 def society(request):
 	data={}
 	data['domain_name']=stephens.settings.domain_name
+	data['societies']=office.models.society.objects.all()
+	return render(request,'mainsite/society.html',data)
+def society_detail(request,nick):
+	'''
+	returns named society
+	'''
+	data={}
+	obj=get_object_or_404(office.models.society,nickname=nick)
+	data['society']=obj
 	return render(request,'mainsite/society.html',data)
 def department(request):
 	data={}
