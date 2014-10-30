@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     url(r'^principal_rss',feeds.Principal_feed(),name='principal_feed'),
     
     url(r'^academics/$',views.academics,name='academics_home'),
+    url(r'^course/(?P<cid>\d+)/$',views.course_detail,name='course_detail'),
 
     url(r'^society/$',views.society,name='society_home'),
     url(r'^society/(?P<nick>\S+)/$',views.society_detail,name='society_detail'),

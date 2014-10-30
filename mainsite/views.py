@@ -123,3 +123,9 @@ def profile_detail(request,nick):
 		except:
 			raise Http404
 	return render(request,'mainsite/profile.html',data)
+def course_detail(request,cid):
+	'''course details'''
+	data={}
+	data['course']=get_object_or_404(office.models.course,pk=cid)
+	data['papers']=office.models.paper.objects.filter(course=data['course'])
+	return render(request,'mainsite/course.html',data)

@@ -20,7 +20,7 @@
 	<div id='course'>
 		<ol>
 			{%for i in courses%}
-			<li>{{i}}</li>
+			<li><a href={{i.get_absolute_url}}>{{i}}</a></li>
 			{%endfor%}
 		</ol>
 	</div>

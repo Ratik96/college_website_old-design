@@ -25,8 +25,9 @@ class course(models.Model):
 		return str(self.name)
 	name=models.CharField(max_length=30)
 	course_type=models.ForeignKey(course_type,related_name='course_type')
-	description=models.TextField(blank=True)#description of the course
-
+	description=models.TextField(default='',blank=True)#description of the course
+	def get_absolute_url(self):
+		return reverse('course_detail',args=[self.id])
 class paper(models.Model):
 	'''
 	Describes a paper that is taught in college.
