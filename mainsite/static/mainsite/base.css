@@ -17,28 +17,31 @@ a:hover {
 
 header {
   color: white;
-  font-family: sans-serif;
   background-color: #3b5c6b;
   padding: 5px;
+  font-family: 'Roboto', sans-serif;
   margin-bottom: 0.5%;
 }
 
 header p:first-of-type {
-  font-size: 1.2em; 
+  font-size: 2em; 
   margin-bottom: -2px; 
   margin-top: 10px;
   text-align: center;
+  font-weight: 700;
 }
 
 header p:last-of-type {
-  font-size: 0.9em;
+  font-size: 1em;
   text-align: center;
+  font-weight: 400;
 }
 
 #logo {
-  height: 70px;
-  width: 70px;
+  height: 100px;
+  width: 100px;
   margin: 0 auto;
+  display: none;
 }
 
 nav {
