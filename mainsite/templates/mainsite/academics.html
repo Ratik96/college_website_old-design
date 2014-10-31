@@ -12,7 +12,7 @@
 	<ol>
 		{%for item in i.list%}
 		<li>
-			<a href={{i.get_absolute_url}}>
+			<a href={{item.get_absolute_url}}>
 			{{item.title}}{{item.user.first_name}}
 			</a>
 		</li>
