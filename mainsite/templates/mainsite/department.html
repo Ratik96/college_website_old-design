@@ -1,1 +1,21 @@
 {%extends 'base.html'%}
+
+{%block body%}
+
+{%if departments%}
+	<ol>
+	{%for dept in departments%}
+		<li><a href={{dept.get_absolute_url}}>{{dept.name}}</a></li>
+	{%endfor%}
+	</ol>
+{%endif%}
+
+{%if department%}
+	<ol>
+		{%for fac in department%}
+			<li><a href={{fac.get_absolute_url}}>{{fac}}</a></li>
+		{%endfor%}
+	</ol>
+{%endif%}
+
+{%endblock%}

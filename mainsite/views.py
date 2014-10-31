@@ -93,7 +93,17 @@ def society_detail(request,nick):
 def department(request):
 	data={}
 	data['domain_name']=stephens.settings.domain_name
-	return render(request,'mainsite/society.html',data)
+	data['departments']=office.models.department.objects.all()
+	return render(request,'mainsite/department.html',data)
+def department_detail(request,nick):
+	'''
+	department details
+	'''
+	data={}
+	dept=get_object_or_404(office.models.department,nickname=nick)
+	data['department']=office.models.faculty.objects.filter(dept=dept)
+	return render(request,'mainsite/department.html',data)
+	
 def event(request):
 	data={}
 	data['domain_name']=stephens.settings.domain_name

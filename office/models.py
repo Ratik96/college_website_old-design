@@ -47,15 +47,9 @@ class department(models.Model):
 	def __unicode__(self):
 		return str(self.name)
 	name=models.CharField(max_length=35)
-	
-class qualification(models.Model):
-	'''
-	Qualification for senior members
-	'''
-	def __unicode__(self):
-		return str(self.q_type)+str(self.name)
-	name=models.CharField('What topic or subject it is held in',max_length=50)
-	q_type=models.CharField('The type of qualification',max_length=10)
+	nickname=models.CharField(max_length=5)#nickname for url
+	def get_absolute_url(self):
+		return reverse('department_detail',args=[self.nickname])
 	
 class profile(models.Model):
 	'''
@@ -93,7 +87,7 @@ class faculty(profile):
 	Faculty of college
 	'''
 	dept=models.ForeignKey(department,related_name='dept')
-	qualification=models.ForeignKey(qualification,related_name='qual',blank=True,null=True)
+	qualification=models.CharField(max_length=100,blank=True)
 class society(models.Model):	
 	'''
 	Describes the societies in college

@@ -19,7 +19,9 @@ urlpatterns = patterns('',
     url(r'^society/$',views.society,name='society_home'),
     url(r'^society/(?P<nick>\S+)/$',views.society_detail,name='society_detail'),
 
-    url(r'^departments',views.department,name='department_home'),
+    url(r'^department/$',views.department,name='department_home'),
+    url(r'^department/(?P<nick>\S+)/$',views.department_detail,name='department_detail'),
+
     url(r'^events',views.event,name='event_home'),
     url(r'^archive',views.archive,name='archive_home'),
     url(r'^alumni',views.alumni,name='alumni_home'),

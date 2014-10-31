@@ -51,7 +51,21 @@ sup.save()
 #------------------------------------------------------------------------------------------------
 #----------------------------------Now the setup of data starts------------------------------------------
 #------------------------------------------------------------------------------------------------
-
+def clean_to_string(string):
+	'''
+	removes non ascii characters
+	'''
+	allowed='ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'#alphabets
+	allowed+=allowed.lower()#lowercase
+	allowed+='!@#$%^&*()_+=-.,: '
+	allowed+="'"
+	allowed+='\n'
+	new_str=''
+	for i in string:
+		if i in allowed:
+			new_str+=i
+	return new_str
+	
 function_list=[]#a list of setup function to be run
 SETUP_SUPPORT_FOLDER='setup_support'#where the setup data files are located
 #------------------------------------------------------------------------------------------------
@@ -174,58 +188,42 @@ def university_papers():
 		a.semester=int(i[-1])
 		a.save()
 function_list.append(university_papers)
-#------------------------------------------------------------------------------------------------
-def departments():
-	'''sets up the departments'''
-	department_list=[
-			'Physical_education',
-			'Physics',
-			'Chemistry',
-			'Mathematics',
-			'History',
-			'Philosophy',
-			'English',
-			'Sanskrit',
-			'Hindi',
-			'Administration Ofice',
-			'Computer Science']
-	for i in department_list:
-		a=office.models.department()
-		a.name=i
-		a.save()
-function_list.append(departments)
 
 #------------------------------------------------------------------------------------------------
 def faculty():
 	'''
-	adds faculty'''
+	adds faculty. and departments'''
+	
 	prof_path=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'profile')
-	profiles=os.listdir(prof_path)#list of profiles
-	for i in profiles:#for every profile
-		curr_profile=os.path.join(prof_path,i)
-		details=os.path.join(curr_profile,'title')#path to title file
-		pic=os.path.join(curr_profile,'profile.jpg')#path to profile picture
-		#input details
-		f_d=file(details)
-		detail=f_d.readlines()
-		f_d.close()
-		f_p=file(pic)
-		picture=File(f_p)
-		#assign to database
-		user=User()
-		user.username=unicode(detail[1])
-		user.first_name=unicode(i)
-		user.set_password('asd')
-		user.email=unicode(detail[2])
-		user.save()
-		
-		prof=office.models.faculty()
-		prof.dept=office.models.department.objects.first()
-		prof.user=user
-		prof.title=unicode(detail[0])
-		prof.nickname=unicode(detail[1].strip())
-		prof.picture=picture
-		prof.save()
+	default_picture=File(file(os.path.join(prof_path,'default.jpg')))#default profile picture
+	depts=os.listdir(os.path.join(prof_path,'profiles'))#list of departments
+	for dept in depts:
+		#create department
+		department=office.models.department()
+		department.name=dept.strip().replace('_',' ')
+		department.nickname=clean_to_string(dept.strip().replace('_','').replace(' ','').replace('/','').lower())[:5]
+		department.save()
+		#list profiles in the department
+		profiles=os.listdir(os.path.join(prof_path,'profiles',dept))
+		for prof in profiles:
+			#create profiles
+			f=file(os.path.join(prof_path,'profiles',dept,prof))
+			det=f.readlines()
+			f.close()
+			user=User()
+			user.username=prof.strip().replace(' ','').replace('.','').lower()[:-3]
+			user.first_name=clean_to_string(prof.strip()[:-3])
+			user.set_password('asd')
+			user.save()
+			#create profile
+			profile=office.models.faculty()
+			profile.user=user
+			profile.nickname=prof.strip().replace(' ','').replace('.','').lower()[:-3]
+			profile.title=''
+			profile.picture=default_picture
+			profile.dept=department
+			profile.qualification=clean_to_string(det[2].strip())
+			profile.save()
 function_list.append(faculty)
 #------------------------------------------------------------------------------------------------
 
@@ -407,7 +405,7 @@ def societies():
 	for i in socs:
 		cur_path=os.path.join(soc_path,i)
 		accepted="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'"
-		accepted+='":,.!@#$%^&*()_+=-'
+		accepted+='":,.!@#$%^&*()_+=- '
 		accepted+='\n'
 		files=os.listdir(cur_path)
 		for k in files:
