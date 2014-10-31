@@ -19,16 +19,12 @@
 	{%endblock%}
 </head>
 <body>
-	<div id="container">
-		<a href='/'>
-			<header>
-				<img id="logo" class="img-responsive" src='{%static "mainsite/images/site_header.png"%}'/>
-				<div>
-					<p>ST. STEPHEN'S COLLEGE</p>
-					<p>University Enclave, Delhi - 110007, India</p>
-				</div>
-			</header>
-		</a>
+	<header>
+		<img id="logo" class="img-responsive" src='{%static "mainsite/images/site_header.png"%}'/>
+		<div>
+			<p>ST. STEPHEN'S COLLEGE</p>
+			<p>University Enclave, Delhi - 110007, India</p>
+		</div>
 		<nav>
 			<ul>
 				<li><a href='/'>HOME</a></li>
@@ -42,9 +38,16 @@
 				<li><a href='{%url "contact_home"%}'>CONTACT</a></li>
 			</ul>
 		</nav>
+	</header>
+	<div id="container">
 		{%block body%}
 		{%endblock%}
 	</div>
+	<!-- <div class="footer">
+    <div id="content" style="margin: 0 auto; margin-top: 1.5%; width: 80%;">	
+    	<p style="color: black; text-align: center">lorem ipsum</p>
+    </div>
+  </div> -->
 </body>
 </html>
 

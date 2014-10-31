@@ -5,7 +5,31 @@ body {
 #container {
   max-width: 1200px;
   margin: 0 auto;
+  margin-bottom: 50px;
 }
+
+/* Sticky footer styles
+-------------------------------------------------- */
+/*html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 70px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 70px;
+  background-color: #d1dbbd;
+}*/
+
+/*-------------------------------------------------- */
 
 a {
   text-decoration: none;
