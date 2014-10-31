@@ -1,31 +1,47 @@
 {%extends 'base.html'%}
 
 {%block head%}
-	
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href='{% static "mainsite/academics.css"%}'>
 {%endblock%}
 
 {%block body%}
-	<div id='Faculty'>
-	{%regroup faculty by dept as departments%}
-	{%for i in departments%}
-	{{i.grouper}}
-	<ol>
-		{%for item in i.list%}
-		<li>
-			<a href={{item.get_absolute_url}}>
-			{{item.title}}{{item.user.first_name}}
-			</a>
-		</li>
-		{%endfor%}
-	</ol>
-	{%endfor%}
-	</div>
-	
-	<div id='course'>
-		<ol>
-			{%for i in courses%}
-			<li><a href={{i.get_absolute_url}}>{{i}}</a></li>
+
+<div class="container">
+
+	<!-- Nav tabs -->
+	<ul class="nav nav-tabs" role="tablist">
+	  <li role="presentation" class="active"><a href="#faculty" role="tab" data-toggle="tab">Faculty</a></li>
+	  <li role="presentation"><a href="#courses" role="tab" data-toggle="tab">UG Courses</a></li>
+	  <li role="presentation"><a href="#" role="tab" data-toggle="tab">Graduate Courses</a></li>
+	</ul>
+
+	<!-- Tab data-->
+	<div class="tab-content">
+	  <div role="tabpanel" class="tab-pane fade in active" id="faculty">
+	  	{%regroup faculty by dept as departments%}
+			{%for i in departments%}
+				<h1>{{i.grouper}}</h1>
+				<ol class="fac">
+					{%for item in i.list%}
+					<li>
+						<a href={{item.get_absolute_url}}>
+							{{item.title}}{{item.user.first_name}}
+						</a>
+					</li>
+					{%endfor%}
+				</ol>
 			{%endfor%}
-		</ol>
+	  </div>
+	  <div role="tabpanel" class="tab-pane fade" id="courses">
+	  	<ol>
+				{%for i in courses%}
+					<li><a href={{i.get_absolute_url}}>{{i}}</a></li>
+				{%endfor%}
+			</ol>
+	  </div>
 	</div>
+
+</div>
+
 {%endblock%}

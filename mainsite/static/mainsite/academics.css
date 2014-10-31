@@ -1,0 +1,28 @@
+.container {
+  margin-top: 30px;
+  max-width: 900px;
+}
+
+.container li a {
+  color: #fff;
+}
+
+.container li a:hover {
+  
+}
+
+#faculty h1 {
+  color: #fff;
+}
+
+.fac {
+  color: white;
+}
+
+.fac li a {
+  color: white;
+}
+
+.fac li a:hover {
+  text-decoration: underline;
+}
