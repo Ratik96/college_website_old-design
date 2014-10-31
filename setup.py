@@ -278,7 +278,7 @@ def admission_important_dates():
 	l=f.readlines()
 	f.close()
 	now=timezone.now()
-	next_month=datetime.datetime(now.date().year,now.date().month+1,now.date().day,now.time().hour,now.time().minute,now.time().second,now.time().microsecond,now.tzinfo)
+	next_month=datetime.datetime(now.date().year,now.date().month+1,20,now.time().hour,now.time().minute,now.time().second,now.time().microsecond,now.tzinfo)
 	for i in l:
 		a=admission.models.dates()
 		a.date=timezone.now()

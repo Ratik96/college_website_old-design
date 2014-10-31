@@ -54,7 +54,7 @@ class notification(document):
 	def recent(self):
 		'''Checks if the record is one month old? Returns true if less than one month old.'''
 		now=timezone.now()
-		one_month_back=datetime.datetime(now.date().year,now.date().month-1,now.date().day,now.time().hour,now.time().minute,now.time().second,now.time().microsecond,now.tzinfo)
+		one_month_back=datetime.datetime(now.date().year,now.date().month-1,20,now.time().hour,now.time().minute,now.time().second,now.time().microsecond,now.tzinfo)
 		if now>one_month_back:
 			return True
 		return False
