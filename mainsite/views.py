@@ -119,7 +119,7 @@ def alumni(request):
 def contact(request):
 	data={}
 	data['domain_name']=stephens.settings.domain_name
-	return render(request,'mainsite/society.html',data)
+	return render(request,'mainsite/contact.html',data)
 def profile_detail(request,nick):
 	'''
 	Profile of a person
