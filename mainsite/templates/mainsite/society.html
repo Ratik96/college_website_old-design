@@ -1,16 +1,31 @@
 {%extends 'base.html'%}
+
+{%block head%}
+  {%load static%}
+  <link rel="stylesheet" type="text/css" href='{%static "mainsite/soc.css"%}'/>
+  <link rel="stylesheet" type="text/css" href='{%static "mainsite/soc-responsive.css"%}'/>
+  <script type="text/javascript" src="{%static 'mainsite/soc.js'%}"></script>
+{%endblock%}
+
 {%block body%}
+
+<!-- This needs fixing and I need your help – Ratik -->
 {%if societies%}
-	<ol>
-		{%for i in societies%}
-			<li><a href={{i.get_absolute_url}}>{{i}}</a></li>
-		{%endfor%}
-	</ol>
+  <div id="socs">
+    {%for i in societies%}
+      <div class="soc col-xs-6 col-sm-4"> 
+        <h4>{{i.name}}</h4>
+        <a target="_blank" href={{i.get_absolute_url}} class="btn btn-default notice-link">View Society &raquo;</a> 
+      </div>
+    {%endfor%}
+  </div>
 {%endif%}
 
 {%if society%}
-	{{society.name}}
-	{{society.description}}
+  <div id="soc-exc">
+	 <h1>{{society.name}} ({{society.nickname}})</h1>
+	 <p> {{society.description}} </p>
+  </div>
 {%endif%}
 
 {%endblock%}
