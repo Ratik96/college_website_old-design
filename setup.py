@@ -212,7 +212,7 @@ def faculty():
 			f.close()
 			user=User()
 			user.username=prof.strip().replace(' ','').replace('.','').lower()[:-3]
-			user.first_name=clean_to_string(prof.strip()[:-3])
+			user.first_name=clean_to_string(prof.strip()[:-4])#account for the extra dot
 			user.set_password('asd')
 			user.save()
 			#create profile
