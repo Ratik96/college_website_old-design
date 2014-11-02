@@ -1,9 +1,10 @@
 .soc {
   background-color: rgba(255, 255, 255, 0.5);
+  width: 90%;
+  height: 165px;
   padding: 10px;
-  width: 100%;
-  height: 180px;
-  margin: 20px 20px; 
+  margin: 0 auto;
+  margin: 20px 20px;
 }
 
 .soc h4 {
@@ -11,7 +12,7 @@
 }
 
 .soc p {
-  font-size: 0.9em;
+  font-size: 0.8em;
 }
 
 .soc p:last-of-type {
@@ -32,32 +33,32 @@
   margin-bottom: 15px;
 }
 
-/* lead override */
-.lead {
-  font-size: 1.2em;
-  font-weight: bold;
-}
 
 #soc-exc {
-  max-width: 900px;
+  max-width: 1200px;
   padding: 30px;
   margin: 0 auto;
   margin-bottom: 2%;
+  font-family: inherit;
+}
+
+.soc-img {
+  margin: 0 auto;
 }
 
 #soc-exc h1 {
   color: white;
-  font-size: 4em;
+  font-size: 3.8em;
   text-decoration: underline;
   text-align: center;
   margin-bottom: 50px;
+  font-family: 'Oswald', sans-serif;
 }
 
 #soc-exc p {
-  word-wrap: break-word;
   color: white;
-  font-family: Tahoma, sans-serif;
 }
+
 
 
 
