@@ -59,7 +59,6 @@ def result(request):
 	'''
 	data={}
 	data['admitted']=admission.models.admission_candidate.objects.filter(cutoff_status=True).filter(admitted=True)
-	print data['admitted']
 	return render(request,'admission/result.html',data)
 	
 def faq(request):

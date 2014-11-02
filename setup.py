@@ -448,7 +448,7 @@ def locations():
 	f.close()
 	for i in loc:
 		l=events.models.Location()
-		l.name=l.strip()[:40]
+		l.name=i.strip().capitalize()[:40]
 		l.save()
 function_list.append(locations)
 #------------------------------------------------------------------------------------------------
