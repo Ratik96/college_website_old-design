@@ -155,8 +155,8 @@ class admission_candidate(models.Model):
 	submit=models.BooleanField(default=True,editable=False)
 	submission_date=models.DateField(default=timezone.now(),editable=False)
 	
-	document1=models.ImageField(upload_to='admissions/documents/%Y/%m/%d',help_text='Supporting document 1 scanned copy',blank=True,default=None,null=True)
-	document2=models.ImageField(upload_to='admissions/documents/%Y/%m/%d',help_text='Supporting document 2 scanned copy',blank=True,default=None,null=True)
+	document_1=models.ImageField(upload_to='admissions/documents/%Y/%m/%d',help_text='Supporting document 1 scanned copy',blank=True,default=None,null=True)
+	document_2=models.ImageField(upload_to='admissions/documents/%Y/%m/%d',help_text='Supporting document 2 scanned copy',blank=True,default=None,null=True)
 	document_3=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None,help_text='Scanned copy of supporting document 3(optional)')
 	document_4=models.FileField(upload_to='admissions/documents/%Y/%m/%d',null=True,blank=True,default=None,help_text='Scanned copy of supporting document 4(optional)')
 	
@@ -191,3 +191,8 @@ class admission_candidate(models.Model):
 		string=self.password
 		self.set_password(string)
 		super(admission_candidate,self).save(*args,**kwargs)
+		
+class admission_form(forms.ModelForm):
+	class Meta:
+		model=admission_candidate
+		exclude=['cutoff_status','admitted']

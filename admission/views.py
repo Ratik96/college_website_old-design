@@ -58,7 +58,7 @@ def result(request):
 	-------------------------------------
 	'''
 	data={}
-	data['admitted']=admission.models.admission_candidate.objects.filter(cutoff_status=True).filter(admitted=True)
+	data['admitted']=admission.models.admission_candidate.objects.filter(cutoff_status=True,admitted=True)
 	return render(request,'admission/result.html',data)
 	
 def faq(request):
@@ -72,4 +72,13 @@ def faq(request):
 	data={}
 	data['q_a']=admission.models.q_a.objects.order_by('rank')
 	return render(request,'admission/faq.html',data)
-
+def admission_form(request):
+	'''
+	admission_form
+	----------------------
+	Provides an admission_form=form
+	'''
+	if request.method=='GET':
+		data={}
+		data['form']=admission.models.admission_form()
+		return render(request,'admission/form.html',data)

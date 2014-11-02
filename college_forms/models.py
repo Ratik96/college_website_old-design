@@ -22,12 +22,4 @@ class basic_form_class(models.Model):
 	
 	document1=models.ImageField(upload_to='forms',help_text='Supporting document 1 scanned copy',blank=True,default=None,null=True)
 	document2=models.ImageField(upload_to='forms',help_text='Supporting document 2 scanned copy',blank=True,default=None,null=True)
-	
-	
 
-
-
-class admission_form(forms.ModelForm):
-	class Meta:
-		model=admission_candidate
-		exclude=['cutoff_status','admitted']
