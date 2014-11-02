@@ -1,6 +1,10 @@
-Events
+Views and models
 =======
-1. event related to society-change to sept and soc
+1. event related to society-change to dept and soc
 2. Unify department and society models
-3. Event calender-event addition
+=======
+Templates
+=======
+1. events/month.html
+2. events/event.html
 =======

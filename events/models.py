@@ -13,6 +13,9 @@ class Location(models.Model):
 	'''
 	Locations where events need to be booked
 	'''
+	def __unicode__(self):
+		return str(self.name)
+		
 	name=models.CharField(max_length=40)
 	
 	projector=models.BooleanField(default=False)#has projector

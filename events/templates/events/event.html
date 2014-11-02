@@ -1,5 +1,25 @@
 {%extends 'base.html'%}
 
 {%block body%}
-	{{event}}
+	{{event.name}}
+	{{event.description}}
+	{{event.organizer}}
+	{{event.start}}
+	{{event.end}}
+	
+	{%for sc in schedules%}
+		{{sc.title}}
+		{{sc.location}}
+		{{sc.description}}
+		{sc.start}}
+		{{sc.end}
+	{%endfor%}
+	
+	{%for pos in posters%}
+		{{pos.picture.url}}
+	{%endfor%}
+	
+	{%for pic in photos%}
+		{{pic.picture.url}}
+	{%endfor%}
 {%endblock%}
