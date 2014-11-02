@@ -11,5 +11,6 @@ Templates
 4. departments page
 5. alumni page; add fb link
 6. slideshow on the events page
-7. Add society logo in /society instead of a solid colored div
+7. add society logo in /society instead of a solid colored div
+8. small bug with navbar (need to talk)
 =======

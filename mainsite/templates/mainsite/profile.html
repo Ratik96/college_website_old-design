@@ -1,19 +1,48 @@
 {%extends 'base.html'%}
 
-{%block body%}
-	<img src={{profile.picture.url}} alt='Profile_picture'></img>
-	{{profile.title}} {{profile.user.first_name}}
-	{{profile.course}}
-	<a href={{profile.dept.get_absolute_url}}>{{profile.dept}}</a>
-	{{profile.qualification}}
-	<hr>
-	<h4>Contact Form<h4>
-	You may contact {{profile.title}} {{profile.user.firstname}} using this form.
-	<form action={{profile.get_absolute_url}}  action='post'>
-		<input name='from',type='text' value='Your email ID'></iput>
-		<input name='subject' type='text' value='Subject'></input>
-		<input name='message' type='textfield' value='Message'></input>
-		<input type='submit'></input>
-	</form>
+{%block head%}
+	{%load static%}
+	<link rel="stylesheet" type="text/css" href='{% static "mainsite/profile.css" %}'>
 {%endblock%}
+
+{%block body%}
+	<div class="container">
+    <div class="row">
+      <div class="col-md-5" id="sidebar">
+        <img class="img-responsive" src={{profile.picture.url}} alt='Profile photo for teacher'>
+      </div>
+      <div class="col-md-7" id="content">
+        <h1>{{profile.user.first_name}}</h1>
+        <h4>{{profile.qualification}},  </h4> 
+        <h4><a href='{{profile.dept.get_absolute_url}}'>{{profile.dept}}</a></h4>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+		<div class="row">
+			<div id="contact">
+				<p style="font-size: 1.3em; font-family: 'Roboto', sans-serif; font-weight: 300;">You may contact {{profile.title}} {{profile.user.firstname}} using this form. </p>
+				<form role="form" action='{{profile.get_absolute_url}}' action='POST'>
+					<div class="form-group">
+						<input name='from' class="form-control" type="email" placeholder="Your Email">
+					</div>
+					<div class="form-group">
+						<input name='subject' class="form-control" type='text' placeholder="Subject">
+					</div>
+					<div class="form-group">
+						<input name='message' class="form-control" type='textfield' placeholder="Your Message">
+					</div>
+					<button type="submit" class="btn btn-success" id="sub-button">Submit</button>
+				</form>	
+			</div>
+		</div>
+		<script type="text/javascript">
+			if ($(window).width() <= 600) {
+				console.log('mod');
+				$('#sub-button').addClass('btn-block');
+			}
+		</script>
+{%endblock%}
+
 
