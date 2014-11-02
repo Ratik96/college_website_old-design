@@ -7,7 +7,6 @@ Templates
 =======
 1. events/month.html
 2. events/event.html
-3. profile page
 4. departments page
 5. alumni page; add fb link
 6. slideshow on the events page
