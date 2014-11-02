@@ -42,7 +42,12 @@ def event_detail(request,nick):
 	obj=get_object_or_404(models.Event,nickname=nick)
 	
 	schedules=models.Schedule.objects.filter(event=obj)
-	
+	posters=models.Poster.objects.filter(event=obj)
+	photos=models.Photo.objects.filter(event=obj)
+
 	data['event']=obj
+	data['schedules']=schedules
+	data['posters']=posters
+	data['photos']=photos
 	
 	return render(request,template,data)

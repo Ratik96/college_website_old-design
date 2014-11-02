@@ -439,6 +439,19 @@ def societies():
 		soc.save()
 function_list.append(societies)
 #------------------------------------------------------------------------------------------------
+def locations():
+	'''
+	locations in college'''
+	filepath=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'locations')
+	f=file(filepath)
+	loc=f.readlines()
+	f.close()
+	for i in loc:
+		l=events.models.Location()
+		l.name=l.strip()[:40]
+		l.save()
+function_list.append(locations)
+#------------------------------------------------------------------------------------------------
 def events_in_college():
 	ev_path=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'events')
 	

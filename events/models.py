@@ -14,7 +14,6 @@ class Location(models.Model):
 	Locations where events need to be booked
 	'''
 	name=models.CharField(max_length=40)
-	additional_info=models.TextField(blank=True)
 	
 	projector=models.BooleanField(default=False)#has projector
 	ac=models.BooleanField(default=False)#has ac
@@ -51,16 +50,35 @@ class Poster(models.Model):
 	'''
 	Posters for event
 	'''
-	associated_picture=models.ImageField(upload_to='events/posters/%y/%m/%d')
+	tag=models.CharField(max_length=20,blank=True)
+	picture=models.ImageField(upload_to='events/posters/%y/%m/%d')
 	event=models.ForeignKey(Event)
+	def thumbnail(self):
+	        if self.picture:
+	        	addr=self.picture.url
+	        	addr.strip('/')
+	                return u'<img src="'+addr+'" width=60 height=60 />'
+	        else:
+	        	return u'No image file found'
+	thumbnail.short_description ='Thumbnail'
+	thumbnail.allow_tags=True
 	
-class Photos(models.Model):
+class Photo(models.Model):
 	'''
 	Photos of events
 	'''
-	associated_photo=models.ImageField(upload_to='events/photos/%y/%m/%d')
+	tag=models.CharField(max_length=20,blank=True)
+	picture=models.ImageField(upload_to='events/photos/%y/%m/%d')
 	event=models.ForeignKey(Event)
-	
+	def thumbnail(self):
+	        if self.picture:
+	        	addr=self.picture.url
+	        	addr.strip('/')
+	                return u'<img src="'+addr+'" width=60 height=60 />'
+	        else:
+	        	return u'No image file found'
+	thumbnail.short_description ='Thumbnail'
+	thumbnail.allow_tags=True	
 	
 	
 	
