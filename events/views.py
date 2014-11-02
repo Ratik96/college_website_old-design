@@ -1,15 +1,48 @@
 from django.shortcuts import render,get_object_or_404,redirect
+from django.utils.safestring import mark_safe
 from django.utils import timezone
+from django.http import Http404
 from events import models
 
 def home(request):
 	'''
-	The homepage for events. Must display a calender of events.
-	and navigation for the rest of the app
+	The homepage for events. 
+	Redirects to current month calender
+	'''
+	now=timezone.now()
+	year=now.year
+	month=now.month
+	return redirect('event_month',year=year,month=month)
+	
+def event_month(request,year,month):
+	'''
+	monthly calender for the month's events
+	'''
+	if type(year)!=type(0):
+		year=int(year)#convert
+	if type(month)!=type(0):
+		month=int(month)#convert
+	#validate month and year data
+	if month not in range(1,13):#1 to 12 both inclusive
+		raise Http404#not found	
+	#generate event calender and move on
+	data={}
+	template='events/month.html'
+	ev=models.Event.objects.order_by('start')
+	ev=ev.filter(start__year=year,start__month=month)
+	cal=models.EventCalender(ev).formatmonth(year,month)
+	data['events_calender']=mark_safe(cal)
+	return render(request,template,data)
+def event_detail(request,nick):
+	'''
+	event details
 	'''
 	data={}
-	template='events/home.html'
-	ev=models.Event.objects.filter(start__gte=timezone.now())#events in future
-	ev.order_by('start','start__weekday')
-	data['events']=ev
+	template='events/event.html'
+	obj=get_object_or_404(models.Event,nickname=nick)
+	
+	schedules=models.Schedule.objects.filter(event=obj)
+	
+	data['event']=obj
+	
 	return render(request,template,data)

@@ -2,6 +2,10 @@ import datetime
 from django.utils import timezone
 from django.core.mail import send_mail
 
+
+
+
+
 def contact_notification(email_from,email_to,subject,message):
 	'''
 	Sends an email to email_to and mentions that email_from has sent it
@@ -13,7 +17,5 @@ def contact_notification(email_from,email_to,subject,message):
 	msg+='\n--------------------------\nMESSAGE\n'+str(message)
 	msg+='\n Of course you can change that password once you are logged in. \nTo login please visit http://www.orfik.com/login \n \n\n\nYour host,\nCompsoc SSC'
 	send_mail('St. Stephens website Contact',msg,'computer.society.ssc@gmail.com',[email_to],fail_silently=False)
-def create_calender(events):
-	'''
-	creates a list which acts as a calender'''
 	
+
