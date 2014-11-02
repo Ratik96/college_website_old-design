@@ -109,8 +109,8 @@ domain_name='http://localhost:8000'
 
 
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "computer.society.ssc@gmail.com"
-EMAIL_HOST_PASSWORD = 'gamefacessc'
+EMAIL_HOST_USER = "stephens.webteam@gmail.com"
+EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 

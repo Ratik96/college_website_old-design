@@ -11,4 +11,7 @@ urlpatterns = patterns('',
 	url(r'^result/$',views.result,name='admission_result'),
 	url(r'^form/$',views.admission_form,name='admission_form'),
 	url(r'^faq/$',views.faq,name='admission_faq'),
+	
+	url(r'(?P<cid>\d+)/$',views.candidate_detail,name='admission_candidate_detail'),
+	url(r'^resend/(?P<cid>\d+)$',views.resend_confirmation,name='resend_admission_email'),
 )

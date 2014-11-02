@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 from django import forms
 from django.utils import timezone
 import office
@@ -83,7 +84,8 @@ class admission_candidate(models.Model):
 	'''
 	def __unicode__(self):
 		return str(self.firstname)+' '+str(self.lastname)
-		
+	def get_absolute_url(self):
+		return reverse('admission_candidate_detail',args=[self.id])
 	def set_password(self,string):
 		'''
 		sets the password value  to the hash of the given string

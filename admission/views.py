@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.utils import timezone
+from django.http import Http404
+from stephens.common_functions import *
 import admission,stephens
 
 def home(request):
@@ -82,3 +84,43 @@ def admission_form(request):
 		data={}
 		data['form']=admission.models.admission_form()
 		return render(request,'admission/form.html',data)
+	if request.method=='POST':
+		data={}
+		form=admission.models.admission_form(request.POST,request.FILES)
+		if form.is_valid():
+			admission_candidate=form.save()
+			data['candidate']=admission_candidate
+			try:
+				admission_registration(data['candidate'].email)
+			except Exception as e:
+				print e
+				return render(request,'admission/email_down.html')
+			else:			
+				return render(request,'admission/successful.html',data)
+		else:
+			data['form']=form
+			return render(request,'admission/form.html',data)
+def candidate_detail(request,cid):
+	'''
+	provides details of a candidate's admission form
+	for reference
+	'''
+	if type(cid)!=type(0):
+		try:
+			cid=int(cid)#convert if not of same type
+		except Exception as e:
+			print e
+			raise Http404
+	data={}
+	data['candidate']=get_object_or_404(admission.models.admission_candidate,pk=cid)
+	return render(request,'admission/detail.html',data)
+def resend_confirmation(request,cid) :
+	data={}
+	data['candidate']=get_object_or_404(admission.models.admission_candidate,pk=cid)
+	try:
+		admission_registration(data['candidate'].email)
+	except Exception as e:
+		print e
+		return render(request,'admission/email_down.html')
+	else:
+		return render(request,'admission/successful.html',data) 
