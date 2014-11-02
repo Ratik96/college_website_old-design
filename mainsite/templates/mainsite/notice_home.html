@@ -8,14 +8,16 @@
 {%endblock%}
 
 {%block body%}
-  <div id="notice-board">
-    {%for notice in notifications%}
+  <div id="cnt">
+    <div id="notice-board">
+      {%for notice in notifications%}
         <div class="notice col-xs-6 col-sm-4"> 
           <h4>{{notice.title}}</h4>
           <p>{{notice.description|truncatewords:'7'}}</p>
           <p>{{notice.publish_date|date:'d F Y'}}</p>
           <a target="_blank" href="https://docs.google.com/viewer?url={{domain_name|add:notice.associated_file.url|urlencode}}" class="btn btn-default notice-link">View notice &raquo;</a>  
         </div>
-    {%endfor%}
+      {% endfor %}
+    </div>
   </div>
 {%endblock%}
