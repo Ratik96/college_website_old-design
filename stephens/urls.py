@@ -11,6 +11,7 @@ urlpatterns = patterns(
 	url(r'^',include('mainsite.urls')),
 	url(r'^office/',include('office.urls')),
 	url(r'^attendance/',include('attendance.urls')),
+	url(r'^event/',include('events.urls')),
 	url(r'^admin/', include(admin.site.urls)),
 	url(r'^admissions/',include('admission.urls')),
 	url(r'^forms/',include('college_forms.urls')),

@@ -439,7 +439,11 @@ def societies():
 		soc.save()
 function_list.append(societies)
 #------------------------------------------------------------------------------------------------
-
+def events_in_college():
+	ev_path=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'events')
+	
+function_list.append(events_in_college)
+#------------------------------------------------------------------------------------------------
 print '================================================================'
 print 'SETTING UP THE WEBSITE'
 print '================================================================'
@@ -447,7 +451,7 @@ print '================================================================'
 #------------------------------------------------------------------------------------------------
 def run_function(fn):
 	'''Runs the function and acts as a wrapper'''
-	print fn.func_name.replace('_',' '),
+	print fn.func_name.replace('_',' ').capitalize(),
 	fn()
 	print '--------->Done'
 	

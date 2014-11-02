@@ -1,3 +1,4 @@
+from django.views.decorators.http import require_http_methods
 from django.shortcuts import render,get_object_or_404
 from django.http import Http404
 import mainsite,office,stephens
@@ -104,10 +105,6 @@ def department_detail(request,nick):
 	data['department']=office.models.faculty.objects.filter(dept=dept)
 	return render(request,'mainsite/department.html',data)
 	
-def event(request):
-	data={}
-	data['domain_name']=stephens.settings.domain_name
-	return render(request,'mainsite/society.html',data)
 def archive(request):
 	data={}
 	data['domain_name']=stephens.settings.domain_name
@@ -132,7 +129,12 @@ def profile_detail(request,nick):
 			data['profile']=office.models.student.objects.get(nickname=nick)
 		except:
 			raise Http404
-	return render(request,'mainsite/profile.html',data)
+	if request.method=='GET':
+		return render(request,'mainsite/profile.html',data)
+	if request.method=='POST':
+		#complete this functionality
+		stephens.common_functions.contact_notification()
+
 def course_detail(request,cid):
 	'''course details'''
 	data={}

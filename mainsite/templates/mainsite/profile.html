@@ -1,6 +1,19 @@
 {%extends 'base.html'%}
 
 {%block body%}
-	{{profile.thumbnail|safe}}
+	<img src={{profile.picture.url}} alt='Profile_picture'></img>
+	{{profile.title}} {{profile.user.first_name}}
+	{{profile.course}}
+	<a href={{profile.dept.get_absolute_url}}>{{profile.dept}}</a>
+	{{profile.qualification}}
+	<hr>
+	<h4>Contact Form<h4>
+	You may contact {{profile.title}} {{profile.user.firstname}} using this form.
+	<form action={{profile.get_absolute_url}}  action='post'>
+		<input name='from',type='text' value='Your email ID'></iput>
+		<input name='subject' type='text' value='Subject'></input>
+		<input name='message' type='textfield' value='Message'></input>
+		<input type='submit'></input>
+	</form>
 {%endblock%}
 

@@ -22,7 +22,6 @@ urlpatterns = patterns('',
     url(r'^department/$',views.department,name='department_home'),
     url(r'^department/(?P<nick>\S+)/$',views.department_detail,name='department_detail'),
 
-    url(r'^events',views.event,name='event_home'),
     url(r'^archive',views.archive,name='archive_home'),
     url(r'^alumni',views.alumni,name='alumni_home'),
     url(r'^contact',views.contact,name='contact_home'),
@@ -31,5 +30,4 @@ urlpatterns = patterns('',
     url(r'^principal/$',views.principal_home,name='principal_home'),
     
     url(r'^profile/(?P<nick>\S+)/$',views.profile_detail,name='profile_detail'),
-    
 )

@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'attendance',
     'admission',
     'college_forms',
+    'events',
     #'django.contrib.flatpages',
     
 )
@@ -104,4 +105,12 @@ LOGIN_URL='/login'
 TEMPLATE_DIRS=[os.path.join(BASE_DIR,'templates')]
 #the domain name to be associated with the file viewers
 domain_name='http://localhost:8000'
+
+
+
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "computer.society.ssc@gmail.com"
+EMAIL_HOST_PASSWORD = 'gamefacessc'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 

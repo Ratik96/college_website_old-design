@@ -64,7 +64,7 @@ def result(request):
 	
 def faq(request):
 	'''
-	retunrs the frequently asked questions with answers.
+	returns the frequently asked questions with answers.
 	User can ask a new question.
 	-------------------------------------
 	Provides a list of q_a objects=q_a
