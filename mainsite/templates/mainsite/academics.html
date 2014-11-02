@@ -36,14 +36,14 @@
 			{%endfor%}
 	  </div>
 	  <div role="tabpanel" class="tab-pane fade" id="courses">
-	  	<ol>
-				{%for i in courses%}
+  		<p>Given below is a list of undergraduate courses offered by the college. Cycle through them to know more. </p>
+  		<ul>
+	  		{%for i in courses%}
 					<li><a href={{i.get_absolute_url}}>{{i}}</a></li>
 				{%endfor%}
-			</ol>
+			</ul>
 	  </div>
 	</div>
-
 </div>
 
 {%endblock%}
