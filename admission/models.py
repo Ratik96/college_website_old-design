@@ -8,7 +8,12 @@ def get_hash(string):
 		length=56, sha224 implementation'''
 		import hashlib
 		return hashlib.sha224(string).hexdigest()
-		
+class admission_control(models.Model):
+	'''
+	models to control the admission application
+	'''
+	accept_admission_forms=models.BooleanField(default=False)
+	
 class dates(models.Model):
 	'''
 	The important dates related to admissions

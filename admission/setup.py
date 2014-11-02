@@ -30,6 +30,10 @@ import mainsite,attendance,office,events,admission,college_forms
 function_list=[]#a list of setup function to be run
 SETUP_SUPPORT_FOLDER='setup_support'#where the setup data files are located
 #------------------------------------------------------------------------------------------------
+control=admission.models.admission_control()#enable form submission
+control.accept_admission_forms=True
+control.save()
+#------------------------------------------------------------------------------------------------
 def admission_important_dates():
 	'''
 	sets up important dates regarding admissions

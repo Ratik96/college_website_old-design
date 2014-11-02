@@ -82,23 +82,27 @@ def admission_form(request):
 	'''
 	if request.method=='GET':
 		data={}
-		data['form']=admission.models.admission_form()
+		if admission.models.admission_control.objects.first().accept_admission_forms:
+			data['form']=admission.models.admission_form()
 		return render(request,'admission/form.html',data)
 	if request.method=='POST':
 		data={}
-		form=admission.models.admission_form(request.POST,request.FILES)
-		if form.is_valid():
-			admission_candidate=form.save()
-			data['candidate']=admission_candidate
-			try:
-				admission_registration(data['candidate'].email)
-			except Exception as e:
-				print e
-				return render(request,'admission/email_down.html')
-			else:			
-				return render(request,'admission/successful.html',data)
+		if admission.models.admission_control.objects.first().accept_admission_forms:		
+			form=admission.models.admission_form(request.POST,request.FILES)
+			if form.is_valid():
+				admission_candidate=form.save()
+				data['candidate']=admission_candidate
+				try:
+					admission_registration(data['candidate'].email)
+				except Exception as e:
+					print e
+					return render(request,'admission/email_down.html')
+				else:			
+						return render(request,'admission/successful.html',data)
+			else:
+				data['form']=form
+				return render(request,'admission/form.html',data)
 		else:
-			data['form']=form
 			return render(request,'admission/form.html',data)
 def candidate_detail(request,cid):
 	'''
@@ -116,11 +120,14 @@ def candidate_detail(request,cid):
 	return render(request,'admission/detail.html',data)
 def resend_confirmation(request,cid) :
 	data={}
-	data['candidate']=get_object_or_404(admission.models.admission_candidate,pk=cid)
-	try:
-		admission_registration(data['candidate'].email)
-	except Exception as e:
-		print e
-		return render(request,'admission/email_down.html')
+	if admission.models.admission_control.objects.first().accept_admission_forms:
+		data['candidate']=get_object_or_404(admission.models.admission_candidate,pk=cid)
+		try:
+			admission_registration(data['candidate'].email)
+		except Exception as e:
+			print e
+			return render(request,'admission/email_down.html')
+		else:
+			return render(request,'admission/successful.html',data) 
 	else:
-		return render(request,'admission/successful.html',data) 
+		return render(request,'admission/form.html',data)
