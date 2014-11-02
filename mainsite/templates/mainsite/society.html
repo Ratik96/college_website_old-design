@@ -9,13 +9,14 @@
 
 {%block body%}
 
-<!-- This needs fixing and I need your help – Ratik -->
 {%if societies%}
   <div id="socs">
     {%for i in societies%}
-      <div class="soc col-xs-6 col-sm-4"> 
-        <h4>{{i.name}}</h4>
-        <a target="_blank" href={{i.get_absolute_url}} class="btn btn-default notice-link">View Society &raquo;</a> 
+      <div class="col">
+        <div class="soc col-xs-6 col-sm-4"> 
+          <h4>{{i.name}}</h4>
+          <a href={{i.get_absolute_url}} class="btn btn-default notice-link">View Society &raquo;</a> 
+        </div>
       </div>
     {%endfor%}
   </div>
@@ -23,8 +24,9 @@
 
 {%if society%}
   <div id="soc-exc">
-	 <h1>{{society.name}} ({{society.nickname}})</h1>
-	 <p> {{society.description}} </p>
+	   <h1>{{society.name}} ({{society.nickname}})</h1>
+     <img class="soc-img img-responsive" src=""> 
+	   <p class="lead"> {{society.description}} </p>
   </div>
 {%endif%}
 

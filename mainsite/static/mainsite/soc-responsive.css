@@ -1,6 +1,7 @@
-@media (min-width: 640px) {
+@media (min-width: 900px) {
   .soc {
     width: 220px;
+    margin: 20px 40px;
   }
 
   .soc p:last-of-type {
