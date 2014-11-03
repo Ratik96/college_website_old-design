@@ -62,3 +62,8 @@ class notification(document):
 	recent.boolean=True
 	recent.short_description='Was published in last one month?'
 
+class archives(models.Model):
+	'''
+	Archives for the college
+	'''
+	pass
