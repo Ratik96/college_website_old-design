@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'admission',
     'college_forms',
     'events',
+    #'archive',
     #'django.contrib.flatpages',
     
 )
