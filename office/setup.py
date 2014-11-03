@@ -171,11 +171,18 @@ def societies():
 		accepted+='":,.!@#$%^&*()_+=- '
 		accepted+='\n'
 		files=os.listdir(cur_path)
+		logo_flag=False
 		for k in files:
 			if ('D' or 'd') in k:
 				f_d=file(os.path.join(cur_path,k))
-			else:
+			if 'name' in k:
 				f_nick=file(os.path.join(cur_path,k))
+			if 'logo' in k:
+				f_logo=file(os.path.join(cur_path,k))
+				logo_flag=True
+		if not logo_flag:
+			f_logo=file(os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'loading.gif'))
+				
 		det=f_d.readlines()
 		det_new=[]
 		for k in det:
@@ -195,11 +202,19 @@ def societies():
 		#accepted the nicknames and details
 		soc=office.models.society()
 		soc.name=i.strip()
+		try:
+			soc.logo=File(f_logo)
+		except Exception as e:
+			print e
+			print '---------------------------'
+			print 'It appears we have no logo for this society'
 		soc.nickname=nicks
 		soc.founding_date=timezone.now()
 		soc.staff_advisor=office.models.faculty.objects.first()
 		soc.description=unicode(''.join(det_new))
 		soc.save()
+		f_logo.close()
+
 function_list.append(societies)
 #------------------------------------------------------------------------------------------------
 def run_function(fn):
