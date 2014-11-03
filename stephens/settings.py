@@ -91,8 +91,8 @@ USE_ETAGS=True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 MEDIA_URL='/media/'
 #===================================================================
-MEDIA_ROOT='/Users/ratik/Documents/college_site/'
-STATIC_ROOT='/Users/ratik/Documents/college_site/static'
+MEDIA_ROOT='/Users/ratik/Development/django/college_site/'
+STATIC_ROOT='/Users/ratik/Development/django/college_site/static'
 if os.environ['USER']=='ghost':
 	MEDIA_ROOT='/home/'+os.environ['USER']+'/Documents/college_site/'
 	STATIC_ROOT='/home/'+os.environ['USER']+'/Documents/college_site/static'
