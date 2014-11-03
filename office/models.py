@@ -96,6 +96,8 @@ class society(models.Model):
 		return self.name
 	name=models.CharField('The society name',max_length=50)
 	nickname=models.CharField(max_length=10)#nickname for url
+	logo=models.ImageField(upload_to='society_logos',blank=True,null=True)
+	
 	description=models.TextField()
 	founding_date=models.DateField('The founding date of the society')
 	staff_advisor=models.ForeignKey(faculty,related_name='staff_advisor')
