@@ -10,6 +10,7 @@ def home(request):
 	Try to implement as a flatpage...
 	'''
 	data={}
+	data['control']=admission.models.admission_control.objects.first()
 	return render(request,'admission/home.html',data)
 def procedure(request):
 	'''

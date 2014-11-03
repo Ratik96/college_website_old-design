@@ -32,6 +32,7 @@ SETUP_SUPPORT_FOLDER='setup_support'#where the setup data files are located
 #------------------------------------------------------------------------------------------------
 control=admission.models.admission_control()#enable form submission
 control.accept_admission_forms=True
+control.prospectus=File(file(os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'prospectus.pdf')))
 control.save()
 #------------------------------------------------------------------------------------------------
 def admission_important_dates():

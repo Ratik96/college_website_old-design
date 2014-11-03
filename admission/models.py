@@ -13,6 +13,7 @@ class admission_control(models.Model):
 	models to control the admission application
 	'''
 	accept_admission_forms=models.BooleanField(default=False)
+	prospectus=models.FileField(upload_to='admission')
 	
 class dates(models.Model):
 	'''
