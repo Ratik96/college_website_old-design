@@ -32,6 +32,7 @@ def event_month(request,year,month):
 	ev=ev.filter(start__year=year,start__month=month)
 	cal=models.EventCalender(ev).formatmonth(year,month)
 	data['events_calender']=mark_safe(cal)
+	data['event_photos']=models.Photo.objects.order_by('event__start')
 	return render(request,template,data)
 def event_detail(request,nick):
 	'''

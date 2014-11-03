@@ -2,4 +2,9 @@
 
 {%block body%}
 	{{events_calender}}
+	{%for photo in event_photos%}
+		<a href={{photo.event.get_absolute_url}}>
+		<img src={{photo.picture.url}} alt='Event photo:{{photo.tag}}'/>
+		</a>
+	{%endfor%}
 {%endblock%}

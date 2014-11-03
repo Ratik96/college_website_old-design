@@ -11,15 +11,15 @@
 		{{sc.title}}
 		{{sc.location}}
 		{{sc.description}}
-		{sc.start}}
-		{{sc.end}
+		{{sc.start}}
+		{{sc.end}}
 	{%endfor%}
 	
 	{%for pos in posters%}
-		{{pos.picture.url}}
+		<img src={{pos.picture.url}} alt='Picture: {{pos.tag}}'/>
 	{%endfor%}
 	
 	{%for pic in photos%}
-		{{pic.picture.url}}
+		<img src={{pic.picture.url}} alt='Picture:{{pic.tag}}' />
 	{%endfor%}
 {%endblock%}
