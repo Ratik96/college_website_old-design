@@ -29,6 +29,7 @@ def home(request):
 		try:
 			course=office.models.course.objects.get(pk=request.POST['course'])
 			semester=request.POST['semester']
+			print course,semester
 		except Exception as e:
 			print e
 		else:
@@ -37,7 +38,7 @@ def home(request):
 				stu=[]
 				for i in students:
 					x={}
-					x['name']=i.name
+					x['name']=i.user.first_name.replace('_',' ').capitalize()
 					x['id']=i.id
 					stu.append(x)
 			except Exception as e:

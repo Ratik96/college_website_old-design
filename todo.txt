@@ -15,4 +15,5 @@ Templates
 9. course page
 10.attendance page
 11.admission form. Change admission_contorl to true in admin page to see the form
+12.admission/procedure is misbehaving have a look
 =======
