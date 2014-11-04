@@ -10,10 +10,12 @@ Templates
 =======
 1. events/month.html
 2. events/event.html
+
 4. departments page. departments home
+
 5. alumni page; add fb link
-6. slideshow on the events page
-7. add society logo in /society instead of a solid colored div
+
+6. slideshow on the events page--optional as this is the same has homepage
 8. small bug with navbar (need to talk)
 9. course page
 10.attendance page

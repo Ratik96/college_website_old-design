@@ -36,6 +36,7 @@ def course_type():
 		a=office.models.course_type()
 		a.name=i
 		a.save()
+		print '		',i
 function_list.append(course_type)
 #------------------------------------------------------------------------------------------------
 def courses():
@@ -47,6 +48,7 @@ def courses():
 		a.name=i
 		a.course_type=ug_course_type
 		a.save()
+		print '		',i
 function_list.append(courses)
 #------------------------------------------------------------------------------------------------
 def students(student_photo_folder='student_photos'):
@@ -68,7 +70,7 @@ def students(student_photo_folder='student_photos'):
 		a.nickname=random.sample(i[:-4],5)
 		a.course=office.models.course.objects.first()
 		a.save()
-		
+		print '		',i
 		f.close()
 function_list.append(students)
 #------------------------------------------------------------------------------------------------
@@ -120,6 +122,7 @@ def university_papers():
 		a.course=bsc_course
 		a.semester=int(i[-1])
 		a.save()
+		print '		',i
 function_list.append(university_papers)
 
 #------------------------------------------------------------------------------------------------
@@ -128,7 +131,8 @@ def faculty():
 	adds faculty. and departments'''
 	
 	prof_path=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'profile')
-	default_picture=File(file(os.path.join(prof_path,'default.jpg')))#default profile picture
+	def_pic=file(os.path.join(prof_path,'default.jpg'))
+	default_picture=File(def_pic)#default profile picture
 	depts=os.listdir(os.path.join(prof_path,'profiles'))#list of departments
 	nicks_already_used=[]
 	for dept in depts:
@@ -138,7 +142,7 @@ def faculty():
 		nick=clean_to_string(dept.strip().replace('_','').replace(' ','').replace('/','').lower())[:5]
 		while nick in nicks_already_used:
 			print nick
-			nick=raw_input()[:5]
+			nick=nick[:len(nick)-1]
 		department.nickname=nick
 		nicks_already_used.append(nick)
 		department.save()
@@ -163,6 +167,8 @@ def faculty():
 			profile.dept=department
 			profile.qualification=clean_to_string(det[2].strip())
 			profile.save()
+			print '		',prof
+	def_pic.close()
 function_list.append(faculty)
 #------------------------------------------------------------------------------------------------
 
