@@ -137,14 +137,11 @@ def faculty():
 		department.name=dept.strip().replace('_',' ')
 		nick=clean_to_string(dept.strip().replace('_','').replace(' ','').replace('/','').lower())[:5]
 		if nick in nicks_already_used:
-			print nick
 			nick = 'PHY'
 			#nick=''.join(random.sample(nick, len(nick))
-		print 'nick done'
 		department.nickname=nick
 		nicks_already_used.append(nick)
 		department.save()
-		print 'Deptt saved'
 		#list profiles in the department
 		profiles=os.listdir(os.path.join(prof_path,'profiles',dept))
 		for prof in profiles:
@@ -166,7 +163,6 @@ def faculty():
 			profile.dept=department
 			profile.qualification=clean_to_string(det[2].strip())
 			profile.save()
-			print (prof)
 function_list.append(faculty)
 #------------------------------------------------------------------------------------------------
 
@@ -192,7 +188,7 @@ def societies():
 				f_logo=file(os.path.join(cur_path,k))
 				logo_flag=True
 		if not logo_flag:
-			f_logo=file(os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'loading.gif'))
+			f_logo=file(os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'loading.png'))
 				
 		det=f_d.readlines()
 		det_new=[]

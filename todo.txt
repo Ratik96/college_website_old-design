@@ -13,9 +13,8 @@ Templates
 4. departments page. departments home
 5. alumni page; add fb link
 6. slideshow on the events page
-7. add society logo in /society instead of a solid colored div
 8. small bug with navbar (need to talk)
 9. course page
-10.attendance page
-11.admission form. Change admission_contorl to true in admin page to see the form
+10. attendance page
+11. admission form. Change admission_contorl to true in admin page to see the form
 =======
