@@ -4,6 +4,30 @@
   padding: 0 5%;
 }
 
+#wrapper > p {
+  margin-top: 20px;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.25em;
+  font-weight: 300;
+}
+
+section > h2 {
+  color: white; 
+  font-size: 3em; 
+  text-align: center;
+  text-decoration: underline;
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+
+@media (min-width: 768px) {
+  section > h2 {
+    font-size: 3.5em;
+    font-weight: inherit;
+  }
+}
+
 #gallery {
   margin: 0;
   padding: 0;
