@@ -7,12 +7,12 @@
 
 {%block admission_body%}
 	{%if form%}
-	<form action="{%url 'admission_form'%}"method="post"{%if form.is_multipart%}enctype="multipart/form-data"{%endif%}>
+	<form role="form" action="{%url 'admission_form'%}" method="post" {%if form.is_multipart%} enctype="multipart/form-data" {%endif%}>
 		{%csrf_token%}
 		{{form}}
 		<input type='submit' val='Submit' />
 	</form>
 	{%else%}
-		We are currently not accepting admission forms.
+		<p>We are currently not accepting admission forms.</p>
 	{%endif%}
 {%endblock%}
