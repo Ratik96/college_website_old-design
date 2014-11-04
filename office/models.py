@@ -47,7 +47,7 @@ class department(models.Model):
 	def __unicode__(self):
 		return str(self.name)
 	name=models.CharField(max_length=35)
-	nickname=models.CharField(max_length=5)#nickname for url
+	nickname=models.CharField(max_length=5,unique=True)#nickname for url
 	def get_absolute_url(self):
 		return reverse('department_detail',args=[self.nickname])
 	
@@ -59,7 +59,7 @@ class profile(models.Model):
 	def __unicode__(self):
 		return str(self.title)+' '+str(self.user.first_name)+' '+str(self.user.last_name)
 	user=models.OneToOneField(User)
-	nickname=models.CharField(max_length=10)#for url
+	nickname=models.CharField(max_length=10,unique=True)#for url
 	title=models.CharField('Titles like Mr.',max_length=50,default='M.')
 	picture=models.ImageField('The profile picture of the senior member',upload_to='userpics',default=None)
 	def get_absolute_url(self):
@@ -95,7 +95,7 @@ class society(models.Model):
 	def __unicode__(self):
 		return self.name
 	name=models.CharField('The society name',max_length=50)
-	nickname=models.CharField(max_length=10)#nickname for url
+	nickname=models.CharField(max_length=10,unique=True)#nickname for url
 	logo=models.ImageField(upload_to='society_logos',blank=True,null=True)
 	
 	description=models.TextField()

@@ -65,6 +65,7 @@ def students(student_photo_folder='student_photos'):
 		a=office.models.student()
 		a.user=u
 		a.picture=File(f)
+		a.nickname=random.sample(i[:-4],5)
 		a.course=office.models.course.objects.first()
 		a.save()
 		
@@ -129,11 +130,17 @@ def faculty():
 	prof_path=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'profile')
 	default_picture=File(file(os.path.join(prof_path,'default.jpg')))#default profile picture
 	depts=os.listdir(os.path.join(prof_path,'profiles'))#list of departments
+	nicks_already_used=[]
 	for dept in depts:
 		#create department
 		department=office.models.department()
 		department.name=dept.strip().replace('_',' ')
-		department.nickname=clean_to_string(dept.strip().replace('_','').replace(' ','').replace('/','').lower())[:5]
+		nick=clean_to_string(dept.strip().replace('_','').replace(' ','').replace('/','').lower())[:5]
+		while nick in nicks_already_used:
+			print nick
+			nick=raw_input()[:5]
+		department.nickname=nick
+		nicks_already_used.append(nick)
 		department.save()
 		#list profiles in the department
 		profiles=os.listdir(os.path.join(prof_path,'profiles',dept))
