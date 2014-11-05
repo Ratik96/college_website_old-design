@@ -3,16 +3,22 @@
 {%block admission_head%}
 	{% load static %}
 	<link rel="stylesheet" type="text/css" href='{%static "admission/form.css"%}'>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			
+			
+		});
+	</script>
 {%endblock%}
 
 {%block admission_body%}
 	{%if form%}
 	<form role="form" action="{%url 'admission_form'%}" method="post" {%if form.is_multipart%} enctype="multipart/form-data" {%endif%}>
 		{%csrf_token%}
-		<table border=1>
+		<table id="add-form">
 		{{form}}
 		</table>
-		<input type='submit' val='Submit' />
+		<button type="submit" class="btn btn-success btn-lg" id="sub-button">Submit</button>
 
 	</form>
 	{%else%}
