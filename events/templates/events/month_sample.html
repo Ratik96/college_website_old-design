@@ -1,0 +1,141 @@
+{%extends 'base.html'%}
+
+{%block head%}
+  {%load static%}
+  <link rel="stylesheet" type="text/css" href='{% static "events/events.css"%}'>
+{%endblock%}
+
+{%block body%} 
+	{%for photo in event_photos%}
+		<a href={{photo.event.get_absolute_url}}>
+		  <img src={{photo.picture.url}} alt='Event photo:{{photo.tag}}'/>
+		</a>
+	{%endfor%}
+
+  <div class="wrapper">
+  <table id="header-table">
+    <tbody>
+      <tr>
+        <td>July 2013</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px 0;"><!-- Leave this empty --></td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="day-names">
+    <tbody>
+      <tr>
+        <td>Monday</td>
+        <td>Tuesday</td>
+        <td>Wednesday</td>
+        <td>Thursday</td>
+        <td>Friday</td>
+        <td>Saturday</td>
+        <td>Sunday</td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="week">
+    <tr>
+      <td>30</td>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td class="event holiday">5</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>Independence Day (USA)</td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+  <table class="week">
+    <tr>
+      <td class="today date">7</td>
+      <td class="event important">8</td>
+      <td>9</td>
+      <td>10</td>
+      <td>11</td>
+      <td>12</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <td class="today">&nbsp;</td>
+      <td class="description">Date with Cold Beer</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+  <table class="week">
+    <tr>
+      <td class="event holiday">14</td>
+      <td>15</td>
+      <td>16</td>
+      <td>17</td>
+      <td>18</td>
+      <td>19</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <td class="description">Bastille Day (France)</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+  <table class="week">
+    <tr>
+      <td>21</td>
+      <td>22</td>
+      <td class="event appointment">23</td>
+      <td>24</td>
+      <td>25</td>
+      <td>26</td>
+      <td>27</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>Doctor's Appointment</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>Work Picnic</td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+  <table class="week">
+    <tr>
+      <td>28</td>
+      <td>29</td>
+      <td>30</td>
+      <td>31</td>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+</div>
+
+{%endblock%}
