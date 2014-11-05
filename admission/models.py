@@ -54,7 +54,6 @@ class category_cutoff(models.Model):
 	humanities=models.FloatField(null=True,blank=True,default=None)
 	cutoff_subject=models.ForeignKey(cutoff_subject,related_name='cutoff_subject')
 
-
 class notice(models.Model):
 	'''
 	notice for admissions

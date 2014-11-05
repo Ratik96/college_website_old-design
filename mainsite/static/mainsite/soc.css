@@ -1,38 +1,54 @@
-.soc {
-  background-color: rgba(255, 255, 255, 0.5);
-  width: 90%;
-  height: 165px;
-  padding: 10px;
+#wrapper {
+  max-width: 940px;
   margin: 0 auto;
-  margin: 20px 20px;
+  padding: 0 5%;
 }
 
-.soc h4 {
-  margin-bottom: 10px;
+#wrapper > p {
+  margin-top: 20px;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.25em;
+  font-weight: 300;
 }
 
-.soc p {
-  font-size: 0.8em;
+section > h2 {
+  color: white; 
+  font-size: 3em; 
+  text-align: center;
+  text-decoration: underline;
+  margin-bottom: 40px;
+  font-weight: 300;
 }
 
-.soc p:last-of-type {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  margin-bottom: 25px;
-  margin-left: 10px;
-  font-weight: bold;
+@media (min-width: 768px) {
+  section > h2 {
+    font-size: 3.5em;
+    font-weight: inherit;
+  }
+}
+
+#gallery {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin-top: 20px;
+}
+
+#gallery li {
+  float: left;
+  width: 45%;
+  margin: 2.5%;
+}
+
+#gallery p {
+  color: white;
   font-size: 1em;
+  margin: 5px 5px;
+  font-family: 'Roboto', sans-serif;
 }
 
-.soc-link {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin-right: 5px;
-  margin-bottom: 15px;
-}
-
+/***************************************/
 
 #soc-exc {
   max-width: 1200px;

@@ -4,20 +4,27 @@ Views and models
 2. Unify department and society models
 3. Archiving system to be installed
 4. Unify student and faculty profiles
-5. 
+5. Add all courses to attendance; attendance is still not working
 =======
 Templates
 =======
 1. events/month.html
 2. events/event.html
+<<<<<<< HEAD
 
+=======
+6. slideshow on the events page
+>>>>>>> 05709d585260366a57922aed4034ec26b535eb18
 4. departments page. departments home
 
 5. alumni page; add fb link
+<<<<<<< HEAD
 
 6. slideshow on the events page--optional as this is the same has homepage
+=======
+>>>>>>> 05709d585260366a57922aed4034ec26b535eb18
 8. small bug with navbar (need to talk)
 9. course page
-10.attendance page
-11.admission form. Change admission_contorl to true in admin page to see the form
+10. attendance page
+11. admission form. Change admission_contorl to true in admin page to see the form
 =======

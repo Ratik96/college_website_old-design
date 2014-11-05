@@ -10,16 +10,38 @@
 {%block body%}
 
 {%if societies%}
-  <div id="socs">
-    {%for i in societies%}
-      <div class="col">
-        <div class="soc col-xs-6 col-sm-4"> 
-          <h4>{{i.name}}</h4>
-          <img src={{i.logo.url}} alt='Society logo' height=70 width=100 />
-          <a href={{i.get_absolute_url}} class="btn btn-default notice-link">View Society &raquo;</a> 
-        </div>
-      </div>
-    {%endfor%}
+  <div id="wrapper">
+    <!-- Can put up a write-up about society culture here -->
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> 
+
+    <hr class="divider">
+
+    <section>
+      <h2>SSC's Societies</h2>
+      <!-- For best results, images should be 200x200 -->
+      <ul id="gallery">
+        {% for soc in societies %} 
+        <li>
+          <a href="{{soc.get_absolute_url}}" target="_blank"> 
+            <img src="{{soc.logo.url}}" class="img-responsive" alt="Society logo">
+            <p>{{soc.name}}</p>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
   </div>
 {%endif%}
 

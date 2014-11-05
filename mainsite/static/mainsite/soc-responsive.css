@@ -1,16 +1,9 @@
-@media (min-width: 900px) {
-  .soc {
-    width: 220px;
-    margin: 20px 40px;
+@media screen and (min-width: 480px) {
+  #gallery li {
+    width: 28.3333%;
   }
 
-  .soc p:last-of-type {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    margin-bottom: 25px;
-    margin-left: 10px;
-    font-weight: bold;
-    font-size: 0.8em;
+  #gallery li:nth-child(3n+1) {
+    clear: left;
   }
 }

@@ -140,9 +140,15 @@ def faculty():
 		department=office.models.department()
 		department.name=dept.strip().replace('_',' ')
 		nick=clean_to_string(dept.strip().replace('_','').replace(' ','').replace('/','').lower())[:5]
+<<<<<<< HEAD
 		while nick in nicks_already_used:
 			print nick
 			nick=nick[:len(nick)-1]
+=======
+		if nick in nicks_already_used:
+			nick = 'PHY'
+			#nick=''.join(random.sample(nick, len(nick))
+>>>>>>> 05709d585260366a57922aed4034ec26b535eb18
 		department.nickname=nick
 		nicks_already_used.append(nick)
 		department.save()
@@ -194,7 +200,7 @@ def societies():
 				f_logo=file(os.path.join(cur_path,k))
 				logo_flag=True
 		if not logo_flag:
-			f_logo=file(os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'loading.gif'))
+			f_logo=file(os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'loading.png'))
 				
 		det=f_d.readlines()
 		det_new=[]
