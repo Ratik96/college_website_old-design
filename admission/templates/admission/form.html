@@ -8,7 +8,8 @@
 			$('#add-form select').addClass('form-control');
 			$('#add-form input[type=text]').addClass('form-control');
 			$('#add-form input[type=email]').addClass('form-control');
-			$('#add-form input[type=password]').addClass('form-control');			
+			$('#add-form input[type=password]').addClass('form-control');	
+			$('#add-form input[type=number]').addClass('form-control');			
 		});
 	</script>
 {%endblock%}
@@ -27,4 +28,13 @@
 	{%else%}
 		<p>We are currently not accepting admission forms.</p>
 	{%endif%}
+	<script type="text/javascript">
+		if ($(window).width() <= 600) {
+			$('#sub-button').addClass('btn-block');
+			$('#sub-button').css('margin-bottom', '40px');
+		} else {
+			$('#sub-button').removeClass('btn-block');
+			$('#sub-button').css('margin-bottom', '60px');
+		}
+	</script>
 {%endblock%}
