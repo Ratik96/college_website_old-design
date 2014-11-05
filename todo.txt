@@ -10,21 +10,9 @@ Templates
 =======
 1. events/month.html
 2. events/event.html
-<<<<<<< HEAD
-
-=======
-6. slideshow on the events page
->>>>>>> 05709d585260366a57922aed4034ec26b535eb18
-4. departments page. departments home
-
-5. alumni page; add fb link
-<<<<<<< HEAD
-
-6. slideshow on the events page--optional as this is the same has homepage
-=======
->>>>>>> 05709d585260366a57922aed4034ec26b535eb18
-8. small bug with navbar (need to talk)
-9. course page
-10. attendance page
-11. admission form. Change admission_contorl to true in admin page to see the form
-=======
+3. alumni page; add fb link
+4. slideshow on the events page --optional as this is the same has homepage
+5. small bug with navbar (need to talk)
+6. course page
+7. attendance page 
+8. admission form. Change admission_contorl to true in admin page to see the form
