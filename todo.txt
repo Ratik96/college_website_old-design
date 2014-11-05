@@ -8,11 +8,10 @@ Views and models
 =======
 Templates
 =======
-1. events/month.html
-2. events/event.html
-3. alumni page; add fb link
-4. slideshow on the events page --optional as this is the same has homepage
-5. small bug with navbar (need to talk)
+1. events/event.html refine
+2. alumni page; add fb link
+3. slideshow on the events page --optional as this is the same has homepage
+4. small bug with navbar (need to talk)
 6. course page
 7. attendance page 
-8. admission form. Change admission_contorl to true in admin page to see the form
+8. Refine admission form
