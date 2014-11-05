@@ -44,7 +44,7 @@
 {%endif%}
 
 {%if department%}
-	<p class="intro-text">Here is a list of all faculty memebers in the department: </p>
+	<p class="intro-text">Here is a list of all faculty members in the department: </p>
 	<ol id="deptt">
 		{%for fac in department%}
 			<li><a target="_blank" href={{fac.get_absolute_url}}>{{fac}}</a></li>
