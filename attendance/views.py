@@ -37,7 +37,7 @@ def home(request):
 				stu=[]
 				for i in students:
 					x={}
-					x['name']=i.name
+					x['name']=i.user.first_name.replace('_',' ').capitalize()
 					x['id']=i.id
 					stu.append(x)
 			except Exception as e:
