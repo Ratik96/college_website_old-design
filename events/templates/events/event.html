@@ -1,25 +1,49 @@
 {%extends 'base.html'%}
 
+{%block head%}
+	{%load static%}
+	<style type="text/css">
+	*{
+		color: white;
+	}
+
+	#cnt {
+		max-width: 960px;
+		margin: 0 auto;
+	}
+
+	.poster {
+		width: 25%;
+		height: 25%;
+	}
+	</style>
+{%endblock%}
+
 {%block body%}
-	{{event.name}}
-	{{event.description}}
-	{{event.organizer}}
-	{{event.start}}
-	{{event.end}}
-	
-	{%for sc in schedules%}
-		{{sc.title}}
-		{{sc.location}}
-		{{sc.description}}
-		{{sc.start}}
-		{{sc.end}}
-	{%endfor%}
-	
-	{%for pos in posters%}
-		<img src={{pos.picture.url}} alt='Picture: {{pos.tag}}'/>
-	{%endfor%}
-	
-	{%for pic in photos%}
-		<img src={{pic.picture.url}} alt='Picture:{{pic.tag}}' />
-	{%endfor%}
+	<div id="cnt">
+		<h1>{{event.name}}</h1>
+		<h3>By {{event.organizer}}</h3><br/>
+		<p>{{event.description}}</p>
+		
+		<h4>Start: {{event.start}}</h4>
+		<h4>End: {{event.end}}</h4>
+		
+		{%for sc in schedules%}
+			{{sc.title}}
+			{{sc.location}}
+			{{sc.description}}
+			{{sc.start}}
+			{{sc.end}}
+		{%endfor%}
+
+		<hr class="divider">
+		
+		{%for pos in posters%}
+			<a href="{{pos.picture.url}}" target="_blank"><img class="img-responsive poster" src={{pos.picture.url}} alt='Picture: {{pos.tag}}'/></a>
+		{%endfor%}
+		
+		{%for pic in photos%}
+			<img class="img-responsive pic" src={{pic.picture.url}} alt='Picture:{{pic.tag}}' />
+		{%endfor%}
+	</div>
 {%endblock%}
