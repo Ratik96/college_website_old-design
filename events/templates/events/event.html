@@ -1,20 +1,53 @@
 {%extends 'base.html'%}
 
 {%block body%}
-	{{event.name}}
-	{{event.description}}
-	{{event.organizer}}
-	{{event.start}}
-	{{event.end}}
-	
-	{%for sc in schedules%}
-		{{sc.title}}
-		{{sc.location}}
-		{{sc.description}}
-		{{sc.start}}
-		{{sc.end}}
-	{%endfor%}
-	
+	<table>
+		<tr>
+			<td>Name</td>
+			<td>{{event.name}}</td>
+		<tr>
+		<tr>
+			<td>Description</td>
+			<td>{{event.description}}</td>
+		</tr>
+		<tr>
+			<td> Organized by</td>
+			<td>{{event.organizer}}</td>
+		</tr>
+		<tr>
+			<td>Starts at</td>
+			<td>{{event.start}}</td>
+		</tr>
+		<tr>
+			<td>Ends at</td>
+			<td>{{event.end}}</td>
+		</tr>
+	</table>
+		Schedules
+		<table border=1>
+		<tr>
+			<th>Name</th>
+			<th>Location</th>
+			<th>Description</th>
+			<th>Start</th>
+			<th>End</th>
+		</tr>
+			{%for sc in schedules%}
+			<tr>
+				<td>
+				{{sc.title}}
+				</td><td>
+				{{sc.location}}
+				</td><td>
+				{{sc.description}}
+				</td><td>
+				{{sc.start}}
+				</td><td>
+				{{sc.end}}
+				</td>
+			</tr>
+			{%endfor%}
+		</table>
 	{%for pos in posters%}
 		<img src={{pos.picture.url}} alt='Picture: {{pos.tag}}'/>
 	{%endfor%}
