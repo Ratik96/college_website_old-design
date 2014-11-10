@@ -6,11 +6,14 @@
 {%endblock%}
 
 {%block body%} 
+{{events_calender}}
+<a href={{last}} alt='last month'>Previous</a>
+<a href={{next}} alt='next month'>Next>></a>
 	{%for photo in event_photos%}
 		<a href={{photo.event.get_absolute_url}}>
 		  <img src={{photo.picture.url}} alt='Event photo:{{photo.tag}}'/>
 		</a>
 	{%endfor%}
 
-{{events_calender}}
+
 {%endblock%}

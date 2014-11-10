@@ -53,11 +53,10 @@ def principal_desk_notices(principal_desk_folder='principal_desk'):
 	for i in files:
 		f=file(os.path.join(filepath,i))
 		a=mainsite.models.notification()
-		a.title=i.split('.')[0].replace('_',' ')
+		a.title=clean_to_string(i.split('.')[0].replace('_',' '))
 		a.principal=True
 		a.associated_file=File(f)
-		content=f.readlines()
-		a.description=' '.join(content[:3])[:100]
+		a.description='A description for the notice'
 		a.save()
 		f.close()
 function_list.append(principal_desk_notices)

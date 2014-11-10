@@ -3,38 +3,28 @@ body {
 }
 
 .month {
-  width: 800px;
+  width: 100%;
   padding: 4px;
   background-color: rgba(255, 255, 255, 1);
   margin: 0 auto;
 }
 
-table {
-  width: 100%;
-  font-size: 14px;
-  border-left: 1px solid #d6d6d6;
-  margin: 0 auto;
+.noday {
+background:lightgrey;
 }
-
-th {
-border-right:1px solid #d6d6d6
-}
-td {
+tr,td {
   border-right: 1px solid #d6d6d6;  
   text-align: center;
   border-bottom: 1px solid #d6d6d6;
-  width:24.2857%
-
+  width:240px;
 }
+td {
+  height:80px;
+  overflow:hidden;
+}
+
 td ul li{
 list-style:none;
-
-}
-.month tr:first-child {
-  text-align: center;
-  color: #0055ff;
-  border-top: 1px solid #d6d6d6;
-  text-shadow: 1px 1px 3px rgba(0, 85, 255, 0.3);
 }
 
 .month tr:nth-child(2) {
@@ -42,37 +32,6 @@ list-style:none;
   color: white;
   border: 1px solid #d6c1d6;
   text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
-  height:15%;
-  width:15%;
-}
-
-.week td {
-  padding: 4px;
-}
-
-.week td{
-width:15%;
-height:15%;
-}
-
-.noday td {
-  width: 14.2857%;
-  height: 22px;
-}
-
-table.week {
-  font-size: 75%;
-}
-
-table.week {
-  height: 80px;
-  border-bottom: 1px solid #d6d6d6;
-}
-
-table.week td {
-  width: 14.2857%;
-  height:15%;
-  padding: 2px 3px;
 }
 
 td.today {
@@ -85,39 +44,3 @@ td.today.date {
   text-shadow: 1px 1px 3px rgba(25,25,25, 0.3);
 }
 
-tr:nth-child(2) {
-  height: 75%;
-}
-
-.event.holiday {
-  background-color: #c5c5ee;
-}
-
-td.event.important {
-  background-color: #A4C739;
-  font-weight: bold;
-  color: #fff;
-  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
-}
-
-@media 
-only screen and (max-width: 760px),
-(min-device-width: 768px) and (max-device-width: 1024px) {
-  .wrapper {
-    width: inherit;
-    min-width: 220px;
-  }
-  #day-names {
-    display: none;
-  }
-  table.week{
-    height: 30px;
-  }
-  .week td {
-    padding: auto;
-    text-align: center;
-  }
-  .week tr:nth-child(2) {
-    display: none;
-  }
-}

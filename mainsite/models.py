@@ -14,6 +14,8 @@ class document(models.Model):
 		return self.title
 	title=models.CharField('The title of the document',max_length=50)
 	associated_file=models.FileField('The associated file with this document',upload_to='document')
+	support_file1=models.FileField('The associated file with this document',upload_to='document',blank=True,null=True,default=None)
+	support_file2=models.FileField('The associated file with this document',upload_to='document',blank=True,null=True,default=None)
 	alive=models.BooleanField('Is this document available for public use?',default=True)
 	class Meta:
 		abstract=True

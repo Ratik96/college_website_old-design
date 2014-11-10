@@ -1,4 +1,5 @@
 from django.shortcuts import render,get_object_or_404,redirect
+from django.core.urlresolvers import reverse
 from django.utils.safestring import mark_safe
 from django.utils import timezone
 from django.http import Http404
@@ -33,6 +34,19 @@ def event_month(request,year,month):
 	cal=models.EventCalender(ev).formatmonth(year,month)
 	data['events_calender']=mark_safe(cal)
 	data['event_photos']=models.Photo.objects.order_by('event__start')
+	nmonth=month+1
+	nyear=year
+	if nmonth>12:
+		nyear+=1
+		nmonth=1
+
+	data['next']=reverse('event_month',args=[nyear,nmonth])
+	pmonth=month-1
+	pyear=year
+	if pmonth<1:
+		pmonth=12
+		pyear-=1
+	data['last']=reverse('event_month',args=[pyear,pmonth])
 	return render(request,template,data)
 def event_detail(request,nick):
 	'''
