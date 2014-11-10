@@ -3,6 +3,12 @@ body {
   font-weight: 400;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+  margin: 0 -20px;
+}
+
 table {
   width: 95%;
   font-size: 1.1em;
@@ -35,7 +41,6 @@ td ul {
 
 td ul li a {
   font-size: 0.8em;
-  margin-right: 35px; 
 }
 
 .month tr:first-child {
