@@ -15,7 +15,7 @@
           <h4>{{notice.title}}</h4>
           <p>{{notice.description|truncatewords:'7'}}</p>
           <p>{{notice.publish_date|date:'d F Y'}}</p>
-          <a target="_blank" href="https://docs.google.com/viewer?url={{domain_name|add:notice.associated_file.url|urlencode}}" class="btn btn-default notice-link">View notice &raquo;</a>  
+          <a target="_blank" href="{{notice.associated_file.url}}" class="btn btn-default notice-link">View notice &raquo;</a>  
         </div>
       {% endfor %}
     </div>
