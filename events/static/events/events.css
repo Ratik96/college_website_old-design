@@ -1,49 +1,55 @@
 body {
   font-family: 'Roboto', sans-serif;
-}
-
-.month {
-  width: 800px;
-  padding: 4px;
-  background-color: rgba(255, 255, 255, 1);
-  margin: 0 auto;
+  font-weight: 400;
 }
 
 table {
-  width: 100%;
-  font-size: 14px;
+  width: 95%;
+  font-size: 1.1em;
   border-left: 1px solid #d6d6d6;
   margin: 0 auto;
+  background-color: rgba(255, 255, 255, 1);
 }
 
 th {
-border-right:1px solid #d6d6d6
+  border-right: 1px solid #d6d6d6;
+  text-align: center;
+  padding: 20px 0;
 }
+
 td {
   border-right: 1px solid #d6d6d6;  
   text-align: center;
   border-bottom: 1px solid #d6d6d6;
-  width:24.2857%
-
+  width: 24.2857%
+  padding: 10px 0;
 }
-td ul li{
-list-style:none;
 
+td {
+  padding: 20px 0; 
 }
+
+td ul {
+  list-style: none;
+}
+
+td ul li a {
+  font-size: 0.8em;
+  margin-right: 35px; 
+}
+
 .month tr:first-child {
-  text-align: center;
-  color: #0055ff;
-  border-top: 1px solid #d6d6d6;
-  text-shadow: 1px 1px 3px rgba(0, 85, 255, 0.3);
+  color: #136cea;
+  font-size: 2em;
+  font-family: 'Fjalla One', sans-serif;
+  text-decoration: underline;
 }
 
 .month tr:nth-child(2) {
   background-color: #A4C739;
   color: white;
-  border: 1px solid #d6c1d6;
-  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
-  height:15%;
-  width:15%;
+  height: 15%;
+  font-size: .9em;
 }
 
 .week td {
@@ -51,8 +57,8 @@ list-style:none;
 }
 
 .week td{
-width:15%;
-height:15%;
+  width:15%;
+  height:15%;
 }
 
 .noday td {
@@ -100,9 +106,11 @@ td.event.important {
   text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
 }
 
-@media 
-only screen and (max-width: 760px),
-(min-device-width: 768px) and (max-device-width: 1024px) {
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+  table {
+    width: 90%;
+    margin-top: 25px;
+  }
   .wrapper {
     width: inherit;
     min-width: 220px;
