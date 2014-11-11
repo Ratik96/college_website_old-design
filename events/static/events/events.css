@@ -3,6 +3,13 @@ body {
   font-weight: 400;
 }
 
+#slideshow {
+  width: 100%;
+  height: 38em;  
+  margin: 0 auto;
+  margin-bottom: 5px;
+  margin-top: 20px;
+}
 
 ul {
   margin: 0;
