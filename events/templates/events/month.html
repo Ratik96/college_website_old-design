@@ -5,15 +5,19 @@
   <link rel="stylesheet" type="text/css" href='{% static "events/events.css"%}'>
 {%endblock%}
 
-{%block body%} 
-{{events_calender}}
+{%block body%}
+<p style='text-align:center;'>
 <a href={{last}} alt='last month'>Previous</a>
+&nbsp
 <a href={{next}} alt='next month'>Next>></a>
+</p>
 	{%for photo in event_photos%}
 		<a href={{photo.event.get_absolute_url}}>
 		  <img src={{photo.picture.url}} alt='Event photo:{{photo.tag}}'/>
 		</a>
 	{%endfor%}
-
-
+  <!-- <p class="lead" style="color: white; text-align: center; font-size: 2em;">Upcoming events: </p> -->
+  <div class="wrapper">
+    {{events_calender}}
+  </div>
 {%endblock%}
