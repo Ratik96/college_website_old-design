@@ -44,6 +44,16 @@ td ul li a {
   font-size: 0.8em;
 }
 
+.month-nav {
+  color: white;
+  font-size: 1.2em;
+}
+
+.month-nav:hover {
+  color: white;
+  text-decoration: underline;
+}
+
 .month tr:first-child {
   color: #136cea;
   font-size: 2em;

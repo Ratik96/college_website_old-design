@@ -6,11 +6,10 @@
 {%endblock%}
 
 {%block body%}
-<p style='text-align:center;'>
-<a href={{last}} alt='last month'>Previous</a>
-&nbsp
-<a href={{next}} alt='next month'>Next>></a>
-</p>
+<div style="text-align: center; margin: 15px 0;">
+  <a class="month-nav" href={{last}} alt='last month'>&laquo; Previous</a> &nbsp;
+  <a class="month-nav" href={{next}} alt='next month'>Next &raquo;</a>
+</div>
 	{%for photo in event_photos%}
 		<a href={{photo.event.get_absolute_url}}>
 		  <img src={{photo.picture.url}} alt='Event photo:{{photo.tag}}'/>
