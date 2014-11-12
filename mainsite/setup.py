@@ -59,7 +59,7 @@ def principal_desk_notices(principal_desk_folder='principal_desk'):
 		a.description='A description for the notice'
 		a.save()
 		f.close()
-function_list.append(principal_desk_notices)
+#function_list.append(principal_desk_notices)
 #------------------------------------------------------------------------------------------------
 def notifications(folder='notifications'):
 	'''sets up the notifications for the website'''
@@ -73,7 +73,7 @@ def notifications(folder='notifications'):
 		a.associated_file=File(f)
 		a.save()
 		f.close()
-function_list.append(notifications)
+#function_list.append(notifications)
 #------------------------------------------------------------------------------------------------
 def run_function(fn):
 	'''Runs the function and acts as a wrapper'''

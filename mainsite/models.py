@@ -1,24 +1,10 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 from django import forms
 from django.utils import timezone
 import datetime
 import random
 
-class document(models.Model):
-	'''
-	Abstract class to contain the common things needed for notices etc.
-	Basic document attributes.
-	
-	'''
-	def __unicode__(self):
-		return self.title
-	title=models.CharField('The title of the document',max_length=50)
-	associated_file=models.FileField('The associated file with this document',upload_to='document')
-	support_file1=models.FileField('The associated file with this document',upload_to='document',blank=True,null=True,default=None)
-	support_file2=models.FileField('The associated file with this document',upload_to='document',blank=True,null=True,default=None)
-	alive=models.BooleanField('Is this document available for public use?',default=True)
-	class Meta:
-		abstract=True
 class photo(models.Model):
 	'''
 	Abstract class to provide common attributes for photo data
@@ -45,10 +31,17 @@ class home_slideshow_photo(photo):
 	'''
 	description=models.CharField('A description associated with the photo',max_length=50,blank=True,default='')
 	
-class notification(document):
+class notification(models.Model):
 	'''
 	The notifications to be uploaded to the website.
 	'''
+
+	title=models.CharField('The title of the notice',max_length=50)
+	support_file1=models.FileField('The associated file with this document',upload_to='notification',blank=True,null=True,default=None)
+	support_file2=models.FileField('The associated file with this document',upload_to='notification',blank=True,null=True,default=None)
+	support_file3=models.FileField('The associated file with this document',upload_to='notification',blank=True,null=True,default=None)
+
+
 	description=models.TextField('A description of the notification')
 	publish_date=models.DateField(default=timezone.now())
 	principal=models.BooleanField("Is is from the principal's desk",default=False)
@@ -63,7 +56,18 @@ class notification(document):
 	recent.admin_order_field='publish_date'
 	recent.boolean=True
 	recent.short_description='Was published in last one month?'
+	def get_absolute_url(self):
+		return reverse('notice_detail',args=[self.id])
 
+class Slot(models.Model):
+	notif=models.ForeignKey(notification,related_name='notification')
+	order=models.SmallIntegerField(default=1)
+	text=models.TextField(blank=True)
+	picture=models.ImageField(upload_to='notification/%y/%m/%d',blank=True,null=True,default=None)
+	associated_file=models.FileField(upload_to='notification/%y/%m/%d',blank=True,null=True,default=None)
+	link=models.CharField(max_length=400,blank=True)
+	link_text=models.CharField(max_length=100,blank=True)
+	
 class archives(models.Model):
 	'''
 	Archives for the college

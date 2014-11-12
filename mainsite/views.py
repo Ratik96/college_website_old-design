@@ -20,8 +20,8 @@ def home(request):
 	data={}
 	data['domain_name']=stephens.settings.domain_name
 	data['slideshow']=mainsite.models.home_slideshow_photo.objects.all()
-	data['notification']=mainsite.models.notification.objects.filter(principal=False).filter(alive=True).order_by('pinned','-publish_date')[:5]
-	data['principal_desk']=mainsite.models.notification.objects.filter(principal=True).filter(alive=True).order_by('-publish_date')[:5]
+	data['notification']=mainsite.models.notification.objects.filter(principal=False).order_by('pinned','-publish_date')[:5]
+	data['principal_desk']=mainsite.models.notification.objects.filter(principal=True).order_by('-publish_date')[:5]
 	return render(request,'mainsite/home.html',data)
 	
 def notice_home(request):
@@ -34,8 +34,19 @@ def notice_home(request):
 	'''
 	data={}
 	data['domain_name']=stephens.settings.domain_name
-	data['notifications']=mainsite.models.notification.objects.filter(principal=False).filter(alive=True).order_by('-publish_date','pinned')
+	data['notifications']=mainsite.models.notification.objects.filter(principal=False).order_by('-publish_date','pinned')
 	return render(request,'mainsite/notice_home.html',data)
+def notice_detail(request,cid):
+	'''
+	shows details of a notice
+	'''
+	data={}
+	template='mainsite/notice_detail.html'
+	notification=get_object_or_404(mainsite.models.notification,pk=cid)
+	data['slots']=mainsite.models.Slot.objects.filter(notif=notification).order_by('order')
+	data['notice']=notification
+	return render(request,template,data)
+	
 def principal_home(request):
 	'''
 	shows all notices which are currently active and issued by the principal
@@ -46,7 +57,7 @@ def principal_home(request):
 	'''
 	data={}
 	data['domain_name']=stephens.settings.domain_name
-	data['principal_desk']=mainsite.models.notification.objects.filter(principal=True).filter(alive=True).order_by('-publish_date','pinned')
+	data['principal_desk']=mainsite.models.notification.objects.filter(principal=True).order_by('-publish_date','pinned')
 	return render(request,'mainsite/principal_home.html',data)
 
 

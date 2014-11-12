@@ -1,0 +1,35 @@
+{%extends 'base.html'%}
+
+{%block head%}
+{%endblock%}
+
+{%block body%}
+	<h1>{{notice.title}}</h1>
+	{{notice.publish_date}}
+	<p>
+	{{notice.description}}
+	</p>
+	
+	{%for sl in slots%}
+		<div class='slot'>
+			<p>
+			{{sl.text}}
+			</p>
+			{%if sl.link%}
+			<a href={{sl.link}}>
+				{%if sl.link_text%}
+					{{sl.link_text}}
+				{%else%}
+					{%if sl.picture%}
+					<img src={{sl.picture.url}} alt='Image'/>
+					{%endif%}
+				{%endif%}
+			</a>
+			{%endif%}
+			
+			{%if sl.file%}
+				{{sl.file.url}}
+			{%endif%}
+		</div>
+	{%endfor%}
+{%endblock%}
