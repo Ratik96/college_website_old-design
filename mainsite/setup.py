@@ -61,11 +61,11 @@ def principal_desk_notices(principal_desk_folder='principal_desk'):
 		lines=f.readlines()
 		f.close()
 		new_lines=[clean_to_string(i) for i in lines]
-		for i,v in enumerate(new_lines):
+		for ind,v in enumerate(new_lines):
 			s=mainsite.models.Slot()
 			s.notif=a
 			s.text=v
-			s.order=i
+			s.order=ind
 			s.save()
 		
 function_list.append(principal_desk_notices)
@@ -83,11 +83,11 @@ def notifications(folder='notifications'):
 		new_lines=[clean_to_string(i) for i in lines]
 		a.save()
 		f.close()
-		for i,v in enumerate(new_lines):
+		for ind,v in enumerate(new_lines):
 			s=mainsite.models.Slot()
 			s.notif=a
 			s.text=v
-			s.order=i
+			s.order=ind
 			s.save()
 function_list.append(notifications)
 #------------------------------------------------------------------------------------------------
