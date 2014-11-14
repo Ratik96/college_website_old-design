@@ -60,7 +60,7 @@ def principal_desk_notices(principal_desk_folder='principal_desk'):
 		a.save()
 		lines=f.readlines()
 		f.close()
-		new_lines=[clean_to_string(i) for i in lines]
+		new_lines=[clean_to_string(iasd) for iasd in lines]
 		for ind,v in enumerate(new_lines):
 			s=mainsite.models.Slot()
 			s.notif=a
@@ -80,7 +80,7 @@ def notifications(folder='notifications'):
 		a.description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis odio vehicula, lobortis ante hendrerit, sodales dolor. Pellentesque quis massa in tellus vulputate pretium vel id ligula. Suspendisse potenti. Donec efficitur est odio, sit amet varius eros ornare in. </p>'
 		f=file(os.path.join(filepath,i))
 		lines=f.readlines()
-		new_lines=[clean_to_string(i) for i in lines]
+		new_lines=[clean_to_string(iasd) for iasd in lines]
 		a.save()
 		f.close()
 		for ind,v in enumerate(new_lines):
