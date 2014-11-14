@@ -56,10 +56,19 @@ def principal_desk_notices(principal_desk_folder='principal_desk'):
 		a.title=clean_to_string(i.split('.')[0].replace('_',' '))
 		a.principal=True
 		a.associated_file=File(f)
-		a.description='A description for the notice'
+		a.description=clean_to_string(i.replace('_',' '))
 		a.save()
+		lines=f.readlines()
 		f.close()
-#function_list.append(principal_desk_notices)
+		new_lines=[clean_to_string(i) for i in lines]
+		for i,v in enumerate(new_lines):
+			s=mainsite.models.Slot()
+			s.notif=a
+			s.text=v
+			s.order=i
+			s.save()
+		
+function_list.append(principal_desk_notices)
 #------------------------------------------------------------------------------------------------
 def notifications(folder='notifications'):
 	'''sets up the notifications for the website'''
@@ -70,10 +79,17 @@ def notifications(folder='notifications'):
 		a.title=i.split('.')[0].replace('_',' ')
 		a.description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis odio vehicula, lobortis ante hendrerit, sodales dolor. Pellentesque quis massa in tellus vulputate pretium vel id ligula. Suspendisse potenti. Donec efficitur est odio, sit amet varius eros ornare in. </p>'
 		f=file(os.path.join(filepath,i))
-		a.associated_file=File(f)
+		lines=f.readlines()
+		new_lines=[clean_to_string(i) for i in lines]
 		a.save()
 		f.close()
-#function_list.append(notifications)
+		for i,v in enumerate(new_lines):
+			s=mainsite.models.Slot()
+			s.notif=a
+			s.text=v
+			s.order=i
+			s.save()
+function_list.append(notifications)
 #------------------------------------------------------------------------------------------------
 def run_function(fn):
 	'''Runs the function and acts as a wrapper'''
