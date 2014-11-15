@@ -11,27 +11,20 @@
 	</p>
 	
 	{%for sl in slots%}
+	
 		<div class='slot'>
 			{%if sl.link%}
 			<a href={{sl.link}}>
-				{{sl.link_text}}
-					{%if sl.picture%}
-						<img src={{sl.picture.url}} alt='Image'/>
-					{%endif%}
-					<p>
-					{{sl.text}}
-					</p>
-			</a>
-			{%else%}
-					{%if sl.picture%}
-						<img src={{sl.picture.url}} alt='Image'/>
-					{%endif%}
-					<p>
-					{{sl.text}}
-					</p>
-
 			{%endif%}
-			
+					{%if sl.picture%}
+						<img src={{sl.picture.url}} alt='Image'/>
+					{%endif%}
+					<p>
+					{{sl.text}}
+					</p>
+			{%if sl.link%}
+			</a>
+			{%endif%}
 			{%if sl.associated_file%}
 				<a href={{sl.associated_file.url}} >{{sl.text}}</a>
 			{%endif%}

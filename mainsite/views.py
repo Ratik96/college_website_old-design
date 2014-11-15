@@ -45,6 +45,7 @@ def notice_detail(request,cid):
 	notification=get_object_or_404(mainsite.models.notification,pk=cid)
 	data['slots']=mainsite.models.Slot.objects.filter(notif=notification).order_by('order')
 	data['notice']=notification
+	print data['slots']
 	return render(request,template,data)
 	
 def principal_home(request):
