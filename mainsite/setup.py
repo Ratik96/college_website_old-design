@@ -51,13 +51,13 @@ def principal_desk_notices(principal_desk_folder='principal_desk'):
 	filepath=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,principal_desk_folder)
 	files=os.listdir(filepath)
 	for i in files:
-		f=file(os.path.join(filepath,i))
 		a=mainsite.models.notification()
 		a.title=clean_to_string(i.split('.')[0].replace('_',' '))
 		a.principal=True
 		a.associated_file=File(f)
 		a.description=clean_to_string(i.replace('_',' '))
 		a.save()
+		f=file(os.path.join(filepath,i))
 		lines=f.readlines()
 		f.close()
 		new_lines=[clean_to_string(iasd) for iasd in lines]

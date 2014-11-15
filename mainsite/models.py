@@ -66,7 +66,6 @@ class Slot(models.Model):
 	picture=models.ImageField(upload_to='notification/%y/%m/%d',blank=True,null=True,default=None)
 	associated_file=models.FileField(upload_to='notification/%y/%m/%d',blank=True,null=True,default=None)
 	link=models.CharField(max_length=400,blank=True)
-	link_text=models.CharField(max_length=100,blank=True)
 	
 class archives(models.Model):
 	'''
