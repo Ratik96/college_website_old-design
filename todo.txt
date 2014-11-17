@@ -12,3 +12,4 @@ Templates
 2. small bug with navbar (need to talk)
 3. attendance page styles
 4. Refine admission form
+5. Notice detail view
