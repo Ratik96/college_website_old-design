@@ -41,37 +41,93 @@ function_list.append(course_type)
 #------------------------------------------------------------------------------------------------
 def courses():
 	'''sets up the courses in undergraduate'''
-	names=['B.Sc. Physical Science','B.Sc. Chemistry','B.Sc. Mathematics','B.Sc. Physics','B.A. History','B.A. Philosophy','B.A. Programme']
-	ug_course_type=office.models.course_type.objects.first()
-	for i in names:
-		a=office.models.course()
-		a.name=i
-		a.course_type=ug_course_type
-		a.save()
-		print '		',i
+	filepath=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'student_photos','college_studentlist')
+	if os.path.exists(os.path.join(filepath,'student_list')):
+		f=file(os.path.join(filepath,'student_list'),'r')
+		import pickle
+		data=pickle.load(f)
+		f.close()
+		names=data.keys()
+		done=[]
+		course_names=[]
+		for i in names:
+			s=i.strip().strip('III').strip('II').strip('I')
+			s=s.replace(' ','').lower()
+			s=s.replace('year','').replace('-seca','').replace('honours','')
+			s=s.replace('-secb','').replace('b.a.','').replace('b.sc.','')
+			if s not in done:
+				done.append(s)
+				name=i.strip().strip('III')
+				name=name.strip('II').strip('I').replace('YEAR','')
+				name=name.replace('-SEC A','').replace('-SEC B','')
+				course_names.append(name)
+		names=course_names
+		ug_course_type=office.models.course_type.objects.first()
+		for i in names:
+			a=office.models.course()
+			a.name=i
+			a.course_type=ug_course_type
+			a.save()
+			print '		',i
+	else:
+		import student_scraper as stsc
+		stsc.scrape()
+		courses()
 function_list.append(courses)
 #------------------------------------------------------------------------------------------------
-def students(student_photo_folder='student_photos'):
-	'''sets up dummy students'''
-	filepath=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,student_photo_folder)
-	files=os.listdir(filepath)
-	for i in files:
-		f=file(os.path.join(filepath,i))
-		u=User()
-		u.username=i[:-4]
-		u.first_name=i[:-4]
-		u.email=i+'@gmail.com'
-		u.set_password('asd')
-		u.save()
-		
-		a=office.models.student()
-		a.user=u
-		a.picture=File(f)
-		a.nickname=random.sample(i[:-4],5)
-		a.course=office.models.course.objects.first()
-		a.save()
-		print '		',i
+def students():
+	'''sets up students'''
+	filepath=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'student_photos','college_studentlist')
+	if os.path.exists(os.path.join(filepath,'student_list')):
+		f=file(os.path.join(filepath,'student_list'),'r')
+		import pickle
+		data=pickle.load(f)
 		f.close()
+		#default picture
+		picpath=os.path.join(filepath,'default.jpg')
+		f=file(picpath)
+		#add students
+		for course in data:
+			name=course.strip().strip('III')
+			name=name.strip('II').strip('I').replace('YEAR','')
+			name=name.replace('-SEC A','').replace('-SEC B','')
+			crs=office.models.course.objects.get(name=name)
+			sem=course.strip()[:5].count('I')
+			for stu in data[course]:
+				if 'Student Name' in stu:
+					continue
+				u=User()
+				u.username=str(stu).lower().replace(' ','')
+				u.first_name=str(stu.split(' ')[0]).lower()
+				u.last_name=str(stu.split(' ')[-1]).lower()
+				if u.last_name==u.first_name:
+					u.last_name=''
+				u.set_password('asd')
+				try:
+					u.save()	
+				except Exception as e:
+					print '----------'
+					print e
+					print u.username
+					print '----------'
+					uname=random.sample(u.username,len(u.username))
+					u.username=''.join(uname)
+					u.save()
+				a=office.models.student()
+				a.user=u
+				a.picture=File(f)
+				a.nickname=random.sample(stu.replace(' ','').lower(),5)
+				#a.course=office.models.course.objects.first()
+				a.course=crs
+				a.current_semester=sem
+				a.save()
+				print '		',stu,'  ',sem
+		f.close()#close picture file
+	
+	else:
+		import student_scraper as stsc
+		stsc.scrape()
+		students()
 function_list.append(students)
 #------------------------------------------------------------------------------------------------
 def groups():
