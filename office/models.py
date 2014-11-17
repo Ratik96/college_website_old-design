@@ -88,7 +88,6 @@ class faculty(profile):
 	'''
 	dept=models.ForeignKey(department,related_name='dept')
 	qualification=models.CharField(max_length=100,blank=True)
-	head_of_department=models.BooleanField(default=False)
 class society(models.Model):	
 	'''
 	Describes the societies in college
