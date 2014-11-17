@@ -13,6 +13,14 @@ from django.core.management import execute_from_command_line
 from django.utils import timezone
 import mainsite,attendance,office,events,admission,college_forms
 
+
+def random_fill(string,length):
+	'''Randomly fills a string of length 10 using string'''
+	new=''
+	for i in xrange(length):
+		new+=random.choice(string)
+	return new	
+
 def clean_to_string(string):
 	'''
 	removes non ascii characters
@@ -42,8 +50,8 @@ function_list.append(course_type)
 def courses():
 	'''sets up the courses in undergraduate'''
 	filepath=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'student_photos','college_studentlist')
-	if os.path.exists(os.path.join(filepath,'student_list')):
-		f=file(os.path.join(filepath,'student_list'),'r')
+	if os.path.exists(os.path.join(filepath,'student_list_clean')):
+		f=file(os.path.join(filepath,'student_list_clean'),'r')
 		import pickle
 		data=pickle.load(f)
 		f.close()
@@ -78,8 +86,8 @@ function_list.append(courses)
 def students():
 	'''sets up students'''
 	filepath=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'student_photos','college_studentlist')
-	if os.path.exists(os.path.join(filepath,'student_list')):
-		f=file(os.path.join(filepath,'student_list'),'r')
+	if os.path.exists(os.path.join(filepath,'student_list_clean')):
+		f=file(os.path.join(filepath,'student_list_clean'),'r')
 		import pickle
 		data=pickle.load(f)
 		f.close()
@@ -87,41 +95,43 @@ def students():
 		picpath=os.path.join(filepath,'default.jpg')
 		f=file(picpath)
 		#add students
-		for course in data:
+		for course in data.keys():
 			name=course.strip().strip('III')
 			name=name.strip('II').strip('I').replace('YEAR','')
 			name=name.replace('-SEC A','').replace('-SEC B','')
 			crs=office.models.course.objects.get(name=name)
-			sem=course.strip()[:5].count('I')
-			for stu in data[course]:
-				if 'Student Name' in stu:
-					continue
-				u=User()
-				u.username=str(stu).lower().replace(' ','')
-				u.first_name=str(stu.split(' ')[0]).lower()
-				u.last_name=str(stu.split(' ')[-1]).lower()
-				if u.last_name==u.first_name:
-					u.last_name=''
-				u.set_password('asd')
-				try:
-					u.save()	
-				except Exception as e:
-					print '----------'
-					print e
-					print u.username
-					print '----------'
-					uname=random.sample(u.username,len(u.username))
-					u.username=''.join(uname)
-					u.save()
-				a=office.models.student()
-				a.user=u
-				a.picture=File(f)
-				a.nickname=random.sample(stu.replace(' ','').lower(),5)
-				#a.course=office.models.course.objects.first()
-				a.course=crs
-				a.current_semester=sem
-				a.save()
-				print '		',stu,'  ',sem
+			for sem in data[course].keys():
+				for stu in data[course][sem]:
+					if 'Student Name' in stu:
+						continue
+					u=User()
+					u.username=str(stu).lower().replace(' ','')
+					u.first_name=str(stu.split(' ')[0]).lower()
+					u.last_name=str(stu.split(' ')[-1]).lower()
+					if u.last_name==u.first_name:
+						u.last_name=''
+					u.set_password('asd')
+					try:
+						u.save()	
+					except Exception as e:
+						print '----------'
+						print e
+						print '----------'
+						print u.username
+						uname=random.sample(u.username,len(u.username))
+						u.username=''.join(uname)
+						print u.username
+						u.save()
+						print '----------'
+					a=office.models.student()
+					a.user=u
+					a.picture=File(f)
+					a.nickname=random_fill(stu.replace(' ',''),10)
+					#a.course=office.models.course.objects.first()
+					a.course=crs
+					a.current_semester=sem
+					a.save()
+					#print '		',stu,'  ',sem
 		f.close()#close picture file
 	
 	else:

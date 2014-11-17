@@ -13,9 +13,9 @@ class course_type_admin(admin.ModelAdmin):
 
 class student_admin(admin.ModelAdmin):
 	'''admin for student'''
-	list_display=['thumbnail']
-	list_filter=['course','admission_date']
-	search_fields=['user__username','user__email']
+	list_display=['thumbnail','user.first_name','course']
+	list_filter=['course','semester','admission_date']
+	search_fields=['user__username','user__email','nickname']
 class paper_admin(admin.ModelAdmin):
 	'''admin for paper model'''
 	list_display=['name','code','course','semester']
