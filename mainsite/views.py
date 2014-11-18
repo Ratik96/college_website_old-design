@@ -45,7 +45,6 @@ def notice_detail(request,cid):
 	notification=get_object_or_404(mainsite.models.notification,pk=cid)
 	data['slots']=mainsite.models.Slot.objects.filter(notif=notification).order_by('order')
 	data['notice']=notification
-	print data['slots']
 	return render(request,template,data)
 	
 def principal_home(request):
@@ -58,8 +57,8 @@ def principal_home(request):
 	'''
 	data={}
 	data['domain_name']=stephens.settings.domain_name
-	data['principal_desk']=mainsite.models.notification.objects.filter(principal=True).order_by('-publish_date','pinned')
-	return render(request,'mainsite/principal_home.html',data)
+	data['notifications']=mainsite.models.notification.objects.filter(principal=True).order_by('-publish_date','pinned')
+	return render(request,'mainsite/notice_home.html',data)
 
 
 def admission(request):
