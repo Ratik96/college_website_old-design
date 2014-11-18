@@ -131,7 +131,7 @@ def students():
 					a.course=crs
 					a.current_semester=sem
 					a.save()
-					#print '		',stu,'  ',sem
+					print '		',stu,'  ',sem
 		f.close()#close picture file
 	
 	else:
