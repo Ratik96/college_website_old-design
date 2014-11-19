@@ -5,8 +5,7 @@ from django.views.decorators.http import require_http_methods
 import attendance,office
 
 def home(request):
-	'''
-	Homepage for attendance.
+	'''Homepage for attendance.
 	Gives a search function to select students by course and semester
 	-----------------GET-----------------
 	Provides a list of courses=courses
@@ -61,4 +60,3 @@ def student_id(request,studentid):
 	else:
 		data['student_attendance']=attendance.models.student_attendance.objects.filter(student=stud)
 	return render(request,'attendance/student.html',data)
-	
