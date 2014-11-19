@@ -129,9 +129,9 @@ def students():
 					a.nickname=random_fill(stu.replace(' ',''),10)
 					#a.course=office.models.course.objects.first()
 					a.course=crs
-					a.current_semester=sem
+					a.current_semester=(2*sem)-1
 					a.save()
-					print '		',stu,'  ',sem
+					print a.current_semester,'	',stu
 		f.close()#close picture file
 	
 	else:
