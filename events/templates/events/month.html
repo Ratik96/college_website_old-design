@@ -24,20 +24,22 @@
 {%endblock%}
 
 {%block body%}
-  <section>
-    <div id="slideshow">
-      <div id="myslider" class="juicyslider">
-        <ul>
-          {%for photo in event_photos%}
-            <li><img class="img-responsive" src='{{photo.picture.url}}' alt=''></li>
-          {%endfor%}
-        </ul> 
-        <div class="nav next"></div>
-        <div class="nav prev"></div>
-        <div class="mask"></div>
+  {%if photo in event_photos%}
+    <section>
+      <div id="slideshow">
+        <div id="myslider" class="juicyslider">
+          <ul>
+            {%for photo in event_photos%}
+              <li><img class="img-responsive" src='{{photo.picture.url}}' alt=''></li>
+            {%endfor%}
+          </ul> 
+          <div class="nav next"></div>
+          <div class="nav prev"></div>
+          <div class="mask"></div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  {%endif%}
 
   <hr class="divider">
 
