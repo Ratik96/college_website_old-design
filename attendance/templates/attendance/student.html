@@ -6,68 +6,72 @@
 
 {%block attendance_body%}
 	{%if student_attendance%}
-	<div id="chart_div"></div>
-	<script>
-	  google.load('visualization', '1.0', {'packages':['corechart']});
-	  google.setOnLoadCallback(drawChart);
-	  function drawChart() {
-			var data = new google.visualization.DataTable();
-			data.addColumn('string', 'Type');
-			data.addColumn('number', 'Value');
-			var total_attend={%for i in student_attendance%}{{i.lecture}}+{{i.tutorial}}+{{i.practical}}+{%endfor%}0;
-			var total_classes={%for i in student_attendance%}{{i.class_attendance.lecture}}+{{i.class_attendance.tutorial}}+{{i.class_attendance.practical}}+{%endfor%}0;
-			data.addRows([
-		  	['Attended', total_attend],
-		  	['Missed', total_classes-total_attend],
-			]);
-			var options = {'title':'Overall attendence', 'pieHole':0.2};
-			var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-			chart.draw(data, options);
-	  }
-	  // Hiding select menu
-	  $('.stud-select').hide();
-	</script>	
-	
-	<table>
-		<thead>
-			<tr>
-				<td>Paper</td>
-				<td>L</td>
-				<td>P</td>
-				<td>T</td>
-				<td>TL</td>
-				<td>TP</td>
-				<td>TT</td>
-				<td>ECA L</td>
-				<td>ECA P</td>
-				<td>ECA T</td>
-			</tr>
-		</thead>
-		<tbody>
-			{%for i in student_attendance%}
-			<tr>
-				<td>{{i.class_attendance.paper}}</td>
-				<td>{{i.lecture}}</td>
-				<td>{{i.practical}}</td>
-				<td>{{i.tutorial}}</td>
-				<td>{{i.class_attendance.lecture}}</td>
-				<td>{{i.class_attendance.practical}}</td>
-				<td>{{i.class_attendance.tutorial}}</td>
-				<td>{{i.a_lecture}}</td>
-				<td>{{i.a_practical}}</td>
-				<td>{{i.a_tutorial}}</td>
-			</tr>
-			{%endfor%}
-		</tbody>
-		<div>
+		<div id="chart"></div>
+		<script>
+		  google.load('visualization', '1.0', {'packages':['corechart']});
+		  google.setOnLoadCallback(drawChart);
+		  function drawChart() {
+				var data = new google.visualization.DataTable();
+				data.addColumn('string', 'Type');
+				data.addColumn('number', 'Value');
+				var total_attend={%for i in student_attendance%}{{i.lecture}}+{{i.tutorial}}+{{i.practical}}+{%endfor%}0;
+				var total_classes={%for i in student_attendance%}{{i.class_attendance.lecture}}+{{i.class_attendance.tutorial}}+{{i.class_attendance.practical}}+{%endfor%}0;
+				data.addRows([
+			  	['Attended', total_attend],
+			  	['Missed', total_classes-total_attend],
+				]);
+				var options = {'title':'Overall attendence', 'pieHole':0.2};
+				var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+				chart.draw(data, options);
+		  }
+		  // Hiding select menu
+		  $('.stud-select').hide();
+		</script>	
+
+		<div class="more-info" style="color: white; max-width: 1000px; margin: 0 auto; margin-top: 40px; ">
+		<table class="table table-bordered">
+			<thead>
+				<tr style="font-weight: bold; font-size: 1.35em; font-family: 'Roboto', sans-serif;">
+					<td>Paper</td>
+					<td>L</td>
+					<td>P</td>
+					<td>T</td>
+					<td>TL</td>
+					<td>TP</td>
+					<td>TT</td>
+					<td>ECA L</td>
+					<td>ECA P</td>
+					<td>ECA T</td>
+				</tr>
+			</thead>
+			<tfoot>
+				
+			</tfoot>
+			<tbody>
+				{%for i in student_attendance%}
+					<tr>
+						<td>{{i.class_attendance.paper}}</td>
+						<td>{{i.lecture}}</td>
+						<td>{{i.practical}}</td>
+						<td>{{i.tutorial}}</td>
+						<td>{{i.class_attendance.lecture}}</td>
+						<td>{{i.class_attendance.practical}}</td>
+						<td>{{i.class_attendance.tutorial}}</td>
+						<td>{{i.a_lecture}}</td>
+						<td>{{i.a_practical}}</td>
+						<td>{{i.a_tutorial}}</td>
+					</tr>
+				{%endfor%}
+			</tbody>
+		</table>
+		<!-- <div>
 		T=Tutorial
 		L=Lecture
 		P=Practical
 		TT=Total Tutorials
 		TL=Total Lectures
 		TP=Total Practicals
+		</div> -->
 		</div>
-		
-	</table>
 	{%endif%}
 {%endblock%}
