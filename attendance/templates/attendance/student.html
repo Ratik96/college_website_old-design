@@ -8,26 +8,26 @@
 	{%if student_attendance%}
 	<div id="chart_div"></div>
 	<script>
-	      google.load('visualization', '1.0', {'packages':['corechart']});
-	      google.setOnLoadCallback(drawChart);
-	      function drawChart() {
-		var data = new google.visualization.DataTable();
-		data.addColumn('string', 'Type');
-		data.addColumn('number', 'Value');
-		var total_attend={%for i in student_attendance%}{{i.lecture}}+{{i.tutorial}}+{{i.practical}}+{%endfor%}0;
-		var total_classes={%for i in student_attendance%}{{i.class_attendance.lecture}}+{{i.class_attendance.tutorial}}+{{i.class_attendance.practical}}+{%endfor%}0;
-		data.addRows([
-		  ['Attended', total_attend],
-		  ['Missed', total_classes-total_attend],
-		]);
-		var options = {'title':'Overall attendence',
-			       'pieHole':0.2};
-		var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-		chart.draw(data, options);
-	      }
-
-	      $('.stud-select').hide();
+	  google.load('visualization', '1.0', {'packages':['corechart']});
+	  google.setOnLoadCallback(drawChart);
+	  function drawChart() {
+			var data = new google.visualization.DataTable();
+			data.addColumn('string', 'Type');
+			data.addColumn('number', 'Value');
+			var total_attend={%for i in student_attendance%}{{i.lecture}}+{{i.tutorial}}+{{i.practical}}+{%endfor%}0;
+			var total_classes={%for i in student_attendance%}{{i.class_attendance.lecture}}+{{i.class_attendance.tutorial}}+{{i.class_attendance.practical}}+{%endfor%}0;
+			data.addRows([
+		  	['Attended', total_attend],
+		  	['Missed', total_classes-total_attend],
+			]);
+			var options = {'title':'Overall attendence', 'pieHole':0.2};
+			var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+			chart.draw(data, options);
+	  }
+	  // Hiding select menu
+	  $('.stud-select').hide();
 	</script>	
+	
 	<table>
 		<thead>
 			<tr>
