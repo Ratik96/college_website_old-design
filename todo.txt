@@ -1,16 +1,15 @@
 Views and models
 =======
-1. event related to society-change to dept and soc
+1. Event related to society-change to dept and soc
 2. Unify department and society models
 3. Archiving system to be installed
 4. Unify student and faculty profiles
-5. ~Add all courses to attendance
+5. ~Add all courses to attendance (Also use capitalize())
 6. Attendance forms for ECA etc.
 7. Paper setup is not correct
 =======
 Templates
 =======
-1. alumni page; add fb link
-2. small bug with navbar (need to talk)
-3. attendance page styles
-4. Refine admission form
+1. Alumni page; add fb link (What is the fb link? - Ratik)
+2. Small bug with navbar (need your help - Ratik)
+3. Refine admission form
