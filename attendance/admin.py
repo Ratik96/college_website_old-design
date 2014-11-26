@@ -21,5 +21,18 @@ class student_attendance_admin(admin.ModelAdmin):
 	list_filter=['class_attendance']
 	search_fields=['student__user']
 
+class eca_date_inline(admin.TabularInline):
+	'''Inline addition of dates of absence'''
+	model=attendance.models.eca_date
+	extra=1
+class eca_request_admin(admin.ModelAdmin):
+	'''Admin for eca_request'''
+	inlines=[eca_date_inline]
+	
+	list_display=['stud','approved','soc']
+	list_filter=['approved','soc']
+	search_fields=['stud__user__first_name','description']
+	
 admin.site.register(attendance.models.student_attendance,student_attendance_admin)
 admin.site.register(attendance.models.paper_attendance,paper_attendance_admin)
+admin.site.register(attendance.models.eca_request,eca_request_admin)

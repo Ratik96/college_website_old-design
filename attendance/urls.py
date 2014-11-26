@@ -8,4 +8,6 @@ urlpatterns = patterns(
 	'',
 	url(r'^$',views.home,name='attendance_home'),
 	url(r'^(?P<studentid>\d+)/$',views.student_id,name='student_id'),
+	url(r'^eca/$',views.ECA,name='request_eca'),
+	
 )

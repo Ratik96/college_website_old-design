@@ -25,7 +25,7 @@ def clean_to_string(string):
 	'''
 	removes non ascii characters
 	'''
-	allowed='ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'#alphabets
+	allowed='ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'#alphabets and numbers
 	allowed+=allowed.lower()#lowercase
 	allowed+='''!@#$%^&*()'_+=-.,: '''#Special characters
 	allowed+='\n\t'#newline etc

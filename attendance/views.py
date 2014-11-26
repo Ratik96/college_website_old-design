@@ -60,3 +60,13 @@ def student_id(request,studentid):
 	else:
 		data['student_attendance']=attendance.models.student_attendance.objects.filter(student=stud)
 	return render(request,'attendance/student.html',data)
+def ECA(request):
+	'''A form to request ECA from the college.
+	-------GET--------
+	Provides a form to define the dates during which ECA is required.
+	------POST--------
+	Creates a new ECA object from the POST data recieved
+	'''
+	data={}
+	template='attendance/eca.html'
+	return render(request,template,data)

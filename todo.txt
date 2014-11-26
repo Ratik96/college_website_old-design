@@ -5,7 +5,7 @@ Views and models
 3. Archiving system to be installed
 4. Unify student and faculty profiles
 5. ~Add all courses to attendance
-6. Attendance forms for ECA etc.
+6. Attendance forms for ECA etc.Created the models to record the reuqest. Need to make structure for approval etc.
 7. Paper setup is not correct
 =======
 Templates
