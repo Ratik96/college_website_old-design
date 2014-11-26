@@ -4,14 +4,9 @@ Views and models
 2. Unify department and society models
 3. Archiving system to be installed
 4. Unify student and faculty profiles
-<<<<<<< HEAD
-5. ~Add all courses to attendance
-6. Attendance forms for ECA etc.Created the models to record the reuqest. Need to make structure for approval etc.
-=======
 5. ~Add all courses to attendance (Also use capitalize())
-6. Attendance forms for ECA etc.
->>>>>>> 67bf66d3c2ce4aab5033a10fc497e834bd96a04e
-7. Paper setup is not correct
+6. Attendance forms for ECA etc.Created the models to record the reuqest. Need to make structure for approval etc.
+7. ~Paper setup is not correct
 
 8. Attendance 2/3 requirement filter
 9. Printouts from admin page
@@ -19,9 +14,10 @@ Views and models
 =======
 Templates
 =======
-1. Alumni page; add fb link (What is the fb link? - Ratik)
+1. ~Alumni page; add fb link (What is the fb link? - Ratik)
+	https://www.facebook.com/groups/laalsitara/
 2. Small bug with navbar (need your help - Ratik)
 3. Refine admission form
 
 
------------add login flag for websites
+-----------add login flag for website during development and public deployment. Try pythonanywhere
