@@ -1,33 +1,46 @@
 {%extends 'base.html'%}
 
 {%block head%}
+	<style type="text/css">
+		#notice-wrapper {
+			max-width: 800px;
+			margin: 0 auto;
+			color: black;
+			padding: 10px; 
+			background-color: #d1dbbd;
+		}
+		.notice-text {
+			line-height: 1.2;
+			font-family: 'Roboto', sans-serif;
+			
+		}
+		.date {
+			float: right;
+			display: inline;
+			margin-right: 15px;
+		}
+		.bold {
+			font-weight: bold;
+		}
+	</style>
 {%endblock%}
 
 {%block body%}
-	<h1>{{notice.title}}</h1>
-	{{notice.publish_date}}
-	<p>
-	{{notice.description}}
-	</p>
-	
-	{%for sl in slots%}
-	
-		<div class='slot'>
-			{%if sl.link%}
-			<a href={{sl.link}}>
-			{%endif%}
-					{%if sl.picture%}
-						<img src={{sl.picture.url}} alt='Image'/>
-					{%endif%}
-					<p>
-					{{sl.text}}
-					</p>
-			{%if sl.link%}
-			</a>
-			{%endif%}
-			{%if sl.associated_file%}
-				<a href={{sl.associated_file.url}} >{{sl.text}}</a>
-			{%endif%}
-		</div>
-	{%endfor%}
+	<div id="notice-wrapper">
+		<h4 class="date bold">{{notice.publish_date}}</h4>
+		<center><h1 style="color: maroon; text-decoration: underline; margin: 50px 0;">{{notice.title}}</h1></center>
+		{%for sl in slots%}
+			<div class='slot'>
+				{%if sl.link%}<a href={{sl.link}}>{%endif%}
+				{%if sl.picture%}
+					<img src={{sl.picture.url}} alt='Image'/>
+				{%endif%}
+				<p class="notice-text">{{sl.text}}</p>
+				{%if sl.link%}</a>{%endif%}
+				{%if sl.associated_file%}
+					<a href={{sl.associated_file.url}} >{{sl.text}}</a>
+				{%endif%}
+			</div>
+		{%endfor%}
+	</div>
 {%endblock%}

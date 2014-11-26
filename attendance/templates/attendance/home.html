@@ -13,7 +13,7 @@
 
 {%block body%}
 	<script>var student_att="{%url 'student_id' 0%}".replace('0/','');</script>
-	<form class="form-horizontal" id='selectorForm' action="{%url 'attendance_home'%}" method='POST' role="form">
+	<form class="form-horizontal stud-select" id='selectorForm' action="{%url 'attendance_home'%}" method='POST' role="form">
 		{%csrf_token%}
 		<div class="form-group">
 			<label class="sr-only" for="courseSelect">Course</label>
@@ -33,8 +33,11 @@
 		</div>
 		<button type="submit" class="btn btn-default">Go</button>
 	</form>
+
 	<div id='namecloud'>
 		<!-- This div gets populated using Ajax -->
+		<p class="lead" style="display: none; color: white; font-size: 2em; margin-top: 25px;">List of students in selected course: </p>
+		<ol></ol>
 	</div>
 	{%block attendance_body%}
 	{%endblock%}
