@@ -36,7 +36,6 @@ def student_attendance():
 	courses=office.models.course.objects.all()
 	for course in courses:
 		papers=office.models.paper.objects.filter(course=course)
-		students=office.models.student.objects.filter(course=course)
 		for p in papers:
 			pap_attd=attendance.models.paper_attendance()
 			pap_attd.date_from=timezone.now()
@@ -46,6 +45,7 @@ def student_attendance():
 			pap_attd.practical=random.choice(range(20,35))
 			pap_attd.tutorial=random.choice(range(7,12))
 			pap_attd.save()
+			students=office.models.student.objects.filter(course=course,current_semester=p.semester)
 			for stud in students:
 				a=attendance.models.student_attendance()
 				a.student=stud

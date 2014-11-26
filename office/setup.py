@@ -83,6 +83,63 @@ def courses():
 		courses()
 function_list.append(courses)
 #------------------------------------------------------------------------------------------------
+def groups():
+	'''sets up the groups'''
+	groupnames=[
+		{'n':'Principal',
+		'p':None},
+		{'n':'Bursar',
+		'p':None},
+		{'n':'Dean(Residence)',
+		'p':None},
+		{'n':'Dean(Academic Affairs)',
+		'p':None},
+		{'n':'Chaplain',
+		'p':None},
+		{'n':'Public Information Officer',
+		'p':None},
+		{'n':'Special Assignments',
+		'p':None},
+		{'n':'Administration',
+		'p':None},
+		{'n':'Staff Advisor',
+		'p':None},
+		{'n':'Faculty',
+		'p':None},
+		{'n':'Students',
+		'p':None}]
+	for i in groupnames:
+		a=Group()
+		a.name=i['n']
+		a.save()
+function_list.append(groups)
+#------------------------------------------------------------------------------------------------
+def university_papers():
+	'''sets up the papers'''
+	filepath=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'papers')
+	if os.path.exists(os.path.join(filepath,'paper_list_clean')):
+		f=file(os.path.join(filepath,'paper_list_clean'),'r')
+		import pickle
+		data=pickle.load(f)
+		f.close()
+		for course in data.keys():			
+			name=course.strip().strip('III')
+			name=name.strip('II').strip('I').replace('YEAR','')
+			name=name.replace('-SEC A','').replace('-SEC B','')
+			crs=office.models.course.objects.get(name=name)
+			for sem in data[course].keys():
+				for i in data[course][sem]:
+					a=office.models.paper()
+					a.code=i
+					a.name=i
+					a.course=crs
+					a.semester=(2*int(sem))-1
+					a.save()
+					print a.semester,'	',i
+	else:
+		print 'No paper list found'
+function_list.append(university_papers)
+#------------------------------------------------------------------------------------------------
 def students():
 	'''sets up students'''
 	filepath=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'student_photos','college_studentlist')
@@ -139,64 +196,6 @@ def students():
 		stsc.scrape()
 		students()
 function_list.append(students)
-#------------------------------------------------------------------------------------------------
-def groups():
-	'''sets up the groups'''
-	groupnames=[
-		{'n':'Principal',
-		'p':None},
-		{'n':'Bursar',
-		'p':None},
-		{'n':'Dean(Residence)',
-		'p':None},
-		{'n':'Dean(Academic Affairs)',
-		'p':None},
-		{'n':'Chaplain',
-		'p':None},
-		{'n':'Public Information Officer',
-		'p':None},
-		{'n':'Special Assignments',
-		'p':None},
-		{'n':'Administration',
-		'p':None},
-		{'n':'Staff Advisor',
-		'p':None},
-		{'n':'Faculty',
-		'p':None},
-		{'n':'Students',
-		'p':None}]
-	for i in groupnames:
-		a=Group()
-		a.name=i['n']
-		a.save()
-function_list.append(groups)
-#------------------------------------------------------------------------------------------------
-def university_papers():
-	'''sets up the papers'''
-	filepath=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'papers')
-	if os.path.exists(os.path.join(filepath,'paper_list_clean')):
-		f=file(os.path.join(filepath,'paper_list_clean'),'r')
-		import pickle
-		data=pickle.load(f)
-		f.close()
-		for course in data.keys():
-			name=course.strip().strip('III')
-			name=name.strip('II').strip('I').replace('YEAR','')
-			name=name.replace('-SEC A','').replace('-SEC B','')
-			crs=office.models.course.objects.get(name=name)
-			sem=course.count('I')
-			for i in data[course]:
-				a=office.models.paper()
-				a.code=i
-				a.name=i
-				a.course=crs
-				a.semester=(2*sem)-1
-				a.save()
-				print '		',i
-		
-	else:
-		print 'No paper list found'
-function_list.append(university_papers)
 
 #------------------------------------------------------------------------------------------------
 def faculty():
