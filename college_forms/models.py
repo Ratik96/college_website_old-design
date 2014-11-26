@@ -9,8 +9,7 @@ from admission.models import *
 
 
 class basic_form_class(models.Model):
-	'''
-	The basics any form will have.
+	'''The basics any form will have.
 	The forms can be saved and later submitted.
 	'''
 	firstname=models.CharField(max_length=40)
