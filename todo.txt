@@ -12,9 +12,16 @@ Views and models
 6. Attendance forms for ECA etc.
 >>>>>>> 67bf66d3c2ce4aab5033a10fc497e834bd96a04e
 7. Paper setup is not correct
+
+8. Attendance 2/3 requirement filter
+9. Printouts from admin page
+
 =======
 Templates
 =======
 1. Alumni page; add fb link (What is the fb link? - Ratik)
 2. Small bug with navbar (need your help - Ratik)
 3. Refine admission form
+
+
+-----------add login flag for websites

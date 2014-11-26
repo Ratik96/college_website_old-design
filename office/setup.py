@@ -173,22 +173,29 @@ function_list.append(groups)
 #------------------------------------------------------------------------------------------------
 def university_papers():
 	'''sets up the papers'''
-	paper_list=['MAPT-101','PHPT-101','CSPT-101','CHPT-101',
-		'MAPT-202','PHPT-202','CSPT-202','CHPT-202',
-		'MAPT-303','PHPT-303','CSPT-303','CHPT-303',
-		'MAPT-404','PHPT-404','CSPT-404','CHPT-404',
-		'MAPT-505','PHPT-505','CSPT-505','CHPT-505',
-		'MAPT-606','PHPT-606','CSPT-606','CHPT-606',
-		]
-	bsc_course=office.models.course.objects.first()
-	for i in paper_list:
-		a=office.models.paper()
-		a.code=i
-		a.name=i
-		a.course=bsc_course
-		a.semester=int(i[-1])
-		a.save()
-		print '		',i
+	filepath=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'papers')
+	if os.path.exists(os.path.join(filepath,'paper_list_clean')):
+		f=file(os.path.join(filepath,'paper_list_clean'),'r')
+		import pickle
+		data=pickle.load(f)
+		f.close()
+		for course in data.keys():
+			name=course.strip().strip('III')
+			name=name.strip('II').strip('I').replace('YEAR','')
+			name=name.replace('-SEC A','').replace('-SEC B','')
+			crs=office.models.course.objects.get(name=name)
+			sem=course.count('I')
+			for i in data[course]:
+				a=office.models.paper()
+				a.code=i
+				a.name=i
+				a.course=crs
+				a.semester=(2*sem)-1
+				a.save()
+				print '		',i
+		
+	else:
+		print 'No paper list found'
 function_list.append(university_papers)
 
 #------------------------------------------------------------------------------------------------
