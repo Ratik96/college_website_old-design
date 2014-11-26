@@ -1,7 +1,7 @@
 from django.core.urlresolvers import reverse
 from django.db import models
 from django import forms
-from office.models import society
+from office.models import deptsoc
 
 
 from datetime import date
@@ -32,7 +32,7 @@ class Event(models.Model):
 	name=models.CharField(max_length=40)
 	nickname=models.CharField(max_length=10)#nickname for url
 	description=models.TextField(blank=True)
-	organizer=models.ForeignKey(society)#who has organized this
+	organizer=models.ForeignKey(deptsoc)#who has organized this
 	start=models.DateTimeField()
 	end=models.DateTimeField()
 	def get_absolute_url(self):

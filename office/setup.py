@@ -209,9 +209,10 @@ def faculty():
 	nicks_already_used=[]
 	for dept in depts:
 		#create department
-		department=office.models.department()
-		department.name=dept.strip().replace('_',' ')
-		nick=clean_to_string(dept.strip().replace('_','').replace(' ','').replace('/','').lower())[:5]
+		department=office.models.deptsoc()
+		department.is_society=False
+		department.name=dept.strip().replace('_',' ').capitalize()
+		nick=clean_to_string(dept.strip().replace('_','').replace(' ','').replace('/','').lower())[:10]
 		if nick in nicks_already_used:
 			nick = 'phy'
 		department.nickname=nick
@@ -284,7 +285,8 @@ def societies():
 		f_d.close()
 		f_nick.close()
 		#accepted the nicknames and details
-		soc=office.models.society()
+		soc=office.models.deptsoc()
+		soc.is_society=True
 		soc.name=i.strip()
 		try:
 			soc.logo=File(f_logo)

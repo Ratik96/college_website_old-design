@@ -30,7 +30,6 @@ class course_admin(admin.ModelAdmin):
 admin.site.register(course,course_admin)
 admin.site.register(course_type,course_type_admin)
 admin.site.register(paper,paper_admin)
-admin.site.register(department)
-admin.site.register(society)
+admin.site.register(deptsoc)
 admin.site.register(student,student_admin)
 

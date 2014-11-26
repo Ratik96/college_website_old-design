@@ -92,28 +92,28 @@ def academics(request):
 def society(request):
 	data={}
 	data['domain_name']=stephens.settings.domain_name
-	data['societies']=office.models.society.objects.all()
+	data['societies']=office.models.deptsoc.objects.filter(is_society=True)
 	return render(request,'mainsite/society.html',data)
 def society_detail(request,nick):
 	'''
 	returns named society
 	'''
 	data={}
-	obj=get_object_or_404(office.models.society,nickname=nick)
+	obj=get_object_or_404(office.models.deptsoc,nickname=nick)
 	data['society']=obj
 	return render(request,'mainsite/society.html',data)
 def department(request):
 	data={}
 	data['domain_name']=stephens.settings.domain_name
-	data['departments']=office.models.department.objects.all()
+	data['departments']=office.models.deptsoc.objects.filter(is_society=False)
 	return render(request,'mainsite/department.html',data)
 def department_detail(request,nick):
 	'''
 	department details
 	'''
 	data={}
-	dept=get_object_or_404(office.models.department,nickname=nick)
-	data['department']=office.models.faculty.objects.filter(dept=dept)
+	dept=get_object_or_404(office.models.deptsoc,nickname=nick)
+	data['department']=office.models.faculty.objects.filter(is_society=False).filter(dept=dept)
 	return render(request,'mainsite/department.html',data)
 	
 def archive(request):

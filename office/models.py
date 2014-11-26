@@ -40,17 +40,6 @@ class paper(models.Model):
 	course=models.ForeignKey(course)
 	semester=models.IntegerField('The semester in which the paper appears',default=0)	
 	
-class department(models.Model):
-	'''
-	Describes the various departments in college.
-	'''
-	def __unicode__(self):
-		return str(self.name)
-	name=models.CharField(max_length=35)
-	nickname=models.CharField(max_length=5,unique=True)#nickname for url
-	def get_absolute_url(self):
-		return reverse('department_detail',args=[self.nickname])
-	
 class profile(models.Model):
 	'''
 	The various attributes of the staff.
@@ -86,20 +75,27 @@ class faculty(profile):
 	'''
 	Faculty of college
 	'''
-	dept=models.ForeignKey(department,related_name='dept')
+	dept=models.ForeignKey(deptsoc,limit_choices_to={'is_society':False},related_name='dept')
 	qualification=models.CharField(max_length=100,blank=True)
-class society(models.Model):	
+class deptsoc(models.Model):
 	'''
-	Describes the societies in college
+	Describes the various departments and societies in college.
 	'''
 	def __unicode__(self):
-		return self.name
-	name=models.CharField('The society name',max_length=50)
+		return str(self.name)
+	name=models.CharField(max_length=35)
 	nickname=models.CharField(max_length=10,unique=True)#nickname for url
-	logo=models.ImageField(upload_to='society_logos',blank=True,null=True)
+	logo=models.ImageField(upload_to='deptsoc_logos',blank=True,null=True)
 	
-	description=models.TextField()
-	founding_date=models.DateField('The founding date of the society')
-	staff_advisor=models.ForeignKey(faculty,related_name='staff_advisor')
+	description=models.TextField(blank=True)
+	founding_date=models.DateField('The founding date of the society/department',default=timezone.now())
+	
+	#society related stuff
+	is_society=models.BooleanField(default=False)
+	
 	def get_absolute_url(self):
-		return reverse('society_detail',args=[self.nickname])
+		if self.is_society:
+			return reverse('society_detail',args=[self.nickname])
+		else:
+			return reverse('department_detail',args=[self.nickname])
+	

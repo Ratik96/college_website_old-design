@@ -77,7 +77,7 @@ def notifications(folder='notifications'):
 	files=os.listdir(filepath)
 	for i in files:
 		a=mainsite.models.notification()
-		a.title=i.split('.')[0].replace('_',' ')
+		a.title=i.split('.')[0].replace('_',' ').capitalize()
 		a.description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis odio vehicula, lobortis ante hendrerit, sodales dolor. Pellentesque quis massa in tellus vulputate pretium vel id ligula. Suspendisse potenti. Donec efficitur est odio, sit amet varius eros ornare in. </p>'
 		f=file(os.path.join(filepath,i))
 		lines=f.readlines()

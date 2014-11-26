@@ -33,7 +33,7 @@ class eca_request(models.Model):
 	stud=models.ForeignKey(office.models.student,related_name='stud')
 	approved=models.BooleanField(default=False)
 	description=models.TextField(help_text='Nature of activity requiring absence from class.')
-	soc=models.ForeignKey(office.models.society,related_name='society',help_text='Society under which activity was done.')
+	soc=models.ForeignKey(office.models.deptsoc,related_name='society',help_text='Department/Society under which activity was done.')
 	
 class eca_date(models.Model):
 	'''Class to store ECA date'''
