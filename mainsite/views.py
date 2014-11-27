@@ -113,7 +113,7 @@ def department_detail(request,nick):
 	'''
 	data={}
 	dept=get_object_or_404(office.models.deptsoc,nickname=nick)
-	data['department']=office.models.faculty.objects.filter(is_society=False).filter(dept=dept)
+	data['department']=office.models.faculty.objects.filter(dept=dept)
 	return render(request,'mainsite/department.html',data)
 	
 def archive(request):

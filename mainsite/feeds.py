@@ -20,7 +20,7 @@ class Notifications_feed(Feed):
 
 	# item_link is only needed if NewsItem has no get_absolute_url method.
 	def item_link(self,item):
-		return reverse('notice_view',args=[item.pk])
+		return reverse('notice_detail',args=[item.pk])
 class Principal_feed(Feed):
 	'''
 	Feed class to implement a RSS feed for principal's desk
@@ -39,4 +39,4 @@ class Principal_feed(Feed):
 
 	# item_link is only needed if NewsItem has no get_absolute_url method.
 	def item_link(self,item):
-		return reverse('notice_view',args=[item.pk])
+		return reverse('notice_detail',args=[item.pk])
