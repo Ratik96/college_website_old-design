@@ -39,6 +39,28 @@ class paper(models.Model):
 	name=models.CharField('The name of paper',max_length=25)
 	course=models.ForeignKey(course)
 	semester=models.IntegerField('The semester in which the paper appears',default=0)	
+class deptsoc(models.Model):
+	'''
+	Describes the various departments and societies in college.
+	'''
+	def __unicode__(self):
+		return str(self.name)
+	name=models.CharField(max_length=35)
+	nickname=models.CharField(max_length=10,unique=True)#nickname for url
+	logo=models.ImageField(upload_to='deptsoc_logos',blank=True,null=True)
+	
+	description=models.TextField(blank=True)
+	founding_date=models.DateField('The founding date of the society/department',default=timezone.now())
+	
+	#society related stuff
+	is_society=models.BooleanField(default=False)
+	
+	def get_absolute_url(self):
+		if self.is_society:
+			return reverse('society_detail',args=[self.nickname])
+		else:
+			return reverse('department_detail',args=[self.nickname])
+	
 	
 class profile(models.Model):
 	'''
@@ -77,25 +99,3 @@ class faculty(profile):
 	'''
 	dept=models.ForeignKey(deptsoc,limit_choices_to={'is_society':False},related_name='dept')
 	qualification=models.CharField(max_length=100,blank=True)
-class deptsoc(models.Model):
-	'''
-	Describes the various departments and societies in college.
-	'''
-	def __unicode__(self):
-		return str(self.name)
-	name=models.CharField(max_length=35)
-	nickname=models.CharField(max_length=10,unique=True)#nickname for url
-	logo=models.ImageField(upload_to='deptsoc_logos',blank=True,null=True)
-	
-	description=models.TextField(blank=True)
-	founding_date=models.DateField('The founding date of the society/department',default=timezone.now())
-	
-	#society related stuff
-	is_society=models.BooleanField(default=False)
-	
-	def get_absolute_url(self):
-		if self.is_society:
-			return reverse('society_detail',args=[self.nickname])
-		else:
-			return reverse('department_detail',args=[self.nickname])
-	

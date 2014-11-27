@@ -27,7 +27,6 @@ class student_attendance(models.Model):
 	a_lecture=models.PositiveSmallIntegerField('Lecture Adjustment(ECA etc)',default=0)
 	a_tutorial=models.PositiveSmallIntegerField('Tutorial Adjustment(ECA etc)',default=0)
 	a_practical=models.PositiveSmallIntegerField('Practical Adjustment(ECA etc)',default=0)
-
 class eca_request(models.Model):
 	'''Class to store an ECA request'''
 	stud=models.ForeignKey(office.models.student,related_name='stud')

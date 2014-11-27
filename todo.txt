@@ -1,7 +1,7 @@
 Views and models
 =======
-1. Event related to society-change to dept and soc
-2. Unify department and society models
+1. ~Event related to society-change to dept and soc
+2. ~Unify department and society models
 3. Archiving system to be installed
 4. Unify student and faculty profiles
 5. ~Add all courses to attendance (Also use capitalize())
@@ -10,6 +10,7 @@ Views and models
 
 8. Attendance 2/3 requirement filter
 9. Printouts from admin page
+10.Write tests for all apps
 
 =======
 Templates
