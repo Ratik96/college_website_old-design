@@ -3,7 +3,7 @@ Views and models
 1. ~Event related to society-change to dept and soc
 2. ~Unify department and society models
 3. Archiving system to be installed
-4. Unify student and faculty profiles
+4. -Unify student and faculty profiles==Not needed
 5. ~Add all courses to attendance (Also use capitalize())
 6. Attendance forms for ECA etc.Created the models to record the reuqest. Need to make structure for approval etc.
 7. ~Paper setup is not correct
