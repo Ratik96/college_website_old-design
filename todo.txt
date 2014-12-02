@@ -22,5 +22,6 @@ Templates
 3. Refine admission form
 4. Add login link on base.html
 5. Admission notice feed on admission/notices/  page.To be styled
+6. Attendance on profile page. Will be phasing out the attendance view page.
 
 -----------add login flag for website during development and public deployment. Try pythonanywhere

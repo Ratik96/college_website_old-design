@@ -145,6 +145,8 @@ def profile_detail(request,nick):
 	except:
 		try:
 			data['profile']=office.models.student.objects.get(nickname=nick)
+			if request.user.is_authenticated():
+				data['student_attendance']=attendance.models.student_attendance.objects.filter(student=data['profile'])
 		except:
 			raise Http404
 	if request.method=='GET':
