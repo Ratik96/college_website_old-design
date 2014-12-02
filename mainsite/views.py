@@ -1,7 +1,7 @@
 from django.views.decorators.http import require_http_methods
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,redirect
 from django.http import Http404
-import mainsite,office,stephens
+import mainsite,office,stephens,attendance
 from django.contrib.auth.models import User,Group
 
 
@@ -135,19 +135,32 @@ def contact(request):
 	data={}
 	data['domain_name']=stephens.settings.domain_name
 	return render(request,'mainsite/contact.html',data)
-def profile_detail(request,nick):
+def profile_detail(request,nick=None):
 	'''
 	Profile of a person
 	'''
 	data={}
+	if nick==None:
+		nick=request.user.profile.nickname
+		return redirect('profile_detail',nick)
 	try:
 		data['profile']=office.models.faculty.objects.get(nickname=nick)
-	except:
+	except Exception as e:
+		print '--------------------'
+		print 'Not found in faculty'
+		print '------'
+		print e
+		print '--------------------'
 		try:
 			data['profile']=office.models.student.objects.get(nickname=nick)
 			if request.user.is_authenticated():
 				data['student_attendance']=attendance.models.student_attendance.objects.filter(student=data['profile'])
-		except:
+		except Exception as e:
+			print '--------------------'
+			print 'some error in student'
+			print '------'
+			print e
+			print '--------------------'
 			raise Http404
 	if request.method=='GET':
 		return render(request,'mainsite/profile.html',data)

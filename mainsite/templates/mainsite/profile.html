@@ -13,9 +13,24 @@
       </div>
       
       
-      
-      
+      <div class="col-md-7" id="content">
+        <h1>{{profile.user.first_name}}</h1>
+        <h4>{{profile.qualification}},  </h4> 
+        <h4><a href='{{profile.dept.get_absolute_url}}'>{{profile.dept}}</a></h4>
+      </div>
+    </div>
+	<a href='{%url "site_logout"%}'>Logout</a>
+    <div id='Attendance'>
+
+
+
+
+
+
+
+
       	{%if student_attendance%}
+      	<div>
 		<section>
 			<h2 style="text-align: center; color: white;">Attendance summary</h2>
 			<div id="chart" style="margin-top: 40px;">
@@ -98,21 +113,19 @@
 				</div>
 			</div>
 		</section>
+	<div>
 	{%endif%}
-      
-      
-      
-      
-      
-      
-      <div class="col-md-7" id="content">
-        <h1>{{profile.user.first_name}}</h1>
-        <h4>{{profile.qualification}},  </h4> 
-        <h4><a href='{{profile.dept.get_absolute_url}}'>{{profile.dept}}</a></h4>
-      </div>
-    </div>
-    
-    <div id='Attendance'>
+
+
+
+
+
+
+
+
+
+
+
     
     </div>
 
@@ -120,7 +133,7 @@
 
 		<div class="row">
 			<div id="contact">
-				<p style="font-size: 1.3em; font-family: 'Roboto', sans-serif; font-weight: 300;">You may contact {{profile.title}} {{profile.user.firstname}} using this form. </p>
+				<p style="font-size: 1.3em; font-family: 'Roboto', sans-serif; font-weight: 300;">You may contact {{profile.title}} {{profile.user.first_name|capfirst}} using this form. </p>
 				<form role="form" action='{{profile.get_absolute_url}}' action='POST'>
 					<div class="form-group">
 						<input name='from' class="form-control" type="email" placeholder="Your Email">
