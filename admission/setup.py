@@ -44,7 +44,10 @@ def admission_important_dates():
 	l=f.readlines()
 	f.close()
 	now=timezone.now()
-	next_month=datetime.datetime(now.date().year,now.date().month+1,20,now.time().hour,now.time().minute,now.time().second,now.time().microsecond,now.tzinfo)
+	next=now.date().month+1
+	if next>12:
+		next=1
+	next_month=datetime.datetime(now.date().year,next,20,now.time().hour,now.time().minute,now.time().second,now.time().microsecond,now.tzinfo)
 	for i in l:
 		a=admission.models.dates()
 		a.date=timezone.now()
