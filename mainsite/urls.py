@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     url(r'^$',views.home,name='site_home'),
     url(r'^notification_rss',feeds.Notifications_feed(),name='notification_feed'),
     url(r'^principal_rss',feeds.Principal_feed(),name='principal_feed'),
+    url(r'^admission_rss',feeds.Admission_feed(),name='admission_notice_feed'),
     
     url(r'^academics/$',views.academics,name='academics_home'),
     url(r'^course/(?P<cid>\d+)/$',views.course_detail,name='course_detail'),

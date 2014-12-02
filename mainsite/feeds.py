@@ -3,6 +3,22 @@ from django.core.urlresolvers import reverse
 from django.utils import timezone
 import mainsite
 
+class Admission_feed(Feed):
+	'''Feed class to implement the college admission notices
+	'''
+	title="Admission notices from college"
+	link="/sitenews/"
+	description="Updates regarding college admission notices"
+	
+	def items(self):
+		notice_categ=mainsite.models.notification_category.objects.all()[2]
+		return mainsite.models.notification.objects.files(publish_date__lte=timezone.now()).filter(category=notice_categ).order_by('-publish_date')[:10]
+	def item_title(self,item):
+		return item.title
+	def item_description(self,item):
+		return item.description
+	def item_link(self,item):
+		return reverse('notice_detail',args=[item.pk])
 class Notifications_feed(Feed):
 	'''
 	Feed class to implement the college Notifications class

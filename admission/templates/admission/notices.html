@@ -8,6 +8,7 @@
 {%endblock%}
 
 {%block admission_body%}
+	<a href={%url 'admission_notice_feed'%}>RSS feed for admission notices.<img src='{%static "mainsite/images/rss.jpg"%}' alt='RSS feed'></a>
 	<div id="notice-board">
 	  {%for notice in notices%}
 			<div class="notice col-xs-6 col-sm-4"> 

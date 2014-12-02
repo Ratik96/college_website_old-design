@@ -21,6 +21,6 @@ Templates
 2. Small bug with navbar (need your help - Ratik)
 3. Refine admission form
 4. Add login link on base.html
-
+5. Admission notice feed on admission/notices/  page.To be styled
 
 -----------add login flag for website during development and public deployment. Try pythonanywhere
