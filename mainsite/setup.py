@@ -46,16 +46,27 @@ def homepage_slideshow(slideshow_pic_folder='homepage'):
 		a.save()
 function_list.append(homepage_slideshow)
 #------------------------------------------------------------------------------------------------
+def notification_categories():
+	'''Setup the notification categories'''
+	categories=['Notices',"Principal's Desk","Admission Notices"]
+	for c in categories:
+		cat=mainsite.models.notification_category()
+		cat.name=c
+		cat.save()
+		print c
+function_list.append(notification_categories)
+#------------------------------------------------------------------------------------------------
 def principal_desk_notices(principal_desk_folder='principal_desk'):
 	'''sets up the principal desk notices'''
 	filepath=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,principal_desk_folder)
 	files_all=os.listdir(filepath)
 	files=[i for i in files_all if '~' not in i]
+	cat=mainsite.models.notification_category.objects.all()[1]
 	for i in files:
 		f=file(os.path.join(filepath,i))
 		a=mainsite.models.notification()
 		a.title=clean_to_string(i.split('.')[0].replace('_',' '))
-		a.principal=True
+		a.category=cat
 		a.associated_file=File(f)
 		a.description=clean_to_string(i.replace('_',' '))
 		a.save()
@@ -75,10 +86,12 @@ def notifications(folder='notifications'):
 	'''sets up the notifications for the website'''
 	filepath=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,folder)
 	files=os.listdir(filepath)
+	cat=mainsite.models.notification_category.objects.first()
 	for i in files:
 		a=mainsite.models.notification()
 		a.title=i.split('.')[0].replace('_',' ').capitalize()
-		a.description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis odio vehicula, lobortis ante hendrerit, sodales dolor. Pellentesque quis massa in tellus vulputate pretium vel id ligula. Suspendisse potenti. Donec efficitur est odio, sit amet varius eros ornare in. </p>'
+		a.description='A notice from the college.'
+		a.category=cat
 		f=file(os.path.join(filepath,i))
 		lines=f.readlines()
 		new_lines=[clean_to_string(iasd) for iasd in lines]

@@ -11,6 +11,7 @@ Views and models
 8. Attendance 2/3 requirement filter
 9. Printouts from admin page
 10.Write tests for all apps
+11.Add feed for admission notices.
 
 =======
 Templates
@@ -19,6 +20,7 @@ Templates
 	https://www.facebook.com/groups/laalsitara/
 2. Small bug with navbar (need your help - Ratik)
 3. Refine admission form
+4. Add login link on base.html
 
 
 -----------add login flag for website during development and public deployment. Try pythonanywhere

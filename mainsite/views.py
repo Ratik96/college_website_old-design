@@ -20,8 +20,15 @@ def home(request):
 	data={}
 	data['domain_name']=stephens.settings.domain_name
 	data['slideshow']=mainsite.models.home_slideshow_photo.objects.all()
-	data['notification']=mainsite.models.notification.objects.filter(principal=False).order_by('pinned','-publish_date')[:5]
-	data['principal_desk']=mainsite.models.notification.objects.filter(principal=True).order_by('-publish_date')[:5]
+	notice_category=mainsite.models.notification_category.objects.all()
+	notice,princi=None,None
+	for i in notice_category:
+		if 'principal' in i.name.replace(' ','').lower().strip():
+			princi=i
+		if 'notice' in i.name.replace(' ','').lower().strip():
+			notice=i
+	data['notification']=mainsite.models.notification.objects.filter(category=notice).order_by('pinned','-publish_date')[:5]
+	data['principal_desk']=mainsite.models.notification.objects.filter(category=princi).order_by('-publish_date')[:5]
 	return render(request,'mainsite/home.html',data)
 	
 def notice_home(request):

@@ -17,4 +17,4 @@ class notification_admin(admin.ModelAdmin):
 
 admin.site.register(home_slideshow_photo,home_slideshow_photo_admin)
 admin.site.register(notification,notification_admin)
-
+admin.site.register(notification_category)

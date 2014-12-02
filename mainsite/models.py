@@ -30,6 +30,11 @@ class home_slideshow_photo(photo):
 	Photos for homepage slideshow
 	'''
 	description=models.CharField('A description associated with the photo',max_length=50,blank=True,default='')
+class notification_category(models.Model):
+	'''The categories of notices on the website. Each has a feed.
+	This should be kept to a minimum
+	'''
+	name=models.CharField(max_length=50)	
 	
 class notification(models.Model):
 	'''
@@ -44,7 +49,7 @@ class notification(models.Model):
 
 	description=models.TextField('A description of the notification')
 	publish_date=models.DateField(default=timezone.now())
-	principal=models.BooleanField("Is is from the principal's desk",default=False)
+	category=models.ForeignKey(notification_category,related_name='category',help_text='What category is this notification for')
 	pinned=models.BooleanField('If this notification is to be permanently pinned on the homepage.',default=False)
 	def recent(self):
 		'''Checks if the record is one month old? Returns true if less than one month old.'''

@@ -2,7 +2,14 @@ from django.db import models
 import office
 
 class paper_attendance(models.Model):
-	'''Class to record common characteristics for a paper's attendance records'''
+	'''Class to record common characteristics for a paper's attendance records.
+	It is common for all student studying the paper.
+	Date_from=starting attendance date
+	Date_to=ending attendance date
+	paper=paper for which attendance will be recorded
+	
+	The lecture,tutorial,practical totals for this paper
+	'''
 	def __unicode__(self):
 		return self.paper.__unicode__()
 	date_from=models.DateField('Date of counting first attendance.')
@@ -14,7 +21,11 @@ class paper_attendance(models.Model):
 	practical=models.PositiveSmallIntegerField('Total Practical',default=0)
 		
 class student_attendance(models.Model):
-	'''Class to record a student's attendance in a paper'''
+	'''Class to record a student's attendance in a paper.
+	Student attendance in a paper.
+	Relates to a class attendance which holds the total attendance.
+	The classes attended and the adjustments for the classes.
+	'''
 	def __unicode__(self):
 		return self.student.__unicode__()+'-'+self.class_attendance.paper.__unicode__()
 	student=models.ForeignKey(office.models.student,related_name='student')

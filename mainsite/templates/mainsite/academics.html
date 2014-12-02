@@ -39,7 +39,7 @@
   		<p>Given below is a list of undergraduate courses offered by the college. Cycle through them to know more. </p>
   		<ul>
 	  		{%for i in courses%}
-					<li><a href={{i.get_absolute_url}}>{{i}}</a></li>
+					<li><a href={{i.get_absolute_url}}>{{i|capfirst}}</a></li>
 				{%endfor%}
 			</ul>
 	  </div>

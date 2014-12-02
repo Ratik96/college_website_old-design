@@ -1,5 +1,6 @@
 from django.contrib.syndication.views import Feed
 from django.core.urlresolvers import reverse
+from django.utils import timezone
 import mainsite
 
 class Notifications_feed(Feed):
@@ -11,7 +12,8 @@ class Notifications_feed(Feed):
 	description="Updates on changes and additions to notifications by the college."
 
 	def items(self):
-		return mainsite.models.notification.objects.filter(principal=False).order_by('-publish_date')[:10]
+		notice_categ=mainsite.models.notification_category.objects.first()
+		return mainsite.models.notification.objects.filter(publish_date__lte=timezone.now()).filter(category=notice_categ).order_by('-publish_date')[:10]
 	def item_title(self,item):
 		return item.title
 
@@ -30,7 +32,8 @@ class Principal_feed(Feed):
 	description="Updates on changes and additions to the Principal's Desk."
 
 	def items(self):
-		return mainsite.models.notification.objects.filter(principal=True).order_by('-publish_date')[:10]
+		notice=mainsite.models.notification_category.objects.all()[1]
+		return mainsite.models.notification.objects.filter(publish_date__lte=timezone.now()).filter(category=notice).order_by('-publish_date')[:10]
 	def item_title(self,item):
 		return item.title
 

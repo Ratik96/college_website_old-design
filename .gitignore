@@ -6,6 +6,8 @@
 bin
 include
 lib
+mediafiles
+staticfiles
 
 # Compiled source #
 ###################

@@ -14,10 +14,6 @@ class dates_admin(admin.ModelAdmin):
 	list_display=['activity','date','valid_upto']
 	list_filter=['date','valid_upto']
 	search_fields=['activity']
-class notice_admin(admin.ModelAdmin):
-	list_display=['title','publish_date']
-	list_filter=['publish_date']
-	search_fields=['title','description']
 	
 class category_cutoff_inline(admin.TabularInline):
 	'''
@@ -42,4 +38,3 @@ class admission_candidate_admin(admin.ModelAdmin):
 admin.site.register(admission_candidate,admission_candidate_admin)	
 admin.site.register(cutoff_subject,cutoff_subject_admin)
 admin.site.register(dates,dates_admin)
-admin.site.register(notice,notice_admin)

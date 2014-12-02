@@ -11,6 +11,7 @@ import datetime
 class course_type(models.Model):
 	'''
 	The types of courses available in the college.
+	More may be added in the future.
 	'''
 	def __unicode__(self):
 		return str(self.name)
@@ -19,7 +20,10 @@ class course_type(models.Model):
 	
 class course(models.Model):
 	'''
-	Defines the courses available in college
+	Defines the courses available in college.
+	This is a relationship model.All papers link to a particular course.
+	The course type is used to group them together.
+	Description is used in the college website to display something about the course.
 	'''
 	def __unicode__(self):
 		return str(self.name)
@@ -31,7 +35,10 @@ class course(models.Model):
 class paper(models.Model):
 	'''
 	Describes a paper that is taught in college.
+	The name is the verbose name. eg.Optical Physics.
+	The code is the paper code assigned by the university. eg. MAPT-101
 	Each paper has an associated course.
+	Each paper also has a semester it appears in.
 	'''
 	def __unicode__(self):
 		return self.code
@@ -42,6 +49,12 @@ class paper(models.Model):
 class deptsoc(models.Model):
 	'''
 	Describes the various departments and societies in college.
+	Nickname is used to refer to the dept or soc in the website url.It must be unique.
+	The logo is used in case of a society.
+	Description is used in the college website to describe the department or society.
+	The founding date is used in the college website in the dept/soc description.
+	
+	the is_society flag is used to mark societies.
 	'''
 	def __unicode__(self):
 		return str(self.name)
@@ -66,6 +79,9 @@ class profile(models.Model):
 	'''
 	The various attributes of the staff.
 	Each associated with a user id.
+	The nickname is used to refer to the profile on the website.
+	The title can contain Dr. Revd. etc. Default is M.
+	The picture is the profile pcture.
 	'''
 	def __unicode__(self):
 		return str(self.title)+' '+str(self.user.first_name)+' '+str(self.user.last_name)
@@ -87,7 +103,11 @@ class profile(models.Model):
 		
 class student(profile):
 	'''
-	Students in college
+	Students in college.
+	Each student has this.
+	Course is the course enrolled in.
+	The current semester of the student. Used to generate default paper attendances.
+	Admission date of the student.
 	'''
 	course=models.ForeignKey(course,related_name='course')
 	current_semester=models.SmallIntegerField(default=1)
@@ -95,7 +115,9 @@ class student(profile):
 	admission_date=models.DateField(default=timezone.now())
 class faculty(profile):
 	'''
-	Faculty of college
+	Faculty of college.
+	A department where they may teach.
+	Qualifications as they are to be shown in the website.
 	'''
 	dept=models.ForeignKey(deptsoc,limit_choices_to={'is_society':False},related_name='dept')
-	qualification=models.CharField(max_length=100,blank=True)
+	qualification=models.TextField(blank=True)

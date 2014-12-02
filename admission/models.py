@@ -10,14 +10,17 @@ def get_hash(string):
 		return hashlib.sha224(string).hexdigest()
 class admission_control(models.Model):
 	'''
-	models to control the admission application
+	models to control the admission application.
+	General controls
 	'''
 	accept_admission_forms=models.BooleanField(default=False)
 	prospectus=models.FileField(upload_to='admission')
 	
 class dates(models.Model):
 	'''
-	The important dates related to admissions
+	The important dates related to admissions.
+	Published on the website.
+	valid_upto shows that this notification is valid upto which date.
 	'''
 	def __unicode__(self):
 		return str(self.activity)
@@ -27,7 +30,8 @@ class dates(models.Model):
 
 class category(models.Model):
 	'''
-	stores the various quotas for admission
+	stores the various quotas for admission.
+	New quotas may be added.
 	'''
 	def __unicode__(self):
 		return str(self.code)
@@ -36,7 +40,8 @@ class category(models.Model):
 	
 class cutoff_subject(models.Model):
 	'''
-	cutoffs for a course
+	cutoffs for a course.
+	Relation model. Holds cutoffs for different categoris and governs their validity.
 	'''
 	def __unicode__(self):
 		return str(self.course.__unicode__())
@@ -46,26 +51,14 @@ class cutoff_subject(models.Model):
 	
 class category_cutoff(models.Model):
 	'''
-	stores cutoffs for a category
+	stores cutoffs for a category.
+	Cutoffs for a category in the admission reservation procedure.
 	'''
 	category=models.ForeignKey(category,related_name='category')
 	science=models.FloatField()
 	commerce=models.FloatField(null=True,blank=True,default=None)
 	humanities=models.FloatField(null=True,blank=True,default=None)
 	cutoff_subject=models.ForeignKey(cutoff_subject,related_name='cutoff_subject')
-
-class notice(models.Model):
-	'''
-	notice for admissions
-	'''
-	def __unicode__(self):
-		return str(self.title)
-	title=models.CharField(max_length=100)
-	description=models.TextField()
-	
-	associated_file=models.FileField(upload_to='admissions/notice')
-	
-	publish_date=models.DateField(default=timezone.now())
 class q_a(models.Model):
 	'''
 	question answer model.

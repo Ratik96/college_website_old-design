@@ -62,15 +62,25 @@ def admission_notices():
 	'''
 	filepath=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'admission_notices')
 	files_available=os.listdir(filepath)
+	cat=mainsite.models.notification_category.objects.all()[2]
 	for i in files_available:
-		a=admission.models.notice()
-		a.title=i
+		a=mainsite.models.notification()
+		a.title=clean_to_string(i.capitalize())
 		a.description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis odio vehicula, lobortis ante hendrerit, sodales dolor. Pellentesque quis massa in tellus vulputate pretium vel id ligula. Suspendisse potenti. Donec efficitur est odio, sit amet varius eros ornare in. </p>'
 		a.publish_date=timezone.now()
-		f=file(os.path.join(filepath,i))
-		a.associated_file=File(f)
+		a.category=cat
 		a.save()
+
+		f=file(os.path.join(filepath,i))
+		lines=f.readlines()
 		f.close()
+		new_lines=[clean_to_string(iasd) for iasd in lines]
+		for ind,v in enumerate(new_lines):
+			s=mainsite.models.Slot()
+			s.notif=a
+			s.text=v
+			s.order=ind
+			s.save()
 function_list.append(admission_notices)
 #------------------------------------------------------------------------------------------------
 def admission_categories():
