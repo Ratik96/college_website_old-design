@@ -16,12 +16,11 @@ Views and models
 =======
 Templates
 =======
-1. ~Alumni page; add fb link (What is the fb link? - Ratik)
-	https://www.facebook.com/groups/laalsitara/
-2. Small bug with navbar (need your help - Ratik)
+1. ~Alumni page; add fb link - https://www.facebook.com/groups/laalsitara/
+2. Navbar defaults to 'Home'. Fix needed
 3. Refine admission form
 4. Add login link on base.html
-5. Admission notice feed on admission/notices/  page.To be styled
+5. Admission notice feed on admission/notices/ page to be styled
 6. Attendance on profile page. Will be phasing out the attendance view page.
 7. Profile page major changes.Logout button.
 8. Login page is unstyled.Quicklnks login
