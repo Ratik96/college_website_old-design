@@ -5,6 +5,7 @@ from django.utils.safestring import *
 
 from django.core.urlresolvers import reverse
 
+import office
 import datetime
 
 
@@ -118,6 +119,9 @@ class faculty(profile):
 	Faculty of college.
 	A department where they may teach.
 	Qualifications as they are to be shown in the website.
+	Head is if they are head of department or in case of society if 
+	staff advisor.
 	'''
 	dept=models.ForeignKey(deptsoc,limit_choices_to={'is_society':False},related_name='dept')
 	qualification=models.TextField(blank=True)
+	head=models.ForeignKey(deptsoc,name='head',blank=True,null=True,default=None)

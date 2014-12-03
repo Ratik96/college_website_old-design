@@ -69,4 +69,13 @@ def ECA(request):
 	'''
 	data={}
 	template='attendance/eca.html'
+	
 	return render(request,template,data)
+def class_attendance(request):
+	'''Returns the attendance for an entire class for the last/current month to 
+	be edited. Only if logged in
+	'''
+	data={}
+	template='attendance/class.html'
+	return render(request,template,data)
+			

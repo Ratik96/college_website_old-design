@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms.models import inlineformset_factory
 import office
 
 class paper_attendance(models.Model):
@@ -50,3 +51,4 @@ class eca_date(models.Model):
 	related_eca_request=models.ForeignKey(eca_request)
 	start=models.DateTimeField()
 	end=models.DateTimeField()
+paper_formset=inlineformset_factory(paper_attendance,student_attendance)
