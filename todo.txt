@@ -10,19 +10,21 @@ Views and models
 
 8. Attendance 2/3 requirement filter
 9. Printouts from admin page
-10.Write tests for all apps
-11.Add feed for admission notices.
+10. Write tests for all apps
+11. Add feed for admission notices.
+12. Alumni Page won't render. FIX ASAP
 
 =======
 Templates
 =======
-1. ~Alumni page; add fb link - https://www.facebook.com/groups/laalsitara/
-2. Navbar defaults to 'Home'. Fix needed
+1. ~Alumni page; add fb link
+2. ~Navbar defaults to 'Home'. Fix needed
 3. Refine admission form
 4. Add login link on base.html
 5. Admission notice feed on admission/notices/ page to be styled
 6. Attendance on profile page. Will be phasing out the attendance view page.
 7. Profile page major changes.Logout button.
 8. Login page is unstyled.Quicklnks login
+9. Style alumni page
 
 -----------add login flag for website during development and public deployment. Try pythonanywhere
