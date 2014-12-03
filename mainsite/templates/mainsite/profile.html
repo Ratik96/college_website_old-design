@@ -20,16 +20,32 @@
       </div>
     </div>
 	<a href='{%url "site_logout"%}'>Logout</a>
-	<a href={%url "view_eca"%}>View ECA</a>
-	<a href={%url "request_eca"%}>Submit ECA</a>
     <div id='Attendance'>
 
 
 
 
 
-
-
+<hr>
+{%if user.is_authenticated%}
+	<div id='tabs'>
+		<ul>
+			<li>Inbox
+				<li>
+				{{eca}}
+				</li>
+			</li>
+			<li>Attendance</li>
+			<li>Profile</li>
+			<li>Forms
+				<ul>
+					<li><a href={%url "view_eca"%}>View ECA</a></li>
+					<li><a href={%url "request_eca"%}>Submit ECA</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+<hr>
 
       	{%if student_attendance%}
       	<div>
@@ -126,8 +142,7 @@
 
 
 
-
-
+{%endif%}
     
     </div>
 

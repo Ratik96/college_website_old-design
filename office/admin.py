@@ -32,4 +32,4 @@ admin.site.register(course_type,course_type_admin)
 admin.site.register(paper,paper_admin)
 admin.site.register(deptsoc)
 admin.site.register(student,student_admin)
-
+admin.site.register(faculty)

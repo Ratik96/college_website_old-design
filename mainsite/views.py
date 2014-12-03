@@ -1,5 +1,7 @@
 from django.views.decorators.http import require_http_methods
 from django.shortcuts import render,get_object_or_404,redirect
+from django.forms.models import modelformset_factory
+from django.contrib.auth.decorators import login_required
 from django.http import Http404
 import mainsite,office,stephens,attendance
 from django.contrib.auth.models import User,Group
@@ -141,27 +143,43 @@ def profile_detail(request,nick=None):
 	'''
 	data={}
 	if nick==None:
-		nick=request.user.profile.nickname
+		if request.user.is_authenticated():
+			nick=request.user.profile.nickname
+		else:
+			raise Http404
 		return redirect('profile_detail',nick)
+	student_flag=True
 	try:
-		data['profile']=office.models.faculty.objects.get(nickname=nick)
+		#look for student.Student first as the student body is bigger so lokups are faster
+		data['profile']=office.models.student.objects.get(nickname=nick)
 	except Exception as e:
+		student_flag=False
 		print '--------------------'
-		print 'Not found in faculty'
+		print 'Not found in student'
 		print '------'
 		print e
 		print '--------------------'
 		try:
-			data['profile']=office.models.student.objects.get(nickname=nick)
-			if request.user.is_authenticated():
-				data['student_attendance']=attendance.models.student_attendance.objects.filter(student=data['profile'])
+			#if not in students look in faculty
+			data['profile']=office.models.faculty.objects.get(nickname=nick)
 		except Exception as e:
 			print '--------------------'
 			print 'some error in student'
 			print '------'
 			print e
 			print '--------------------'
+			#as person not in faculty or student database raise error
 			raise Http404
+	#if everything goes on well person is found
+	if request.user.is_authenticated():
+		#common things
+		data['student_attendance']=attendance.models.student_attendance.objects.filter(student=data['profile'])
+		#if not student_flag:
+		#	fac=office.models.faculty.objects.get(user=request.user)
+		#	society=fac.head
+		#	formset=modelformset_factory(attendance.models.eca_request,can_delete=False,extra=0)
+		#	data['eca']=formset(queryset=attendance.models.eca_request.objects.filter(soc=society))
+			
 	if request.method=='GET':
 		return render(request,'mainsite/profile.html',data)
 	if request.method=='POST':

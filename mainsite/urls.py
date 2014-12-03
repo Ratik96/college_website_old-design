@@ -31,6 +31,6 @@ urlpatterns = patterns('',
     url(r'^principal/$',views.principal_home,name='principal_home'),
     url(r'^notice/(?P<cid>\d+)/$',views.notice_detail,name='notice_detail'),
     
-    url(r'^profile/$',views.profile_detail,name='profile_detail'),
+    url(r'^profile/$',views.profile_detail,name='profile_detail_general'),
     url(r'^profile/(?P<nick>\S+)/$',views.profile_detail,name='profile_detail'),
 )
