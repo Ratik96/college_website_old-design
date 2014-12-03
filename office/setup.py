@@ -296,7 +296,6 @@ def societies():
 			print 'It appears we have no logo for this society'
 		soc.nickname=nicks
 		soc.founding_date=timezone.now()
-		soc.staff_advisor=office.models.faculty.objects.first()
 		soc.description=unicode(''.join(det_new))
 		soc.save()
 		f_logo.close()

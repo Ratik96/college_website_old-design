@@ -1,8 +1,8 @@
-from django.db import models
-from django.forms.models import inlineformset_factory
 import office
 import random
-
+from django.db import models
+from django.utils import timezone
+from django.forms import ModelForm
 
 
 class paper_attendance(models.Model):
@@ -50,9 +50,21 @@ class eca_request(models.Model):
 	approved=models.BooleanField(default=False)
 	description=models.TextField(help_text='Nature of activity requiring absence from class.')
 	soc=models.ForeignKey(office.models.deptsoc,related_name='society',help_text='Department/Society under which activity was done.')
-	
+	#add signed also
 class eca_date(models.Model):
 	'''Class to store ECA date'''
 	related_eca_request=models.ForeignKey(eca_request)
 	start=models.DateTimeField()
 	end=models.DateTimeField()
+class eca_request_form(ModelForm):
+	class Meta:
+		model=eca_request
+		exclude=['approved','stud']
+class eca_date_form(ModelForm):
+	class Meta:
+		model=eca_date
+		fields=['start','end']
+class attendance_log(models.Model):
+	'''A class to keep track of the activities in the attendance models'''
+	stamp=models.DateTimeField(default=timezone.now())
+	text=models.TextField()

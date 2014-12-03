@@ -10,7 +10,7 @@ class SlotAdminInline(admin.TabularInline):
 	model=Slot
 class notification_admin(admin.ModelAdmin):
 	'''Admin for notification'''
-	list_display=['title','publish_date','recent','pinned']
+	list_display=['title','publish_date','recent','pinned','category']
 	list_filter=['publish_date','pinned']
 	search_fields=['title','description']
 	inlines=[SlotAdminInline]

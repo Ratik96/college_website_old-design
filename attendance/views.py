@@ -1,9 +1,11 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.forms.models import modelformset_factory,inlineformset_factory
 import json
 from django.http import HttpResponse
 from django.views.decorators.http import require_http_methods
 import attendance,office
-
+from django.utils import timezone
 def home(request):
 	'''Homepage for attendance.
 	Gives a search function to select students by course and semester
@@ -60,7 +62,28 @@ def student_id(request,studentid):
 	else:
 		data['student_attendance']=attendance.models.student_attendance.objects.filter(student=stud)
 	return render(request,'attendance/student.html',data)
-def ECA(request):
+	
+@login_required
+def ECA_list(request):
+	data={}
+	template='attendance/eca_list.html'
+	#check if user is active yet
+	if request.user.is_active:
+		#check if user is a student
+		try:
+			student=office.models.student.objects.get(user=request.user)
+		except Exception as e:
+			print '------'
+			print e
+			print '------'
+			data['not_authentic']='Not a student'
+		else:
+			data['eca_requests']=attendance.models.eca_request.objects.filter(stud=student).order_by('pk')
+	else:
+		data['not_authentic']='Not an active user.Contact Administration.'
+	return render(request,template,data)
+@login_required
+def ECA_new(request):
 	'''A form to request ECA from the college.
 	-------GET--------
 	Provides a form to define the dates during which ECA is required.
@@ -68,8 +91,60 @@ def ECA(request):
 	Creates a new ECA object from the POST data recieved
 	'''
 	data={}
-	template='attendance/eca.html'
-	
+	template='attendance/eca_new.html'
+	#if user is active or not
+	if request.user.is_active:
+		#check if the user is a student and registered
+		try:
+			student=office.models.student.objects.get(user=request.user)
+		except Exception as e:
+			print '-----------'
+			print e
+			print '-----------'
+			data['not_authentic']='You must be a student to submit ECA'
+			#if not then return error
+			return render(request,template,data)
+		else:
+			#make the dates formset
+			formset=inlineformset_factory(attendance.models.eca_request,attendance.models.eca_date,extra=10,can_delete=False)
+			if request.method=='GET':
+				#return an empty form
+				data['form']=formset(initial=[{'start':timezone.now()}])
+				data['detail']=attendance.models.eca_request_form()
+				data['status']='New ECA submission'
+			if request.method=='POST':
+				#print 'detail_form-------debug'
+				#get the details for the eca request
+				detail_form=attendance.models.eca_request_form(request.POST)
+				if detail_form.is_valid():
+					eca_details=detail_form.save(commit=False)
+					eca_details.stud=office.models.student.objects.get(user=request.user)
+					eca_details.save()
+				else:
+					#if not valid return the errors found
+					data['detail']=detail_form
+					data['form']=dates
+					return render(request,template,data)
+				#print 'Detail  form done---------debug'
+				dates=formset(request.POST,instance=eca_details)
+				if dates.is_valid():
+					dates.save()
+					#print 'dates done------debug'
+					data['status']='Successfully submitted ECA'
+					data['form']=formset(initial=[{'start':timezone.now()}])
+					data['detail']=attendance.models.eca_request_form()
+					#create log entry
+					log=attendance.models.attendance_log()
+					desc=''
+					desc+=request.user.first_name+'('+str(request.user.id)+')'
+					desc+='Added ECA request('+str(eca_details.id)+')'
+					log.test=desc
+					#return completed status
+				else:
+					data['detail']=detail_form
+					data['form']=dates
+	else:
+		data['not_authentic']='Not logged in'
 	return render(request,template,data)
 def class_attendance(request):
 	'''Returns the attendance for an entire class for the last/current month to 

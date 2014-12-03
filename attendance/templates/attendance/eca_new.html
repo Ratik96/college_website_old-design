@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+{%block body%}
+	{%if not_authentic%}
+		{{not_authentic}}<br>
+		{%if not request.user.is_authenticated%}
+		Please <a href={%url 'site_login'%}>sign in</a> to submit an eca.
+		{%endif%}
+	{%else%}
+		{{status}}
+		<form id='eca_form' action={%url 'request_eca'%} method='post'>
+			{%csrf_token%}
+			{{detail}}
+			{{form}}
+			<input type='submit'/>
+		</form>
+	{%endif%}
+{%endblock%}

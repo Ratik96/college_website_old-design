@@ -1,0 +1,20 @@
+{%extends 'base.html'%}
+{%block body%}
+	{%if not_authentic%}
+		{{not_authentic}}<br>
+		{%if not request.user.is_authenticated%}
+		Please <a href={%url 'site_login'%}>sign in</a> to submit an eca.
+		{%endif%}
+	{%else%}
+		<ul>
+		{%if eca_requests%}
+		{%for req in eca_requests%}
+			<li>{{req.soc}}{{req.approved}}</li>
+		{%endfor%}
+		{%else%}
+			The current logged in user has not submitted any ECA
+		{%endif%}
+		</ul>
+	{%endif%}
+
+{%endblock%}
