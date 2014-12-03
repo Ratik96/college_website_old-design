@@ -1,6 +1,9 @@
 from django.db import models
 from django.forms.models import inlineformset_factory
 import office
+import random
+
+
 
 class paper_attendance(models.Model):
 	'''Class to record common characteristics for a paper's attendance records.
@@ -16,6 +19,8 @@ class paper_attendance(models.Model):
 	date_from=models.DateField('Date of counting first attendance.')
 	date_to=models.DateField('Date of counting last attendance.')
 	paper=models.ForeignKey(office.models.paper,related_name='paper')
+	
+	taught_by=models.ForeignKey(office.models.faculty,related_name='taught_by',default=None,blank=True,null=True)
 	
 	lecture=models.PositiveSmallIntegerField('Total Lecture',default=0)
 	tutorial=models.PositiveSmallIntegerField('Total Tutorial',default=0)
@@ -51,4 +56,3 @@ class eca_date(models.Model):
 	related_eca_request=models.ForeignKey(eca_request)
 	start=models.DateTimeField()
 	end=models.DateTimeField()
-paper_formset=inlineformset_factory(paper_attendance,student_attendance)

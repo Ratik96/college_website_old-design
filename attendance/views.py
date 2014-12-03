@@ -77,5 +77,10 @@ def class_attendance(request):
 	'''
 	data={}
 	template='attendance/class.html'
+	if request.user.is_authenticated():
+		data['class_att']=attendance.models.paper_attendance.objects.filter(taught_by=request.user.profile)
+		data['stu_att']=attendance.models.student_attendance.objects.filter(class_attendance=data['class_att'])
+	else:
+		data['not_authenticated']='You are not authenticated to view this page.'
 	return render(request,template,data)
 			
