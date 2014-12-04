@@ -27,6 +27,6 @@ Templates
 8. Login page is unstyled.
 9. ~Style alumni page
 10. Fix styles for notices
-11. ~Quicklnks login
+11. ~Quicklinks login
 
 -----------add login flag for website during development and public deployment. Try pythonanywhere
