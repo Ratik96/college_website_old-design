@@ -26,7 +26,7 @@
 <div class="container">
 	<div class="col">
 		<div class="col-md-4">
-			<h1 style="margin-right: 5px;">Quick Links</h1>
+			<h1>Quick Navigation</h1>
 			<ol>
 				<li><a href='{%url "site_login"%}'>Login</a></li>
 				<!--<li><a href='#'>Office</a></li>-->
@@ -37,7 +37,7 @@
 	</div>
 	<div class="col">
 		<div class="col-md-4">
-			<h1 style="margin-right: 5px;">Notifications<a href='{%url "notification_feed"%}'><img src={%static "mainsite/images/rss.jpg"%} alt='--rss--' style="margin-left: 10px;" /></a></h1>
+			<h1>Notifications<a href='{%url "notification_feed"%}'><img src={%static "mainsite/images/rss.jpg"%} alt='--rss--' style="margin-left: 10px;" /></a></h1>
 			<ol>
 				{%for n in notification%}
 					<li><a target='_blank' href="{{n.get_absolute_url}}">{{n.title|capfirst}}{%if n.recent%}<img src='{%static "mainsite/images/new2.gif"%}' width=30eu alt='*' style="margin-left: 5px;" />{%endif%}</a></li>
@@ -48,7 +48,7 @@
 	</div>
 	<div class="col">
 		<div class="col-md-4">
-			<h1 style="margin-right: 5px;">Principal's Desk <a href='{%url "principal_feed"%}'><img src={%static "mainsite/images/rss.jpg"%} alt='--rss--' style="margin-left: 10px;" /></a></h1>
+			<h1>Principal's Desk <a href='{%url "principal_feed"%}'><img src={%static "mainsite/images/rss.jpg"%} alt='--rss--' style="margin-left: 10px;" /></a></h1>
 			<ol>
 				{%for n in principal_desk%}
 					<li><a target='_blank' href="{{n.get_absolute_url}}">{{n.title|capfirst}}{%if n.recent%}<img src='{%static "mainsite/images/new2.gif"%}' width=30eu alt='*' style="margin-left: 5px;" />{%endif%}</a></li>
