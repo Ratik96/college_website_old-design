@@ -132,7 +132,7 @@ def archive(request):
 def alumni(request):
 	data={}
 	data['domain_name']=stephens.settings.domain_name
-	return render(request,'mainsite/society.html',data)
+	return render(request,'mainsite/alumni.html',data)
 def contact(request):
 	data={}
 	data['domain_name']=stephens.settings.domain_name
