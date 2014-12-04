@@ -32,7 +32,7 @@
 					<li><a target='_blank' href="{{n.get_absolute_url}}">{{n.title|capfirst}}{%if n.recent%}<img src='{%static "mainsite/images/new2.gif"%}' width=30eu alt='*' style="margin-left: 5px;" />{%endif%}</a></li>
 				{%endfor%}
 			</ol>
-			<p><a class="btn btn-default" href="{%url 'notice_home'%}" role="button">More.. &raquo;</a></p>
+			<a class="btn btn-default" href="{%url 'notice_home'%}" role="button">More.. &raquo;</a>
 		</div>
 	</div>
 	<div class="col">
@@ -43,7 +43,7 @@
 					<li><a target='_blank' href="{{n.get_absolute_url}}">{{n.title|capfirst}}{%if n.recent%}<img src='{%static "mainsite/images/new2.gif"%}' width=30eu alt='*' style="margin-left: 5px;" />{%endif%}</a></li>
 				{%endfor%}
 			</ol>
-			<p><a class="btn btn-default" href="{%url 'principal_home'%}" role="button">More.. &raquo;</a></p>
+			<a class="btn btn-default" href="{%url 'principal_home'%}" role="button">More.. &raquo;</a>
 		</div>
 	</div>
 	<div class="col">
