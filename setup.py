@@ -12,6 +12,7 @@ from django.core.files import File
 from django.contrib.auth.models import User,Group
 from django.core.management import execute_from_command_line
 from django.utils import timezone
+from django.conf import settings
 
 #cleanup of the existing files etc
 try:
@@ -31,8 +32,7 @@ else:
 	
 try:
 	print 'Cleaning media root'
-	user=os.environ['USER']
-	path='/home/'+user+'/Documents/college_site'
+	path=settings.MEDIA_ROOT
 	shutil.rmtree(path)
 except Exception as e:
 	print e
@@ -41,6 +41,7 @@ else:
 print '================================================================'
 #cleanup complete
 #create the database tables
+execute_from_command_line(['manage.py','collectstatic','--noinput'])
 execute_from_command_line(['manage.py','syncdb','--noinput'])
 sup=User()
 sup.is_staff=True
