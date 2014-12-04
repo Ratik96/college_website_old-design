@@ -61,6 +61,11 @@ header p:last-of-type {
   font-weight: 400;
 }
 
+header div {
+  padding-top: 40px;
+  padding-bottom: 15px; 
+}
+
 #logo {
   height: 100px;
   width: 100px;
