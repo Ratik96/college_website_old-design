@@ -32,6 +32,11 @@
 
   nav {
     text-align: center;
+    padding: 0;
+  }
+
+  select {
+    display: none !important;
   }
 }
 
@@ -43,6 +48,16 @@
 
 @media (min-width: 568px) {
   nav select, nav button {
+    /*display: none;*/
+  }
+}
+
+@media (max-width: 750px) {
+  nav ul {
     display: none;
+  }
+
+  select {
+    display: inherit;
   }
 }
