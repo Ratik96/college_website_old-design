@@ -9,6 +9,8 @@
 	<link rel="stylesheet" type="text/css" href='{% static "mainsite/bootstrap-theme.min.css" %}'/>
 	<!-- Fonts -->
 	<link href='http://fonts.googleapis.com/css?family=Oswald:400,700|Fjalla+One|Francois+One|Roboto:400,500,700,100,300' rel='stylesheet' type='text/css'>
+	<!-- FontAwesome -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href='{% static "mainsite/base.css"%}'/>
 	<link rel="stylesheet" type="text/css" href='{% static "mainsite/base-responsive.css"%}'/>
 	<script type="text/javascript" src="{%static 'mainsite/jquery.min.js'%}"></script>
@@ -25,6 +27,7 @@
 			<p>ST. STEPHEN'S COLLEGE</p>
 			<p>University Enclave, Delhi - 110007, India</p>
 		</div>
+		<a href='{%url "site_login"%}' class="login">Login</a>
 		<nav>
 			<ul>
 				<li><a href='/'>HOME</a></li>

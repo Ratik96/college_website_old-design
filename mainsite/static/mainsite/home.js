@@ -10,6 +10,14 @@ $(document).ready(function(){
     show: {effect: 'fade', duration: 2000},     
     hide: {effect: 'fade', duration: 2000},
   });
+
+  $(window).resize(function () {
+    if ($(window).width() <= 500) {
+        $('.col').css('margin-bottom', '50px');
+    } else {
+        $('.col').css('margin-bottom', '0');
+    }
+  });
 });
 
 
