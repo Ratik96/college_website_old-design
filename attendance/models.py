@@ -45,9 +45,13 @@ class student_attendance(models.Model):
 	a_tutorial=models.PositiveSmallIntegerField('Tutorial Adjustment(ECA etc)',default=0)
 	a_practical=models.PositiveSmallIntegerField('Practical Adjustment(ECA etc)',default=0)
 class eca_request(models.Model):
-	'''Class to store an ECA request'''
+	'''Class to store an ECA request.
+	Signed is filled by the staff advisor or hod.
+	Approved is filled by principal.
+	Null means not seen.'''
 	stud=models.ForeignKey(office.models.student,related_name='stud')
-	approved=models.BooleanField(default=False)
+	signed=models.NullBooleanField(default=None)
+	approved=models.NullBooleanField(default=None)
 	description=models.TextField(help_text='Nature of activity requiring absence from class.')
 	soc=models.ForeignKey(office.models.deptsoc,related_name='society',help_text='Department/Society under which activity was done.')
 	#add signed also
