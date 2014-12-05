@@ -83,6 +83,18 @@ def ECA_list(request):
 		data['not_authentic']='Not an active user.Contact Administration.'
 	return render(request,template,data)
 @login_required
+def ECA_sign(request):
+	'''Portal for signing ECAs.'''
+	data={}
+	template='attendance/eca_sign.html'
+	return render(request,template,data)
+@login_required
+def ECA_approve(request):
+	'''Protal for ECA approval'''
+	data={}
+	template='attendance/eca_approve.html'
+	return render(request,template,data)
+@login_required
 def ECA_new(request):
 	'''A form to request ECA from the college.
 	-------GET--------
@@ -158,4 +170,4 @@ def class_attendance(request):
 	else:
 		data['not_authenticated']='You are not authenticated to view this page.'
 	return render(request,template,data)
-			
+

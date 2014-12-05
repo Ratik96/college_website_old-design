@@ -1,12 +1,17 @@
 # Ignore these files from being pushed
 *.pyc
 *~
+db.sqlite3
 
+
+stephens/settings/local.py
 # Ignore these folders from being pushed
 bin
+venv
 include
 lib
 staticfiles
+mediafiles
 
 # Compiled source #
 ###################

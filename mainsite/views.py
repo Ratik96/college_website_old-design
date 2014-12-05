@@ -28,7 +28,8 @@ def home(request):
 		if 'principal' in i.name.replace(' ','').lower().strip():
 			princi=i
 		if 'notice' in i.name.replace(' ','').lower().strip():
-			notice=i
+			if 'admission' not in i.name.replace(' ','').lower().strip():
+				notice=i
 	data['notification']=mainsite.models.notification.objects.filter(category=notice).order_by('pinned','-publish_date')[:5]
 	data['principal_desk']=mainsite.models.notification.objects.filter(category=princi).order_by('-publish_date')[:5]
 	return render(request,'mainsite/home.html',data)

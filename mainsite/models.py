@@ -34,6 +34,8 @@ class notification_category(models.Model):
 	'''The categories of notices on the website. Each has a feed.
 	This should be kept to a minimum
 	'''
+	def __unicode__(self):
+		return str(self.name)
 	name=models.CharField(max_length=50)	
 	
 class notification(models.Model):
