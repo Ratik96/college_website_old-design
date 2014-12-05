@@ -41,14 +41,20 @@ else:
 print '================================================================'
 #cleanup complete
 #create the database tables
+print 'Collecting static'
 execute_from_command_line(['manage.py','collectstatic','--noinput'])
+print 'Done'
+print '================================================================'
+print 'Syncdb'
 execute_from_command_line(['manage.py','syncdb','--noinput'])
+print 'Creating superuser'
 sup=User()
 sup.is_staff=True
 sup.is_superuser=True
 sup.set_password('asd')
 sup.username='ghost'
 sup.save()
+print '================================================================'
 #------------------------------------------------------------------------------------------------
 #----------------------------------Now the setup of data starts------------------------------------------
 #------------------------------------------------------------------------------------------------

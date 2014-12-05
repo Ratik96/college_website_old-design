@@ -13,6 +13,7 @@ Views and models
 10. Write tests for all apps
 11.~Add feed for admission notices.
 12. Add middle name to the addmission form (important)
+13. Captcha work to be done
 
 =======
 Templates

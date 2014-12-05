@@ -188,7 +188,6 @@ def students():
 					a.course=crs
 					a.current_semester=(2*sem)-1
 					a.save()
-					print a.current_semester,'	',stu
 		f.close()#close picture file
 	
 	else:
@@ -239,7 +238,7 @@ def faculty():
 			profile.dept=department
 			profile.qualification=clean_to_string(det[2].strip())
 			profile.save()
-			print '		',prof
+			print '		',profile.user.first_name
 	def_pic.close()
 function_list.append(faculty)
 #------------------------------------------------------------------------------------------------
