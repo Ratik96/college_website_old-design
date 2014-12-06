@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+{%block body%}
+	{%if user.is_authenticated%}
+	<ul>
+		{%if student%}
+		<li>Submitted ECA</li> 
+		<li>Submit New ECA</li>
+		{%endif%}
+		{%if faculty%}
+		<li>Sign ECA</li>
+		{%endif%}
+	</ul>
+	{%else%}
+	This page provides ECA functionalities.
+	You need to be logged in to be able to access this functionality.
+	{%endif%}
+{%endblock%}

@@ -102,7 +102,8 @@ def ECA_sign(request):
 		unsigned=functions.get_unsigned_eca_requests(user)
 		signed=factory(request.POST,queryset=unsigned)
 		if signed.is_valid():
-			signed.save()
+			fac=office.models.faculty.objects.get(user=user)
+			signed.save(author=fac)
 			data['status']='Successfully signed ECA requests'
 			data['formset']=factory(queryset=unsigned)
 		else:
@@ -130,7 +131,8 @@ def ECA_approve(request):
 		unsigned=functions.get_unapproved_eca_requests(user)
 		signed=factory(request.POST,queryset=unsigned)
 		if signed.is_valid():
-			signed.save()
+			fac=office.models.faculty.objects.get(user=user)
+			signed.save(author=fac)
 			data['status']='Successfully signed ECA requests'
 			data['formset']=factory(queryset=unsigned)
 		else:
@@ -189,12 +191,6 @@ def ECA_new(request):
 					data['status']='Successfully submitted ECA'
 					data['form']=formset(initial=[{'start':timezone.now()}])
 					data['detail']=attendance.models.eca_request_form()
-					#create log entry
-					log=attendance.models.attendance_log()
-					desc=''
-					desc+=request.user.first_name+'('+str(request.user.id)+')'
-					desc+='Added ECA request('+str(eca_details.id)+')'
-					log.test=desc
 					#return completed status
 				else:
 					data['detail']=detail_form
@@ -215,3 +211,16 @@ def class_attendance(request):
 		data['not_authenticated']='You are not authenticated to view this page.'
 	return render(request,template,data)
 
+def ECA_home(request):
+	'''Returns the links of various ECA functinoalities based on student/faculty/anoonymous users'''
+	data={}
+	template='attendance/eca_home.html'
+	user=request.user
+	if user.is_authenticated():
+		try:
+			stu=office.models.student.objects.get(user=user)
+		except:
+			data['faculty']=True
+		else:
+			data['student']=True
+	return render(request,template,data)

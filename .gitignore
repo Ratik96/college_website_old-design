@@ -1,7 +1,6 @@
 # Ignore these files from being pushed
 *.pyc
 *~
-db.sqlite3
 
 
 stephens/settings/local.py
@@ -39,6 +38,7 @@ mediafiles
 ######################
 *.log
 *.sql
+*sqlite3
  
 # OS generated files #
 ######################

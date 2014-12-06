@@ -18,7 +18,6 @@ class course_type(models.Model):
 		return str(self.name)
 	name=models.CharField(max_length=30)
 	
-	
 class course(models.Model):
 	'''
 	Defines the courses available in college.

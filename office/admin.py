@@ -13,8 +13,13 @@ class course_type_admin(admin.ModelAdmin):
 
 class student_admin(admin.ModelAdmin):
 	'''admin for student'''
-	list_display=['thumbnail','nickname','course']
+	list_display=['thumbnail','user','nickname','course']
 	list_filter=['course','current_semester','admission_date']
+	search_fields=['user__username','user__email','nickname']
+class faculty_admin(admin.ModelAdmin):
+	'''admin for faculty'''
+	list_display=['thumbnail','user','nickname','dept']
+	list_filter=['dept','qualification']
 	search_fields=['user__username','user__email','nickname']
 class paper_admin(admin.ModelAdmin):
 	'''admin for paper model'''

@@ -50,16 +50,61 @@ class eca_request(models.Model):
 	Approved is filled by principal.
 	Null means not seen.'''
 	stud=models.ForeignKey(office.models.student,related_name='stud')
-	signed=models.NullBooleanField(default=None)
-	approved=models.NullBooleanField(default=None)
+	signed=models.NullBooleanField(default=None)#signed by HOD/staff advisor
+	approved=models.NullBooleanField(default=None)#signed by principal
 	description=models.TextField(help_text='Nature of activity requiring absence from class.')
 	soc=models.ForeignKey(office.models.deptsoc,related_name='society',help_text='Department/Society under which activity was done.')
-	#add signed also
+	last_modified=models.DateTimeField(auto_now=True)#when last modified
+	created=models.DateTimeField(auto_now_add=True)#when created
+	
+	def save(self,*args,**kwargs):
+		try:
+			old=eca_request.objects.get(pk=self.id)
+		except Exception as e:
+			print e
+		else:
+			lg=eca_log()
+			lg.req=old
+			lg.author=author
+			#get old data and new data
+			olddata=""
+			newdata=""
+			if old.stud!=self.stud:#student has changed
+				olddata+='Stud:'+old.stud.__unicode__()+'\n'
+				newdata+='Stud:'+self.stud.__unicode__()+'\n'
+			if old.signed!=self.signed():#if sign has changed
+				olddata+='Signed:'+string(old.signed)+'\n'
+				newdata+='Signed:'+string(self.signed)+'\n'
+			if old.approved!=self.approved():#if approval has changed
+				olddata+='Signed:'+string(old.approved)+'\n'
+				newdata+='Signed:'+string(self.approved)+'\n'
+			if old.desc!=self.desc():#if description has changed
+				olddata+='Signed:'+string(old.desc)+'\n'
+				newdata+='Signed:'+string(self.desc)+'\n'
+			if old.soc!=self.soc():#if society has changed
+				olddata+='Signed:'+string(old.soc.__unicode__())+'\n'
+				newdata+='Signed:'+string(self.soc.__unicode__())+'\n'			
+			#save the log
+			lg.save()
+		#save the data to database
+		super(eca_request,self).save(*args,**kwargs)
 class eca_date(models.Model):
 	'''Class to store ECA date'''
 	related_eca_request=models.ForeignKey(eca_request)
 	start=models.DateTimeField()
 	end=models.DateTimeField()
+
+class eca_log(models.Model):
+	'''A class to keep track of the activities in the ECA models.
+	Tracks activities after creation'''
+	stamp=models.DateTimeField(auto_now_add=True)#timedate stamp of the activity
+	req=models.ForeignKey(eca_request,related_name='req')#The eca_request under consideration
+	old_data=models.TextField(blank=True)#old data
+	new_data=models.TextField(blank=True)#new data
+	author=models.ForeignKey(office.models.faculty,related_name='author')#faculty author
+	
+
+#--------------------------FORMS------------------------------
 class eca_request_form(ModelForm):
 	class Meta:
 		model=eca_request
@@ -72,7 +117,4 @@ class eca_sign_form(ModelForm):
 	class Meta:
 		model=eca_request
 		exclude=['approved']
-class attendance_log(models.Model):
-	'''A class to keep track of the activities in the attendance models'''
-	stamp=models.DateTimeField(default=timezone.now())
-	text=models.TextField()
+#-------------------------------------------------------------
