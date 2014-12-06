@@ -36,3 +36,4 @@ class eca_request_admin(admin.ModelAdmin):
 admin.site.register(attendance.models.student_attendance,student_attendance_admin)
 admin.site.register(attendance.models.paper_attendance,paper_attendance_admin)
 admin.site.register(attendance.models.eca_request,eca_request_admin)
+admin.site.register(attendance.models.eca_log)

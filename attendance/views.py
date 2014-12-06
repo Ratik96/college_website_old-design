@@ -103,7 +103,7 @@ def ECA_sign(request):
 		signed=factory(request.POST,queryset=unsigned)
 		if signed.is_valid():
 			fac=office.models.faculty.objects.get(user=user)
-			signed.save(author=fac)
+			signed.save()
 			data['status']='Successfully signed ECA requests'
 			data['formset']=factory(queryset=unsigned)
 		else:
@@ -132,7 +132,7 @@ def ECA_approve(request):
 		signed=factory(request.POST,queryset=unsigned)
 		if signed.is_valid():
 			fac=office.models.faculty.objects.get(user=user)
-			signed.save(author=fac)
+			signed.save()
 			data['status']='Successfully signed ECA requests'
 			data['formset']=factory(queryset=unsigned)
 		else:

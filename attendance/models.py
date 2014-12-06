@@ -65,7 +65,6 @@ class eca_request(models.Model):
 		else:
 			lg=eca_log()
 			lg.req=old
-			lg.author=author
 			#get old data and new data
 			olddata=""
 			newdata=""
@@ -88,6 +87,7 @@ class eca_request(models.Model):
 			lg.save()
 		#save the data to database
 		super(eca_request,self).save(*args,**kwargs)
+		
 class eca_date(models.Model):
 	'''Class to store ECA date'''
 	related_eca_request=models.ForeignKey(eca_request)
@@ -101,7 +101,6 @@ class eca_log(models.Model):
 	req=models.ForeignKey(eca_request,related_name='req')#The eca_request under consideration
 	old_data=models.TextField(blank=True)#old data
 	new_data=models.TextField(blank=True)#new data
-	author=models.ForeignKey(office.models.faculty,related_name='author')#faculty author
 	
 
 #--------------------------FORMS------------------------------
