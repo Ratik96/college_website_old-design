@@ -5,15 +5,15 @@ Views and models
 3. Archiving system to be installed
 4. -Unify student and faculty profiles==Not needed
 5. ~Add all courses to attendance (Also use capitalize())
-6. Attendance forms for ECA etc.Created the models to record the reuqest. Need to make structure for approval etc.
+6. ~Attendance forms for ECA etc.Created the models to record the reuqest. Need to make structure for approval etc.
 7. ~Paper setup is not correct
 
 8. Attendance 2/3 requirement filter
 9. Printouts from admin page
 10. Write tests for all apps
 11.~Add feed for admission notices.
-12. Add middle name to the addmission form (important)
-13. Captcha work to be done
+12. ~Add middle name to the addmission form (important)
+13. Captcha work to be done. Completed the provision. Check left
 
 =======
 Templates
