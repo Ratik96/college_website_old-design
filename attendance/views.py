@@ -29,25 +29,29 @@ def home(request):
 		data['semesters']=[1,2,3,4,5,6]
 		return render(request,'attendance/home.html',data)
 	if request.method=='POST':#form submission
+		#see if the course,semester exists
 		try:
 			course=office.models.course.objects.get(pk=request.POST['course'])
 			semester=request.POST['semester']
 		except Exception as e:
-			print e
-		else:
+			print e#print the exception encountered
+		else:#if course exists
 			try:
+				#get all students of that course in that semester
 				students=office.models.student.objects.filter(course=course).filter(current_semester=semester)
 				stu=[]
+				#compose the student list
 				for i in students:
 					x={}
 					x['name']=i.user.first_name.replace('_',' ').capitalize() + ' ' + i.user.last_name.capitalize()
 					x['id']=i.id
 					stu.append(x)
 			except Exception as e:
-				print e
+				print e#debug output
+		#return the data
 		return HttpResponse(json.dumps(stu),content_type='application/json')
 def student_id(request,studentid):
-	'''
+	'''Attendance
 	for a student
 	----------------------
 	Provides attendance for student=student_attendance
@@ -80,7 +84,9 @@ def ECA_list(request):
 			print '------'
 			data['not_authentic']='Not a student'
 		else:
+			#get eca models
 			data['eca_requests']=attendance.models.eca_request.objects.filter(stud=student).order_by('pk')
+			#need to get logs
 	else:
 		data['not_authentic']='Not an active user.Contact Administration.'
 	return render(request,template,data)
@@ -89,16 +95,18 @@ def ECA_sign(request):
 	"Portal for signing ECAs." 
 	data={} 
 	template='attendance/eca_sign.html' 
+	#generate form factory
 	factory=modelformset_factory(attendance.models.eca_request,extra=0,exclude=['approved'],can_delete=False)
+	user=request.user
 	if request.method=='GET':
-		user=request.user
 		unsigned=functions.get_unsigned_eca_requests(user)
 		if unsigned!=None:
 			data['formset']=factory(queryset=unsigned)
 			data['status']='You have unsigned ECA requests.'
+		else:
+			data['status']='You have no ECA requests to sign.'
 		return render(request,template,data)
 	if request.method=='POST':
-		user=request.user
 		unsigned=functions.get_unsigned_eca_requests(user)
 		signed=factory(request.POST,queryset=unsigned)
 		if signed.is_valid():

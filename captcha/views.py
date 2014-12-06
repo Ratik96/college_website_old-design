@@ -39,6 +39,16 @@ def get_captcha(request):
 	
 def check_captcha(request):
 	'''Returns a captcha submission and thus validates the humanity of the user'''
-	return HttpResponse(json.dumps(True),content_type='application/json')
-	return HttpResponse(json.dumps(False),content_type='application/json')
+	if request.method=='POST':
+		string=request.POST['string']
+		hash=request.POST['hash']
+		try:
+			cap=captcha.models.hash_table.objects.get(string=string)
+		except:
+			return HttpResponse(json.dumps(False),content_type='application/json')
+		else:
+			if cap.hash=hash:	
+				return HttpResponse(json.dumps(True),content_type='application/json')
+			else:
+				return HttpResponse(json.dumps(False),content_type='application/json')
 	
