@@ -4,7 +4,10 @@ from django.db import models
 from django.utils import timezone
 from django.forms import ModelForm
 
-
+class attendance_control(models.Model):
+	'''Control variables and actions for attendance application'''
+	cutoff=models.FloatField(default=2.0/3)
+	
 class paper_attendance(models.Model):
 	'''Class to record common characteristics for a paper's attendance records.
 	It is common for all student studying the paper.

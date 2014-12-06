@@ -31,6 +31,11 @@ function_list=[]
 SETUP_SUPPORT_FOLDER='setup_support'
 
 #------------------------------------------------------------------------------------------------
+def control_variables():
+	a=attendance.models.attendance_control()
+	a.save()
+function_list.append(control_variables)
+#------------------------------------------------------------------------------------------------
 def student_attendance():
 	'''sets up the attendance for the dummy students'''
 	courses=office.models.course.objects.all()
