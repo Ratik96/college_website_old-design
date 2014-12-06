@@ -44,7 +44,15 @@ def notice_home(request):
 	'''
 	data={}
 	data['domain_name']=stephens.settings.domain_name
-	data['notifications']=mainsite.models.notification.objects.filter(principal=False).order_by('-publish_date','pinned')
+	notice,princi=None,None
+	notice_category=mainsite.models.notification_category.objects.all()
+	for i in notice_category:
+		if 'principal' in i.name.replace(' ','').lower().strip():
+			princi=i
+		if 'notice' in i.name.replace(' ','').lower().strip():
+			if 'admission' not in i.name.replace(' ','').lower().strip():
+				notice=i
+	data['notifications']=mainsite.models.notification.objects.filter(category=notice).order_by('-publish_date','pinned')
 	return render(request,'mainsite/notice_home.html',data)
 def notice_detail(request,cid):
 	'''
@@ -67,7 +75,15 @@ def principal_home(request):
 	'''
 	data={}
 	data['domain_name']=stephens.settings.domain_name
-	data['notifications']=mainsite.models.notification.objects.filter(principal=True).order_by('-publish_date','pinned')
+	notice,princi=None,None
+	notice_category=mainsite.models.notification_category.objects.all()
+	for i in notice_category:
+		if 'principal' in i.name.replace(' ','').lower().strip():
+			princi=i
+		if 'notice' in i.name.replace(' ','').lower().strip():
+			if 'admission' not in i.name.replace(' ','').lower().strip():
+				notice=i
+	data['notifications']=mainsite.models.notification.objects.filter(category=princi).order_by('-publish_date','pinned')
 	return render(request,'mainsite/notice_home.html',data)
 
 

@@ -6,6 +6,8 @@ from django.http import HttpResponse
 from django.views.decorators.http import require_http_methods
 import attendance,office
 from django.utils import timezone
+from attendance import functions
+
 def home(request):
 	'''Homepage for attendance.
 	Gives a search function to select students by course and semester
@@ -84,15 +86,58 @@ def ECA_list(request):
 	return render(request,template,data)
 @login_required
 def ECA_sign(request):
-	'''Portal for signing ECAs.'''
-	data={}
-	template='attendance/eca_sign.html'
+	"Portal for signing ECAs." 
+	data={} 
+	template='attendance/eca_sign.html' 
+	factory=modelformset_factory(attendance.models.eca_request,extra=0,exclude=['approved'],can_delete=False)
+	if request.method=='GET':
+		user=request.user
+		unsigned=functions.get_unsigned_eca_requests(user)
+		if unsigned!=None:
+			data['formset']=factory(queryset=unsigned)
+			data['status']='You have unsigned ECA requests.'
+		return render(request,template,data)
+	if request.method=='POST':
+		user=request.user
+		unsigned=functions.get_unsigned_eca_requests(user)
+		signed=factory(request.POST,queryset=unsigned)
+		if signed.is_valid():
+			signed.save()
+			data['status']='Successfully signed ECA requests'
+			data['formset']=factory(queryset=unsigned)
+		else:
+			data['formset']=signed
+			data['status']='Your entries did not validate. Please resubmit'
+		return render(request,template,data)
+	data['status']='Something went wrong. If problem persists contact Website Admin'
 	return render(request,template,data)
+	
 @login_required
 def ECA_approve(request):
-	'''Protal for ECA approval'''
+	'''Portal for ECA approval'''
 	data={}
 	template='attendance/eca_approve.html'
+	factory=modelformset_factory(attendance.models.eca_request,extra=0,exclude=['approved'],can_delete=False)
+	if request.method=='GET':
+		user=request.user
+		unsigned=functions.get_unapproved_eca_requests(user)
+		if unsigned!=None:
+			data['formset']=factory(queryset=unsigned)
+			data['status']='You have unsigned ECA requests.'
+		return render(request,template,data)
+	if request.method=='POST':
+		user=request.user
+		unsigned=functions.get_unapproved_eca_requests(user)
+		signed=factory(request.POST,queryset=unsigned)
+		if signed.is_valid():
+			signed.save()
+			data['status']='Successfully signed ECA requests'
+			data['formset']=factory(queryset=unsigned)
+		else:
+			data['formset']=signed
+			data['status']='Your entries did not validate. Please resubmit'
+		return render(request,template,data)
+	data['status']='Something went wrong. If problem persists contact Website Admin'
 	return render(request,template,data)
 @login_required
 def ECA_new(request):
@@ -135,7 +180,6 @@ def ECA_new(request):
 				else:
 					#if not valid return the errors found
 					data['detail']=detail_form
-					data['form']=dates
 					return render(request,template,data)
 				#print 'Detail  form done---------debug'
 				dates=formset(request.POST,instance=eca_details)

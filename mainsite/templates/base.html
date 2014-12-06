@@ -27,7 +27,11 @@
 			<p>ST. STEPHEN'S COLLEGE</p>
 			<p>University Enclave, Delhi - 110007, India</p>
 		</div>
+		{%if not user.is_authenticated%}
 		<a href='{%url "site_login"%}' class="login">Login</a>
+		{%else%}
+		<a href='{%url "site_logout"%}' class="login">Logout</a>		
+		{%endif%}
 		<nav>
 			<ul>
 				<li><a href='/'>HOME</a></li>

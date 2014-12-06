@@ -68,6 +68,10 @@ class eca_date_form(ModelForm):
 	class Meta:
 		model=eca_date
 		fields=['start','end']
+class eca_sign_form(ModelForm):
+	class Meta:
+		model=eca_request
+		exclude=['approved']
 class attendance_log(models.Model):
 	'''A class to keep track of the activities in the attendance models'''
 	stamp=models.DateTimeField(default=timezone.now())
