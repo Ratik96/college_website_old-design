@@ -71,18 +71,18 @@ class eca_request(models.Model):
 			if old.stud!=self.stud:#student has changed
 				olddata+='Stud:'+old.stud.__unicode__()+'\n'
 				newdata+='Stud:'+self.stud.__unicode__()+'\n'
-			if old.signed!=self.signed():#if sign has changed
-				olddata+='Signed:'+string(old.signed)+'\n'
-				newdata+='Signed:'+string(self.signed)+'\n'
-			if old.approved!=self.approved():#if approval has changed
-				olddata+='Signed:'+string(old.approved)+'\n'
-				newdata+='Signed:'+string(self.approved)+'\n'
-			if old.desc!=self.desc():#if description has changed
-				olddata+='Signed:'+string(old.desc)+'\n'
-				newdata+='Signed:'+string(self.desc)+'\n'
-			if old.soc!=self.soc():#if society has changed
-				olddata+='Signed:'+string(old.soc.__unicode__())+'\n'
-				newdata+='Signed:'+string(self.soc.__unicode__())+'\n'			
+			if old.signed!=self.signed:#if sign has changed
+				olddata+='Signed:'+str(old.signed)+'\n'
+				newdata+='Signed:'+str(self.signed)+'\n'
+			if old.approved!=self.approved:#if approval has changed
+				olddata+='Signed:'+str(old.approved)+'\n'
+				newdata+='Signed:'+str(self.approved)+'\n'
+			if old.description!=self.description:#if description has changed
+				olddata+='Signed:'+str(old.description)+'\n'
+				newdata+='Signed:'+str(self.description)+'\n'
+			if old.soc!=self.soc:#if society has changed
+				olddata+='Signed:'+str(old.soc.__unicode__())+'\n'
+				newdata+='Signed:'+str(self.soc.__unicode__())+'\n'			
 			#save the log
 			lg.save()
 		#save the data to database
@@ -97,6 +97,8 @@ class eca_date(models.Model):
 class eca_log(models.Model):
 	'''A class to keep track of the activities in the ECA models.
 	Tracks activities after creation'''
+	def __unicode__(self):
+		return 'req='+str(self.req.id)+','+str(self.id)
 	stamp=models.DateTimeField(auto_now_add=True)#timedate stamp of the activity
 	req=models.ForeignKey(eca_request,related_name='req')#The eca_request under consideration
 	old_data=models.TextField(blank=True)#old data

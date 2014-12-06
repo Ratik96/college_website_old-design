@@ -2,6 +2,9 @@ from django.contrib import admin
 import attendance
 
 
+#---------------------Filters-----------------
+#--------------------Admins-------------------
+
 class student_attendance_inline(admin.TabularInline):
 	'''Inline addition for student_attendance'''
 	model=attendance.models.student_attendance
@@ -32,8 +35,11 @@ class eca_request_admin(admin.ModelAdmin):
 	list_display=['stud','approved','soc']
 	list_filter=['approved','soc']
 	search_fields=['stud__user__first_name','description']
+class eca_log_admin(admin.ModelAdmin):
+	list_display=('req','stamp')
+	list_filter=('req','stamp')
 	
 admin.site.register(attendance.models.student_attendance,student_attendance_admin)
 admin.site.register(attendance.models.paper_attendance,paper_attendance_admin)
 admin.site.register(attendance.models.eca_request,eca_request_admin)
-admin.site.register(attendance.models.eca_log)
+admin.site.register(attendance.models.eca_log,eca_log_admin)

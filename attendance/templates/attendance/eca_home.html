@@ -3,11 +3,11 @@
 	{%if user.is_authenticated%}
 	<ul>
 		{%if student%}
-		<li>Submitted ECA</li> 
-		<li>Submit New ECA</li>
+		<li><a href={%url 'view_eca'%}>Submitted ECA</a></li> 
+		<li><a href={%url 'request_eca'%}>Submit New ECA</a></li>
 		{%endif%}
 		{%if faculty%}
-		<li>Sign ECA</li>
+		<li><a href={%url 'sign_eca'%}>Sign ECA</a></li>
 		{%endif%}
 	</ul>
 	{%else%}

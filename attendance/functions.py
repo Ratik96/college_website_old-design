@@ -12,7 +12,11 @@ def get_unsigned_eca_requests(user):
 	else:
 		society=faculty.head
 		if society!=None:
-			return models.eca_request.objects.filter(soc=society).filter(signed=None)
+			lst=models.eca_request.objects.filter(soc=society).filter(signed=None)
+			if len(lst)==0:
+				return None
+			else:
+				return lst
 		return None
 		
 def get_unapproved_eca_requests():

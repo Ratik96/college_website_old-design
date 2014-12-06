@@ -173,7 +173,7 @@ def ECA_new(request):
 			return render(request,template,data)
 		else:
 			#make the dates formset
-			formset=inlineformset_factory(attendance.models.eca_request,attendance.models.eca_date,extra=10,can_delete=False)
+			formset=inlineformset_factory(attendance.models.eca_request,attendance.models.eca_date,extra=5,can_delete=False)
 			if request.method=='GET':
 				#return an empty form
 				data['form']=formset(initial=[{'start':timezone.now()}])
