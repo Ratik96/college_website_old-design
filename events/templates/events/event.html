@@ -17,14 +17,16 @@
 		<hr class="divider">
 		
 		{%for sc in schedules%}
-			{{sc.title}}
-			{{sc.location}}
-			{{sc.description}}
-			{{sc.start}}
-			{{sc.end}}
+			<h1><u>{{sc.title}}</u></h1>
+			<h5>Location: {{sc.location}}</h5>
+			<p>{{sc.description}}</p>
+			<!-- <h4 style="font-weight: 300;"><span style="font-weight: 700; text-decoration: underline;">Start time:  </span>{{sc.start}}</h4>
+			<h4 style="font-weight: 300;"><span style="font-weight: 700; text-decoration: underline;">Start time:  </span>{{sc.end}}</h4> -->
 		{%endfor%}
 
-		<hr class="divider">
+		{% if pos in posters %}
+			<hr class="divider">
+		{% endif %}
 		
 		<section>
 			<ul class="img-gal">
@@ -38,7 +40,9 @@
 			</ul>
 		</section>
 
-		<hr class="divider">
+		{% if pic in photos %}
+			<hr class="divider">
+		{% endif %}
 
 		<section>
 			<ul class="img-gal">
