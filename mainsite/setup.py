@@ -85,24 +85,41 @@ function_list.append(principal_desk_notices)
 def notifications(folder='notifications'):
 	'''sets up the notifications for the website'''
 	filepath=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,folder)
-	files=os.listdir(filepath)
+	folders=os.listdir(filepath)
 	cat=mainsite.models.notification_category.objects.first()
-	for i in files:
+	for folder in folders:
+		files=os.listdir(os.path.join(filepath,folder))
+		files.sort()
 		a=mainsite.models.notification()
-		a.title=i.split('.')[0].replace('_',' ').capitalize()
+		a.title=folder.split('.')[0].replace('_',' ').capitalize()
 		a.description='A notice from the college.'
 		a.category=cat
-		f=file(os.path.join(filepath,i))
-		lines=f.readlines()
-		new_lines=[clean_to_string(iasd) for iasd in lines]
-		text='\n'.join(new_lines)
 		a.save()
-		f.close()
-		s=mainsite.models.Slot()
-		s.notif=a
-		s.text=text
-		s.order=0
-		s.save()
+		for i in files:
+			faces=i.split('|')
+			print faces
+			#create the slot
+			s=mainsite.models.Slot()
+			s.notif=a
+			s.order=int(faces[0])
+			if 't' in faces[1]:
+				f=file(os.path.join(filepath,folder,i))
+				lines=f.readlines()
+				new_lines=[clean_to_string(iasd) for iasd in lines]
+				text='\n'.join(new_lines)
+				s.text=text
+				if 'l' in faces[1]:
+					s.link=faces[2]
+			if 'f' in faces[1]:
+				f=file(os.path.join(filepath,folder,i))
+				s.associted_file=File(f)
+			if 'i' in faces[1]:
+				f=file(os.path.join(filepath,folder,i))
+				s.picture=File(f)
+				if 'l' in faces[1]:
+					s.link=faces[2]
+			s.save()
+			f.close()
 function_list.append(notifications)
 #------------------------------------------------------------------------------------------------
 def run_function(fn):

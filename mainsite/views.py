@@ -30,8 +30,8 @@ def home(request):
 		if 'notice' in i.name.replace(' ','').lower().strip():
 			if 'admission' not in i.name.replace(' ','').lower().strip():
 				notice=i
-	data['notification']=mainsite.models.notification.objects.filter(category=notice).order_by('pinned','-publish_date')[:5]
-	data['principal_desk']=mainsite.models.notification.objects.filter(category=princi).order_by('-publish_date')[:5]
+	data['notification']=mainsite.models.notification.objects.filter(category=notice).order_by('pinned','-publish_date','-pk')[:5]
+	data['principal_desk']=mainsite.models.notification.objects.filter(category=princi).order_by('-publish_date','-pk')[:5]
 	return render(request,'mainsite/home.html',data)
 	
 def notice_home(request):
