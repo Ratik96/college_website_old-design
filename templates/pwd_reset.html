@@ -1,8 +1,30 @@
 {%extends 'base.html'%}
+
+{% block head %}
+  {% load static %}
+  <style type="text/css">
+    form {
+      max-width: 400px;
+      background-color: #FFFFFF;
+      padding: 20px 40px 50px 40px;
+      border-radius: 10px;
+      margin: 7% auto 0;
+    }
+  </style>
+{% endblock %}
+
 {%block body%}
-<form action={%url "password_change"%} method='post'>
-{%csrf_token%}
-{{form}}
-<input type='submit'/>
-</form>
+  <form role="form" action={%url "password_change"%} method='POST'>
+    {%csrf_token%}
+    <h2 style="color: black; font-family: sans-serif; text-align: center; margin-bottom: 20px; padding: 0;">Change Password</h2>
+    <label for="id_old_password">Old Password</label>
+    <p><input id="id_old_password" name="old_password" type="password" class="form-control"></p>
+    <label for="id_new_password1">New Password</label>
+    <p><input id="id_new_password1" name="new_password1" type="password" class="form-control"></p>
+    <label for="id_new_password2">Confirm Password</label>
+    <p><input id="id_new_password2" name="new_password2" type="password" class="form-control"></p>
+    <button type="submit" class="btn btn-primary">Reset Password</button>
+  </form>
 {%endblock%}
+
+

@@ -25,7 +25,7 @@ Templates
 5. Admission notice feed on admission/notices/ page to be styled
 6. Attendance on profile page. Will be phasing out the attendance view page.
 7. Profile page major changes.Logout button.Tabs.Inbox.Etc need to be styled
-8. Login page,password change,logout is unstyled.Quicklnks login
+8. ~Login page, password change, logout is unstyled. Quicklnks login. 
 9. ~Style alumni page
 10. Fix styles for notices
 11. ~Quicklinks login

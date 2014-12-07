@@ -28,7 +28,11 @@
 		<div class="col-md-4">
 			<h1>Quick Navigation</h1>
 			<ol>
+				{%if not user.is_authenticated%}
 				<li><a href='{%url "site_login"%}'>Login</a></li>
+				{%else%}
+				<li><a href='{%url "profile_detail_general"%}'>My Profile</a></li>
+				{%endif%}
 				<!--<li><a href='#'>Office</a></li>-->
 				<!--<li><a href='#'>Events</a></li>-->
 				<li><a href='http://library.ststephens.edu/'>e-Library</a></li>
