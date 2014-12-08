@@ -140,6 +140,52 @@ def university_papers():
 		print 'No paper list found'
 function_list.append(university_papers)
 #------------------------------------------------------------------------------------------------
+def faculty():
+	'''
+	adds faculty. and departments'''
+	
+	prof_path=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'profile')
+	def_pic=file(os.path.join(prof_path,'default.jpg'))
+	default_picture=File(def_pic)#default profile picture
+	depts=os.listdir(os.path.join(prof_path,'profiles'))#list of departments
+	nicks_already_used=[]
+	for dept in depts:
+		#create department
+		department=office.models.deptsoc()
+		department.is_society=False
+		department.name=dept.strip().replace('_',' ').capitalize()
+		nick=clean_to_string(dept.strip().replace('_','').replace(' ','').replace('/','').lower())[:10]
+		if nick in nicks_already_used:
+			nick = 'phy'
+		department.nickname=nick
+		nicks_already_used.append(nick)
+		department.save()
+		#list profiles in the department
+		profiles=os.listdir(os.path.join(prof_path,'profiles',dept))
+		for prof in profiles:
+			#create profiles
+			f=file(os.path.join(prof_path,'profiles',dept,prof))
+			det=f.readlines()
+			f.close()
+			user=User()
+			user.username=prof.strip().replace(' ','').replace('.','').lower()[:-3]
+			user.first_name=clean_to_string(prof.strip()[:-4])#account for the extra dot
+			user.set_password('asd')
+			user.save()
+			#create profile
+			profile=office.models.faculty()
+			profile.user=user
+			x=prof.strip().replace(' ','').replace('.','').lower()[:-3]
+			profile.nickname=random_fill(x,10)
+			profile.title=''
+			profile.picture=default_picture
+			profile.dept=department
+			profile.qualification=clean_to_string(det[2].strip())
+			profile.save()
+			print '		',profile.user.first_name
+	def_pic.close()
+function_list.append(faculty)
+#------------------------------------------------------------------------------------------------
 def students():
 	'''sets up students'''
 	filepath=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'student_photos','college_studentlist')
@@ -196,52 +242,6 @@ def students():
 		students()
 function_list.append(students)
 
-#------------------------------------------------------------------------------------------------
-def faculty():
-	'''
-	adds faculty. and departments'''
-	
-	prof_path=os.path.join(os.getcwd(),SETUP_SUPPORT_FOLDER,'profile')
-	def_pic=file(os.path.join(prof_path,'default.jpg'))
-	default_picture=File(def_pic)#default profile picture
-	depts=os.listdir(os.path.join(prof_path,'profiles'))#list of departments
-	nicks_already_used=[]
-	for dept in depts:
-		#create department
-		department=office.models.deptsoc()
-		department.is_society=False
-		department.name=dept.strip().replace('_',' ').capitalize()
-		nick=clean_to_string(dept.strip().replace('_','').replace(' ','').replace('/','').lower())[:10]
-		if nick in nicks_already_used:
-			nick = 'phy'
-		department.nickname=nick
-		nicks_already_used.append(nick)
-		department.save()
-		#list profiles in the department
-		profiles=os.listdir(os.path.join(prof_path,'profiles',dept))
-		for prof in profiles:
-			#create profiles
-			f=file(os.path.join(prof_path,'profiles',dept,prof))
-			det=f.readlines()
-			f.close()
-			user=User()
-			user.username=prof.strip().replace(' ','').replace('.','').lower()[:-3]
-			user.first_name=clean_to_string(prof.strip()[:-4])#account for the extra dot
-			user.set_password('asd')
-			user.save()
-			#create profile
-			profile=office.models.faculty()
-			profile.user=user
-			x=prof.strip().replace(' ','').replace('.','').lower()[:-3]
-			profile.nickname=random_fill(x,10)
-			profile.title=''
-			profile.picture=default_picture
-			profile.dept=department
-			profile.qualification=clean_to_string(det[2].strip())
-			profile.save()
-			print '		',profile.user.first_name
-	def_pic.close()
-function_list.append(faculty)
 #------------------------------------------------------------------------------------------------
 
 def societies():

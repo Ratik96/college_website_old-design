@@ -4,6 +4,7 @@ from django.forms.models import modelformset_factory
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 import mainsite,office,stephens,attendance
+from mainsite.functions import *
 from django.contrib.auth.models import User,Group
 
 
@@ -155,10 +156,9 @@ def contact(request):
 	data['domain_name']=stephens.settings.domain_name
 	return render(request,'mainsite/contact.html',data)
 def profile_detail(request,nick=None):
-	'''
-	Profile of a person
-	'''
+	''' Profile of a person '''
 	data={}
+	#-------------------------------------------------get profile
 	if nick==None:
 		if request.user.is_authenticated():
 			nick=request.user.profile.nickname
@@ -187,6 +187,7 @@ def profile_detail(request,nick=None):
 			print '--------------------'
 			#as person not in faculty or student database raise error
 			raise Http404
+	#---------------------------------------------------profile obtained or error raised
 	#if everything goes on well person is found
 	if request.user.is_authenticated():
 		#common things
@@ -196,12 +197,26 @@ def profile_detail(request,nick=None):
 		#	society=fac.head
 		#	formset=modelformset_factory(attendance.models.eca_request,can_delete=False,extra=0)
 		#	data['eca']=formset(queryset=attendance.models.eca_request.objects.filter(soc=society))
-			
+	#handle the request types
 	if request.method=='GET':
-		return render(request,'mainsite/profile.html',data)
+		template='mainsite/profile.html'
 	if request.method=='POST':
-		#complete this functionality
-		stephens.common_functions.contact_notification()
+	 	#get relevent data
+		email_to=data['profile'].user.email
+		email_from=request.POST['from']
+		subject=request.POST['subject']
+		message=request.POST['message']
+		#try to send message
+		try:
+			contact_notification(email_from,email_to,subject,message)
+		except:
+			data['status']='Your message was not sent due to an error with our email services.'
+		else:
+			data['status']='Your message has been sent successfully to the email provided by the current profile'
+		#set the new template
+		template='mainsite/message_sent.html'
+	#return
+	return render(request,template,data)
 
 def course_detail(request,cid):
 	'''course details'''
