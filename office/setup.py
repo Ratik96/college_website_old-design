@@ -232,7 +232,8 @@ def faculty():
 			#create profile
 			profile=office.models.faculty()
 			profile.user=user
-			profile.nickname=prof.strip().replace(' ','').replace('.','').lower()[:-3]
+			x=prof.strip().replace(' ','').replace('.','').lower()[:-3]
+			profile.nickname=random_fill(x,10)
 			profile.title=''
 			profile.picture=default_picture
 			profile.dept=department

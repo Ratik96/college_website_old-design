@@ -88,38 +88,44 @@ def notifications(folder='notifications'):
 	folders=os.listdir(filepath)
 	cat=mainsite.models.notification_category.objects.first()
 	for folder in folders:
-		files=os.listdir(os.path.join(filepath,folder))
-		files.sort()
+		slots=os.listdir(os.path.join(filepath,folder))
+		slots.sort()
 		a=mainsite.models.notification()
 		a.title=folder.split('.')[0].replace('_',' ').capitalize()
 		a.description='A notice from the college.'
 		a.category=cat
 		a.save()
-		for i in files:
-			faces=i.split('|')
-			print faces
-			#create the slot
+		for sno in slots:
+			files=os.listdir(os.path.join(filepath,folder,sno))
 			s=mainsite.models.Slot()
 			s.notif=a
-			s.order=int(faces[0])
-			if 't' in faces[1]:
-				f=file(os.path.join(filepath,folder,i))
+			s.order=sno
+			if 't' in files:
+				f=file(os.path.join(filepath,folder,sno,'t'))
 				lines=f.readlines()
 				new_lines=[clean_to_string(iasd) for iasd in lines]
 				text='\n'.join(new_lines)
 				s.text=text
-				if 'l' in faces[1]:
-					s.link=faces[2]
-			if 'f' in faces[1]:
-				f=file(os.path.join(filepath,folder,i))
-				s.associted_file=File(f)
-			if 'i' in faces[1]:
-				f=file(os.path.join(filepath,folder,i))
-				s.picture=File(f)
-				if 'l' in faces[1]:
-					s.link=faces[2]
+				f.close()
+			if 'l' in files:
+				fl=file(os.path.join(filepath,folder,sno,'l'))
+				s.link=fl.readline()
+				fl.close()
+			if 'f' in files:
+				f_file=file(os.path.join(filepath,folder,sno,'f'))
+				s.associted_file=File(f_file)
+			if 'i' in files:
+				f_pic=file(os.path.join(filepath,folder,sno,'i'))
+				s.picture=File(f_pic)
 			s.save()
-			f.close()
+			try:
+				f_file.close()
+			except: 
+				pass
+			try:
+				f_pic.close()
+			except:
+				pass
 function_list.append(notifications)
 #------------------------------------------------------------------------------------------------
 def run_function(fn):
