@@ -12,7 +12,7 @@ class Admission_feed(Feed):
 	
 	def items(self):
 		notice_categ=mainsite.models.notification_category.objects.all()[2]
-		return mainsite.models.notification.objects.files(publish_date__lte=timezone.now()).filter(category=notice_categ).order_by('-publish_date')[:10]
+		return mainsite.models.notification.objects.filter(publish_date__lte=timezone.now()).filter(category=notice_categ).order_by('-publish_date')[:10]
 	def item_title(self,item):
 		return item.title
 	def item_description(self,item):

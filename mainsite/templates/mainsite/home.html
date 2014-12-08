@@ -15,7 +15,7 @@
 	<div id="myslider" class="juicyslider">
 		<ul>
 			{% for name in slideshow%}
-				<li><img class="img-responsive" src='{{name.associated_photo.url}}' alt=''></li>
+				<li><img {%if forloop.counter != 1%} async='' {%endif%}class="img-responsive" src='{{name.associated_photo.url}}' alt=''></li>
 			{%endfor%}
 		</ul>	
 		<div class="nav next"></div>
