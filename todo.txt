@@ -7,7 +7,6 @@ Views and models
 5. ~Add all courses to attendance (Also use capitalize())
 6. ~Attendance forms for ECA etc.Created the models to record the reuqest. Need to make structure for approval etc.
 7. ~Paper setup is not correct
-
 8. Attendance 2/3 requirement filter
 9. Printouts from admin page
 10. Write tests for all apps
@@ -15,6 +14,7 @@ Views and models
 12. ~Add middle name to the addmission form (important)
 13. ~Captcha work to be done. Completed the provision. Check left
 14. Admin filter for the attendance cutoff
+15. Admission candidate form acceptance and registration+email to client.
 =======
 Templates
 =======
