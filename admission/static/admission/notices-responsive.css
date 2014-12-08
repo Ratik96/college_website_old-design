@@ -13,3 +13,9 @@
     font-size: 0.8em;
   }
 }
+
+@media (min-width: 786px) {
+  .rss {
+    margin: 20px;
+  }
+}

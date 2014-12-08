@@ -7,8 +7,10 @@
   <script type="text/javascript" src="{%static 'admission/notices.js'%}"></script>
 {%endblock%}
 
-{%block admission_body%}
-	<a href={%url 'admission_notice_feed'%}>RSS feed for admission notices.<img src='{%static "mainsite/images/rss.jpg"%}' alt='RSS feed'></a>
+{%block admission_body%}	
+
+	<a style="text-decoration: none;"href="{%url 'admission_notice_feed'%}" id="rss"><button type="button" class="btn btn-warning rss">Subscribe to the RSS feed! <i style="margin-left: 10px;" class="fa fa-rss-square"></i></button></a>
+
 	<div id="notice-board">
 	  {%for notice in notices%}
 			<div class="notice col-xs-6 col-sm-4"> 
