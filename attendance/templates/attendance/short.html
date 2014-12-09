@@ -1,7 +1,37 @@
 {%extends 'base.html'%}
 
+
 {%block body%}
 <script>
-var attendance={{attendance}};
+{%autoescape off%}
+var jsonstr={{attendance}};
+{%endautoescape%}
 </script>
+	<div id='sort_button'>
+		Sort
+	</div>
+	<div id='filter_limit'>
+		<input id='filter' type='text'/>
+	</div>
+	<div id='filter_options'>
+		<input id='select_lecture' type='checkbox'>Lecture</input>
+		<input id='select_tutorial' type='checkbox'>Tutorial</input>
+		<input id='select_practical' type='checkbox'>Practical</input>
+	</div>
+
+<div id='student_table'>
+	<table id='sorted_table' class='table'>
+		<thead>
+			<tr>
+				<th>Student</th>
+				<th>Lecture</th>
+				<th>Tutorial</th>
+				<th>Practical</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+		</tbody>
+	</table>
+</div>
 {%endblock%}

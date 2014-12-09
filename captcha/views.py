@@ -51,4 +51,3 @@ def check_captcha(request):
 				return HttpResponse(json.dumps(True),content_type='application/json')
 			else:
 				return HttpResponse(json.dumps(False),content_type='application/json')
-	
