@@ -4,18 +4,18 @@
 	{% load static %}
 	<style type="text/css">
 		form {
-			max-width: 90%;
+			max-width: 100%;
   		background-color: #FFFFFF;
   		padding: 50px 40px 50px 40px;
-  		border-radius: 10px;
   		margin: 0 auto;
+  		border-bottom: 1px solid black;
+  		border-right: none;
 		}
 
 		.info {
 			font-size: 1.1em;
 			background-color: #FFFFFF;
-			padding: 15px;
-  		border-radius: 10px;
+			padding: 50px 40px 50px 40px;
   		margin: 1.7% 0 0 0;
 		}
 
@@ -54,11 +54,18 @@
 		  .leftColumn { margin-right: 19.5em; }
 			.rightColumn { position: absolute; top: 0; right: 0; width: 18.75em; }   
 		}
+
+		@media (min-width: 768px) {
+			form {
+				border-right: 1px solid black;
+				border-bottom: none;
+			}
+		}
 	</style>
 {% endblock %}
 
 {%block body%}
-<div class="container">
+<div class="container" style="background: white; margin-top: 50px; width: 90%;">
 	{%if form.errors%}
 		<p class="bg-danger" style="text-align: center; width: 60%; margin: 0 auto; color: black; padding: 20px;">Your username and password didn't match. Please try again.</p>
 	{%endif%}
