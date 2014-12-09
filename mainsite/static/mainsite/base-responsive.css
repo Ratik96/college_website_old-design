@@ -35,7 +35,7 @@
     padding: 0;
   }
 
-  select {
+  #select-nav {
     display: none !important;
   }
 }
@@ -47,7 +47,7 @@
 }
 
 @media (min-width: 568px) {
-  nav select, nav button {
+  nav #select-nav, nav button {
     /*display: none;*/
   }
 }
@@ -57,7 +57,7 @@
     display: none;
   }
 
-  select {
+  #select-nav {
     display: inherit;
   }
 }

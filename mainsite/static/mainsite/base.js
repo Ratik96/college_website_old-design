@@ -16,7 +16,7 @@ $(document).ready(function (){
   //get the nav bar equivalent
   location=location.split('/')[3];
   // Create a select and append to #menu
-  var $select = $('<select class="form-control" style="color: black;"></select>');
+  var $select = $('<select id="select-nav" class="form-control" style="color: black;"></select>');
   $select.append('<option value="null">- Select a page -</option>');
   $('nav').append($select);
   // Cycle over menu links
