@@ -8,7 +8,7 @@ urlpatterns = patterns(
 	'',
 	url(r'^$',views.home,name='attendance_home'),
 	url(r'^(?P<studentid>\d+)/$',views.student_id,name='student_id'),
-	#url(r'^short/$',views.short_attendance,name='short_attendance'),
+	url(r'^short/$',views.short_attendance,name='short_attendance'),
 	url(r'^eca/$',views.ECA_home,name='home_eca'),
 	url(r'^eca/list/$',views.ECA_list,name='view_eca'),
 	url(r'^eca/new/$',views.ECA_new,name='request_eca'),
