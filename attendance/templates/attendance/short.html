@@ -1,5 +1,8 @@
 {%extends 'base.html'%}
-
+{%block head%}
+{%load staticfiles%}
+<script type='text/javascript' src={%static 'attendance/short.js'%}></script>
+{%endblock%}
 
 {%block body%}
 <script>
@@ -8,7 +11,7 @@ var jsonstr={{attendance}};
 {%endautoescape%}
 </script>
 	<div id='sort_button'>
-		Sort
+		<input type='button' id='sort_click' value='sort' class='btn'/>
 	</div>
 	<div id='filter_limit'>
 		<input id='filter' type='text'/>

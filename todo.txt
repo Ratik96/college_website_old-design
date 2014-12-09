@@ -15,6 +15,7 @@ Views and models
 13. ~Captcha work to be done. Completed the provision. Check left
 14. Admin filter for the attendance cutoff
 15. Admission candidate form acceptance and registration+email to client.
+16. ~Short attendance JS to be worked out
 =======
 Templates
 =======
@@ -31,4 +32,5 @@ Templates
 11. ~Quicklinks login
 12. ECA signing and approval pages need to be styled.
 13. Dropdown menus on entire site missing. Fix.
+14. Short attendance JS to be Jqueried. Dressitup also reqd
 -----------add login flag for website during development and public deployment. Try pythonanywhere
