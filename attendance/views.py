@@ -232,8 +232,9 @@ def ECA_home(request):
 		else:
 			data['student']=True
 	return render(request,template,data)
+@login_required
 def short_attendance(request,filter=2.0/3):
-	'''Returns a list of students and their lecture and theory attendances'''
+	'''Returns a list of students and their lecture and theory and practical attendances'''
 	data={}
 	template='attendance/short.html'
 	attends=attendance.models.student_attendance.objects.all().order_by('student')
