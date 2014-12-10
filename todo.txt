@@ -7,7 +7,7 @@ Views and models
 5. ~Add all courses to attendance (Also use capitalize())
 6. ~Attendance forms for ECA etc.Created the models to record the reuqest. Need to make structure for approval etc.
 7. ~Paper setup is not correct
-8. Attendance 2/3 requirement filter
+8. ~Attendance 2/3 requirement filter
 9. Printouts from admin page
 10. Write tests for all apps
 11.~Add feed for admission notices.

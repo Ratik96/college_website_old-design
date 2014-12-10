@@ -212,9 +212,12 @@ def class_attendance(request):
 	'''
 	data={}
 	template='attendance/class.html'
+	factory=modelformset_factory(attendance.models.student_attendance,extra=0,can_delete=False)
 	if request.user.is_authenticated():
 		data['class_att']=attendance.models.paper_attendance.objects.filter(taught_by=request.user.profile)
-		data['stu_att']=attendance.models.student_attendance.objects.filter(class_attendance=data['class_att'])
+		qset=attendance.models.student_attendance.objects.filter(class_attendance=data['class_att'])
+		data['stu_att']=factory(queryset=qset)
+		
 	else:
 		data['not_authenticated']='You are not authenticated to view this page.'
 	return render(request,template,data)
