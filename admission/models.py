@@ -149,12 +149,12 @@ class admission_candidate(models.Model):
 	clear_cutoff.admin_order_field='cutoff_status'
 	
 	firstname=models.CharField(max_length=40)
-	middlename=models.CharField(max_length=40)
-	lastname=models.CharField(max_length=40)
+	middlename=models.CharField(max_length=40,blank=True)
+	lastname=models.CharField(max_length=40,blank=True)
 	email=models.EmailField()
 	
 	submit=models.BooleanField(default=True,editable=False)
-	submission_date=models.DateField(default=timezone.now(),editable=False)
+	submission_date=models.DateField(auto_now_add=True)
 	
 	document_1=models.ImageField(upload_to='admissions/documents/%Y/%m/%d',help_text='Supporting document 1 scanned copy',blank=True,default=None,null=True)
 	document_2=models.ImageField(upload_to='admissions/documents/%Y/%m/%d',help_text='Supporting document 2 scanned copy',blank=True,default=None,null=True)
@@ -164,7 +164,6 @@ class admission_candidate(models.Model):
 	#candidate personal information
 	
 	picture=models.ImageField(upload_to='admissions/photos/%Y/%m/%d',help_text='Photograph of candidate taken in last 6 months',blank=True)
-	password=models.CharField(max_length=56)
 	
 	#admission indormation
 	STREAM_CHOICES=[
@@ -173,7 +172,7 @@ class admission_candidate(models.Model):
 			(3,'Humanities')
 			]
 			
-	stream=models.SmallIntegerField('Stream applicable to you',choices=STREAM_CHOICES)
+	stream=models.SmallIntegerField('Stream applicable to you',choices=STREAM_CHOICES,default=1)
 	course=models.ForeignKey(office.models.course,related_name='course_applied',help_text='Course you want to apply for')
 	category=models.ForeignKey(category,related_name='category_applied',help_text='Category applicable to you')
 	bfs=models.FloatField("Best Four Subject's Marks")
@@ -183,16 +182,6 @@ class admission_candidate(models.Model):
 
 
 
-	def save(self,*args,**kwargs):
-		'''
-		custom save method.
-		1. sets the password field to a hash value
-		2. 
-		'''
-		string=self.password
-		self.set_password(string)
-		super(admission_candidate,self).save(*args,**kwargs)
-		
 class admission_form(forms.ModelForm):
 	class Meta:
 		model=admission_candidate

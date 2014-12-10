@@ -15,8 +15,8 @@ def contact_notification(email_from,email_to,subject,message):
 	msg+='we have contacted you on their behalf. Below is the message intended for you.\n\nCollege Webteam.'
 	msg+='\n\nSUBJECT\n'+str(subject)
 	msg+='\n--------------------------\nMESSAGE\n'+str(message)
-	msg+='\n Of course you can change that password once you are logged in. \nTo login please visit http://www.orfik.com/login \n \n\n\nYour host,\nCompsoc SSC'
-	send_mail('St. Stephens website Contact',msg,'stephens.webteam@gmail.com',[email_to],fail_silently=False)
+	msg+='\n--------------------------\nEND of MESSAGE'
+	send_mail('St. Stephens Website Contact',msg,'web.dev.ssc@gmail.com',[email_to],fail_silently=False)
 	
 def admission_registration(email_to):
 	'''Confirms the registration for email procedure for a person'''
@@ -30,4 +30,4 @@ def admission_registration(email_to):
 	Your's Sincerely
 	St. Stephen's College
 	'''
-	send_mail('St. Stephens College',msg,'stephens.webteam@gmail.com',[email_to],fail_silently=False)
+	send_mail('St. Stephens College',msg,'web.dev.ssc@gmail.com',[email_to],fail_silently=False)

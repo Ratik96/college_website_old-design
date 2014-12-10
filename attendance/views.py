@@ -212,9 +212,12 @@ def class_attendance(request):
 	'''
 	data={}
 	template='attendance/class.html'
+	factory=modelformset_factory(attendance.models.student_attendance,extra=0,can_delete=False)
 	if request.user.is_authenticated():
 		data['class_att']=attendance.models.paper_attendance.objects.filter(taught_by=request.user.profile)
-		data['stu_att']=attendance.models.student_attendance.objects.filter(class_attendance=data['class_att'])
+		qset=attendance.models.student_attendance.objects.filter(class_attendance=data['class_att'])
+		data['stu_att']=factory(queryset=qset)
+		
 	else:
 		data['not_authenticated']='You are not authenticated to view this page.'
 	return render(request,template,data)
@@ -231,4 +234,35 @@ def ECA_home(request):
 			data['faculty']=True
 		else:
 			data['student']=True
+	return render(request,template,data)
+@login_required
+def short_attendance(request,filter=2.0/3):
+	'''Returns a list of students and their lecture and theory and practical attendances'''
+	data={}
+	template='attendance/short.html'
+	attends=attendance.models.student_attendance.objects.all().order_by('student')
+	attendances={}
+	current_student=office.models.student.objects.first()
+	cur_lec=0.0
+	cur_tut=0.0
+	cur_pr=0.0
+	for stu_attd in attends:
+		if stu_attd.student==current_student:
+			#% stu_attd/(total-adjust) is added to existing
+			cur_lec+=(float(stu_attd.lecture)/(stu_attd.class_attendance.lecture-stu_attd.a_lecture))*100.0
+			cur_tut+=(float(stu_attd.tutorial)/(stu_attd.class_attendance.tutorial-stu_attd.a_tutorial))*100.0
+			cur_pr+=(float(stu_attd.practical)/(stu_attd.class_attendance.practical-stu_attd.a_practical))*100.0
+			#average of % is done
+			cur_lec/=2.0
+			cur_tut/=2.0
+			cur_pr/=2.0
+		else:
+			#student has changed. Thus update the data in database
+			attendances[current_student.__unicode__()]={'lecture':cur_lec,'tutorial':cur_tut,'practical':cur_pr}
+			current_student=stu_attd.student
+			#assign % attendance
+			cur_lec=(stu_attd.lecture/float(stu_attd.class_attendance.lecture-stu_attd.a_lecture))*100.0
+			cur_tut=(stu_attd.tutorial/float(stu_attd.class_attendance.tutorial-stu_attd.a_tutorial))*100.0
+			cur_pr=(stu_attd.practical/float(stu_attd.class_attendance.practical-stu_attd.a_practical))*100.0
+	data['attendance']=attendances
 	return render(request,template,data)

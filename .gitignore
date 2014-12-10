@@ -1,9 +1,9 @@
 # Ignore these files from being pushed
 *.pyc
 *~
-
-
 stephens/settings/local.py
+
+
 # Ignore these folders from being pushed
 bin
 venv

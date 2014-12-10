@@ -7,14 +7,15 @@ Views and models
 5. ~Add all courses to attendance (Also use capitalize())
 6. ~Attendance forms for ECA etc.Created the models to record the reuqest. Need to make structure for approval etc.
 7. ~Paper setup is not correct
-
-8. Attendance 2/3 requirement filter
+8. ~Attendance 2/3 requirement filter
 9. Printouts from admin page
 10. Write tests for all apps
 11.~Add feed for admission notices.
 12. ~Add middle name to the addmission form (important)
 13. ~Captcha work to be done. Completed the provision. Check left
 14. Admin filter for the attendance cutoff
+15. Admission candidate form acceptance and registration+email to client.
+16. ~Short attendance JS to be worked out
 =======
 Templates
 =======
@@ -30,5 +31,6 @@ Templates
 10. Fix styles for notices
 11. ~Quicklinks login
 12. ECA signing and approval pages need to be styled.
-
+13. Dropdown menus on entire site missing. Fix.
+14. Short attendance JS to be Jqueried. Dressitup also reqd
 -----------add login flag for website during development and public deployment. Try pythonanywhere
