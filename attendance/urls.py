@@ -13,6 +13,6 @@ urlpatterns = patterns(
 	url(r'^eca/list/$',views.ECA_list,name='view_eca'),
 	url(r'^eca/new/$',views.ECA_new,name='request_eca'),
 	url(r'^eca/sign/$',views.ECA_sign,name='sign_eca'),
-	url(r'^eca/approve/$',views.ECA_approve,name='approve_eca'),	
+	url(r'^eca/approve/$',views.ECA_approve,name='approve_eca'),
 	url(r'^class/$',views.class_attendance,name='class_attendance'),
 )

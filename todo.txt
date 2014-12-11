@@ -13,7 +13,7 @@ Views and models
 11.~Add feed for admission notices.
 12. ~Add middle name to the addmission form (important)
 13. ~Captcha work to be done. Completed the provision. Check left
-14. Admin filter for the attendance cutoff
+14. ~Admin filter for the attendance cutoff
 15. Admission candidate form acceptance and registration+email to client.
 16. ~Short attendance JS to be worked out
 =======
