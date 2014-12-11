@@ -30,6 +30,14 @@
   font-weight: 300;
 }
 
+#profile, #contact, #attendance, #inbox {
+  margin-top: 50px;
+}
+
+.tabs a:hover {
+  color: black !important;
+}
+
 @media (min-width: 660px) {
   #content h1 {
     font-size: 3em;
@@ -51,7 +59,6 @@
 *****************************************/
 
 #contact {
-  
   margin: 0 auto;
   padding: 0 40px;
 }

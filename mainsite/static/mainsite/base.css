@@ -129,7 +129,7 @@ nav ul li a:hover {
   text-decoration: underline;
 }
 
-select {
+#select-nav {
   position: relative;
   bottom: 10px;
 }
