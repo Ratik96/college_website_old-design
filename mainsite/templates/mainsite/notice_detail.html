@@ -22,6 +22,9 @@
 		.bold {
 			font-weight: bold;
 		}
+		.slot {
+			margin: 20px 0;
+		}
 	</style>
 {%endblock%}
 
@@ -32,13 +35,11 @@
 		{%for sl in slots%}
 			<div class='slot'>
 				{%if sl.link%}<a href={{sl.link}}>{%endif%}
-				{%if sl.picture%}
-					<img src={{sl.picture.url}} alt='Image'/>
-				{%endif%}
+				{%if sl.picture%}<img class="img-responsive" style="margin: 0 auto;" src={{sl.picture.url}} alt='Image'/>{%endif%}
 				<p class="notice-text">{{sl.text}}</p>
 				{%if sl.link%}</a>{%endif%}
 				{%if sl.associated_file%}
-					<a href={{sl.associated_file.url}} >{{sl.text}}</a>
+					<a href={{sl.associated_file.url}}>{{sl.text}}</a>
 				{%endif%}
 			</div>
 		{%endfor%}
