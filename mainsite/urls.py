@@ -33,4 +33,6 @@ urlpatterns = patterns('',
     
     url(r'^profile/$',views.profile_detail,name='profile_detail_general'),
     url(r'^profile/(?P<nick>\S+)/$',views.profile_detail,name='profile_detail'),
+    url(r'^profile/(?P<nick>\S+)/upload/$',views.profile_upload,name='profile_material_upload'),
+    url(r'^profile/(?P<nick>\S+)/contact/$',views.profile_contact,name='profile_contact'),
 )

@@ -155,9 +155,23 @@ def contact(request):
 	data={}
 	data['domain_name']=stephens.settings.domain_name
 	return render(request,'mainsite/contact.html',data)
+
+@login_required
+@require_http_methods(['POST'])
+def profile_upload(request,nick):
+	form=mainsite.models.faculty_upload_form(request.POST,request.FILES)
+	if form.is_valid():
+		upl=form.save(commit=False):
+		#get the current faculty logged in
+		fac=office.models.faculty.objects.get(user=request.user)
+		upl.uploaded_by=fac
+		upl.save()
+	return redirect('profile_detail',args=[request.user.profile.nickname])
+		
 def profile_detail(request,nick=None):
 	''' Profile of a person '''
 	data={}
+	
 	#-------------------------------------------------get profile
 	if nick==None:
 		if request.user.is_authenticated():
@@ -165,41 +179,26 @@ def profile_detail(request,nick=None):
 		else:
 			raise Http404
 		return redirect('profile_detail',nick)
-	student_flag=True
-	try:
-		#look for student.Student first as the student body is bigger so lokups are faster
-		data['profile']=office.models.student.objects.get(nickname=nick)
-	except Exception as e:
-		student_flag=False
-		print '--------------------'
-		print 'Not found in student'
-		print '------'
-		print e
-		print '--------------------'
-		try:
-			#if not in students look in faculty
-			data['profile']=office.models.faculty.objects.get(nickname=nick)
-		except Exception as e:
-			print '--------------------'
-			print 'some error in student'
-			print '------'
-			print e
-			print '--------------------'
-			#as person not in faculty or student database raise error
-			raise Http404
+	data['profile'],student_flag=get_profile(nick)#from mainsite common functions
 	#---------------------------------------------------profile obtained or error raised
+	data['student_flag']=student_flag
 	#if everything goes on well person is found
-	if request.user.is_authenticated():
-		#common things
-		data['student_attendance']=attendance.models.student_attendance.objects.filter(student=data['profile'])
-		#if not student_flag:
-		#	fac=office.models.faculty.objects.get(user=request.user)
-		#	society=fac.head
-		#	formset=modelformset_factory(attendance.models.eca_request,can_delete=False,extra=0)
-		#	data['eca']=formset(queryset=attendance.models.eca_request.objects.filter(soc=society))
+	if not student_flag:#profile is of a faculty
+		uploads=mainsite.models.faculty_uploads.objects.filter(uploaded_by=data['profile'])
+		data['uploads']=uploads
 	#handle the request types
 	if request.method=='GET':
 		template='mainsite/profile.html'
+	if request.method=='POST':
+		pass#updating profile details
+	return render(request,template,data)
+
+@require_http_methods(['POST'])
+def profile_contact(request,nick):
+	data={}
+	#-------------------------------------------------get profile
+	data['profile'],student_flag=get_profile(nick)#from mainsite common functions
+	#---------------------------------------------------profile obtained or error raised
 	if request.method=='POST':
 	 	#get relevent data
 		email_to=data['profile'].user.email
@@ -215,9 +214,7 @@ def profile_detail(request,nick=None):
 			data['status']='Your message has been sent successfully to the email provided by the current profile'
 		#set the new template
 		template='mainsite/message_sent.html'
-	#return
 	return render(request,template,data)
-
 def course_detail(request,cid):
 	'''course details'''
 	data={}

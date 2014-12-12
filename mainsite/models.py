@@ -4,6 +4,8 @@ from django import forms
 from django.utils import timezone
 import datetime
 import random
+import office
+
 
 class photo(models.Model):
 	'''
@@ -82,3 +84,14 @@ class archives(models.Model):
 	Archives for the college
 	'''
 	pass
+class faculty_upload(models.Model):
+	"Uploads by faculty for academic related material"
+	title=models.CharField(max_length=30)
+	description=models.TextField()
+	associated_file=models.FileField(upload_to='academic_uploads/')
+	uploaded_by=models.ForeignKey(office.models.faculty,related_name='uploaded_by')
+class faculty_upload_form(forms.ModelForm):
+	class Meta:
+		model=faculty_upload
+		exclude=['uploaded_by']
+		

@@ -287,7 +287,7 @@ def class_attendance(request,paper_id):
 			print 'stu error'
 			return render(request,template,data)
 		return redirect('class_attendance',paper_id)
-	
+@login_required	
 def class_attend_upd(request,paper_id):
 	if request.method=='POST':
 		paper=get_object_or_404(attendance.models.paper_attendance,pk=paper_id)

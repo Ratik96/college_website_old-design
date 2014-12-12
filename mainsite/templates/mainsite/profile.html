@@ -153,7 +153,9 @@
 		  <div role="tabpanel" class="tab-pane fade" id="contact">
 	    	<div class="row">
 					<div id="contact">
-						<form role="form" action='{{profile.get_absolute_url}}' action='POST'>
+						{%autoescape off%}
+						<form role="form" action="{%url 'profile_contact' profile.nickname%}" action='POST'>
+						{%endautoescape%}
 							<div class="form-group">
 								<label for="email">Your Email</label>
 								<input id="email" name='from' class="form-control" type="email" placeholder="Your Email">

@@ -1,11 +1,36 @@
 import datetime
 from django.utils import timezone
+from django.http import Http404
 from django.core.mail import send_mail
+import office
 
 
-
-
-
+def get_profile(nick):
+	"returns the profile if found along with student or not flag"
+	student_flag=True
+	try:
+		#look for student.Student first as the student body is bigger so lokups are faster
+		profile=office.models.student.objects.get(nickname=nick)
+	except Exception as e:
+		student_flag=False
+		print '--------------------'
+		print 'Not found in student'
+		print '------'
+		print e
+		print '--------------------'
+		try:
+			#if not in students look in faculty
+			profile=office.models.faculty.objects.get(nickname=nick)
+		except Exception as e:
+			print '--------------------'
+			print 'some error in student'
+			print '------'
+			print e
+			print '--------------------'
+			#as person not in faculty or student database raise error
+			raise Http404
+	return profile,student_flag
+	
 def contact_notification(email_from,email_to,subject,message):
 	'''
 	Sends an email to email_to and mentions that email_from has sent it

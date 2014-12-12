@@ -16,6 +16,8 @@ Views and models
 14. ~Admin filter for the attendance cutoff
 15. Admission candidate form acceptance and registration+email to client.
 16. ~Short attendance JS to be worked out
+17. Add basic html for uploading stuff on profile page
+
 =======
 Templates
 =======
