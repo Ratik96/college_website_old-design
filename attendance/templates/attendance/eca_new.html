@@ -20,7 +20,6 @@
 	</style>
 {% endblock %}
 
-
 {%block body%}
 
 	{%if not_authentic%}
@@ -35,17 +34,12 @@
 			{{detail}}
 			{{form}}
 			<button type="submit" class="btn btn-primary">Submit</button>
+			<!-- jQuery to add bootstrap classes to the formset -->
+			<script type="text/javascript">
+				$("input, select, textarea").addClass('form-control');
+				$("input, select, textarea").css('margin', '10px 0');
+			</script>
 		</form>
 	{%endif%}
-
-	<!-- jQuery to add bootstrap classes to the formset -->
-	<script type="text/javascript">
-		$('input').addClass('form-control');
-		$('select').addClass('form-control');
-		$('textarea').addClass('form-control');
-		$('input').css('margin', '10px 0');
-		$('select').css('margin', '10px 0');
-		$('textarea').css('margin', '10px 0');
-	</script>
 
 {%endblock%}
