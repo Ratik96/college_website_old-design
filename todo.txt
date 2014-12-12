@@ -16,6 +16,7 @@ Views and models
 14. ~Admin filter for the attendance cutoff
 15. Admission candidate form acceptance and registration+email to client.
 16. ~Short attendance JS to be worked out
+17. Write backend for user's inbox
 =======
 Templates
 =======
@@ -34,9 +35,8 @@ Templates
 13. ~Dropdown menus on entire site missing. Fix.
 14. Short attendance JS to be Jqueried. Dressitup also reqd
 15. Refine profile view
-16. Inbox view for user profile
-17. Go over attendance styles once
-15. Style the attendance updating for class. If possible submit class attendance via jquery. like in 
+16. Go over attendance styles once
+17. Style the attendance updating for class. If possible submit class attendance via jquery. like in 
 	attendance home
 
 
