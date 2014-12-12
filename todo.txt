@@ -31,11 +31,11 @@ Templates
 9. ~Style alumni page
 10. Fix styles for notices
 11. ~Quicklinks login
-12. ECA signing and approval pages need to be styled. (add to attendance view)
+12. ECA signing and approval pages need to be styled.
 13. ~Dropdown menus on entire site missing. Fix.
 14. Short attendance JS to be Jqueried. Dressitup also reqd
-15. Refine profile view
-16. Go over attendance styles once
+15. ~Refine profile view
+16. Fix attendance resize bug
 17. Style the attendance updating for class. If possible submit class attendance via jquery. like in 
 	attendance home
 
