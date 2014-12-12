@@ -56,7 +56,10 @@ class notification(models.Model):
 	def recent(self):
 		'''Checks if the record is one month old? Returns true if less than one month old.'''
 		now=timezone.now()
-		one_month_back=datetime.datetime(now.date().year,now.date().month-1,20,now.time().hour,now.time().minute,now.time().second,now.time().microsecond,now.tzinfo)
+		lastmonth=now.date().month-1
+		if lastmonth<1:
+			lastmonth=12
+		one_month_back=datetime.datetime(now.date().year,lastmonth,20,now.time().hour,now.time().minute,now.time().second,now.time().microsecond,now.tzinfo)
 		if now>one_month_back:
 			return True
 		return False

@@ -13,7 +13,7 @@ Views and models
 11.~Add feed for admission notices.
 12. ~Add middle name to the addmission form (important)
 13. ~Captcha work to be done. Completed the provision. Check left
-14. Admin filter for the attendance cutoff
+14. ~Admin filter for the attendance cutoff
 15. Admission candidate form acceptance and registration+email to client.
 16. ~Short attendance JS to be worked out
 =======
@@ -36,6 +36,8 @@ Templates
 15. Refine profile view
 16. Inbox view for user profile
 17. Go over attendance styles once
+15. Style the attendance updating for class. If possible submit class attendance via jquery. like in 
+	attendance home
 
 
 -----------add login flag for website during development and public deployment. Try pythonanywhere

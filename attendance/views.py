@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404,redirect
 from django.contrib.auth.decorators import login_required
 from django.forms.models import modelformset_factory,inlineformset_factory
 import json
@@ -206,21 +206,6 @@ def ECA_new(request):
 	else:
 		data['not_authentic']='Not logged in'
 	return render(request,template,data)
-def class_attendance(request):
-	'''Returns the attendance for an entire class for the last/current month to 
-	be edited. Only if logged in
-	'''
-	data={}
-	template='attendance/class.html'
-	factory=modelformset_factory(attendance.models.student_attendance,extra=0,can_delete=False)
-	if request.user.is_authenticated():
-		data['class_att']=attendance.models.paper_attendance.objects.filter(taught_by=request.user.profile)
-		qset=attendance.models.student_attendance.objects.filter(class_attendance=data['class_att'])
-		data['stu_att']=factory(queryset=qset)
-		
-	else:
-		data['not_authenticated']='You are not authenticated to view this page.'
-	return render(request,template,data)
 
 def ECA_home(request):
 	'''Returns the links of various ECA functinoalities based on student/faculty/anoonymous users'''
@@ -266,3 +251,52 @@ def short_attendance(request,filter=2.0/3):
 			cur_pr=(stu_attd.practical/float(stu_attd.class_attendance.practical-stu_attd.a_practical))*100.0
 	data['attendance']=attendances
 	return render(request,template,data)
+@login_required
+def class_attendance(request,paper_id):
+	'''Returns the attendance for an entire class for the last/current month to 
+	be edited. Only if logged in
+	'''
+	data={}
+	template='attendance/class.html'
+	paper=get_object_or_404(attendance.models.paper_attendance,pk=paper_id)
+	stu_attd=attendance.models.student_attendance.objects.filter(class_attendance=paper)
+	data['classid']=paper_id
+	if request.method=='GET':
+		if request.user==paper.taught_by.user:
+			data['editable']=True
+			pap=attendance.models.paper_attd_form(instance=paper)
+			data['paper']=pap
+			factory=modelformset_factory(attendance.models.student_attendance,extra=0,can_delete=False,form=attendance.models.stu_attd_form)
+			qset=attendance.models.student_attendance.objects.filter(class_attendance=paper)
+			data['students']=factory(queryset=qset)		
+		else:
+			data['paper']=paper
+			data['stu_attd']=stu_attd
+			data['editable']=False
+		return render(request,template,data)
+	if request.method=='POST':
+		qset=attendance.models.student_attendance.objects.filter(class_attendance=paper)
+		factory=modelformset_factory(attendance.models.student_attendance,extra=0,can_delete=False,form=attendance.models.stu_attd_form)
+		std=factory(request.POST,queryset=qset)
+		if std.is_valid():
+			std.save()
+			print 'allok stu'
+		else:
+			data['paper']=pap
+			data['students']=std
+			print 'stu error'
+			return render(request,template,data)
+		return redirect('class_attendance',paper_id)
+	
+def class_attend_upd(request,paper_id):
+	if request.method=='POST':
+		paper=get_object_or_404(attendance.models.paper_attendance,pk=paper_id)
+		pap=attendance.models.paper_attd_form(request.POST,instance=paper)
+		if pap.is_valid():
+			pap.save()
+			return HttpResponse('Successful',content_type='application/json')
+			print 'allok paper'
+		else:
+			print 'paper error'
+	return HttpResponse('UnSuccessful',content_type='application/json')
+
