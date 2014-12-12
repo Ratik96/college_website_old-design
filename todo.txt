@@ -30,11 +30,12 @@ Templates
 9. ~Style alumni page
 10. Fix styles for notices
 11. ~Quicklinks login
-12. ECA signing and approval pages need to be styled.
+12. ECA signing and approval pages need to be styled. (add to attendance view)
 13. ~Dropdown menus on entire site missing. Fix.
 14. Short attendance JS to be Jqueried. Dressitup also reqd
 15. Refine profile view
 16. Inbox view for user profile
 17. Go over attendance styles once
+
 
 -----------add login flag for website during development and public deployment. Try pythonanywhere
