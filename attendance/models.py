@@ -19,8 +19,8 @@ class paper_attendance(models.Model):
 	'''
 	def __unicode__(self):
 		return self.paper.__unicode__()
-	date_from=models.DateField('Date of counting first attendance.')
-	date_to=models.DateField('Date of counting last attendance.')
+	date_from=models.DateField('Date of counting first attendance.',default=timezone.now())
+	date_to=models.DateField('Date of counting last attendance.',default=timezone.now())
 	paper=models.ForeignKey(office.models.paper,related_name='paper')
 	
 	taught_by=models.ForeignKey(office.models.faculty,related_name='taught_by',default=None,blank=True,null=True)
@@ -121,4 +121,12 @@ class eca_sign_form(ModelForm):
 	class Meta:
 		model=eca_request
 		exclude=['approved']
+class paper_attd_form(ModelForm):
+	class Meta:
+		model=paper_attendance
+		exclude=['paper','taught_by']
+class stu_attd_form(ModelForm):
+	class Meta:
+		model=student_attendance
+		exclude=['class_attendance','student']
 #-------------------------------------------------------------

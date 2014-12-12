@@ -33,4 +33,6 @@ Templates
 12. ECA signing and approval pages need to be styled.
 13. ~Dropdown menus on entire site missing. Fix.
 14. Short attendance JS to be Jqueried. Dressitup also reqd
+15. Style the attendance updating for class. If possible submit class attendance via jquery. like in 
+	attendance home
 -----------add login flag for website during development and public deployment. Try pythonanywhere
