@@ -8,7 +8,7 @@
       background-color: #FFFFFF;
       padding: 20px 40px 50px 40px;
       border-radius: 10px;
-      margin: 7% auto 0;
+      margin: 6% auto 0;
     }
   </style>
 {% endblock %}
@@ -17,17 +17,15 @@
   <form role="form" action={%url "password_change"%} method='POST'>
     {%csrf_token%}
     <h2 style="color: black; font-family: sans-serif; text-align: center; margin-bottom: 20px; padding: 0;">Change Password</h2>
+    <p style="font-weight: bold; margin: 10px 0 15px 0; text-align: center;">After the reset, you will have to login again. </p>
     <label for="id_old_password">Old Password</label>
     <p><input id="id_old_password" name="old_password" type="password" class="form-control"></p>
     <label for="id_new_password1">New Password</label>
     <p><input id="id_new_password1" name="new_password1" type="password" class="form-control"></p>
     <label for="id_new_password2">Confirm Password</label>
     <p><input id="id_new_password2" name="new_password2" type="password" class="form-control"></p>
-    <button type="submit" class="btn btn-primary">Reset Password</button>
+    <button type="submit" class="btn btn-primary btn-block">Reset Password</button>
   </form>
-  <p>
-  On successful reset you will be asked to login again.
-  </p>
 {%endblock%}
 
 

@@ -24,8 +24,8 @@ Templates
 3. Refine admission form
 4. ~Add login link on base.html
 5. ~Admission notice feed on admission/notices/ page to be styled
-6. Attendance on profile page. Will be phasing out the attendance view page.
-7. Profile page major changes.Logout button.Tabs.Inbox.Etc need to be styled
+6. ~Attendance on profile page. Will be phasing out the attendance view page.
+7. ~Profile page major changes.Logout button.Tabs.Inbox.Etc need to be styled
 8. ~Login page, password change, logout is unstyled. Quicklinks login. 
 9. ~Style alumni page
 10. Fix styles for notices
@@ -33,6 +33,10 @@ Templates
 12. ECA signing and approval pages need to be styled.
 13. ~Dropdown menus on entire site missing. Fix.
 14. Short attendance JS to be Jqueried. Dressitup also reqd
+15. Refine profile view
+16. Inbox view for user profile
+17. Go over attendance styles once
 15. Style the attendance updating for class. If possible submit class attendance via jquery. like in 
 	attendance home
+
 -----------add login flag for website during development and public deployment. Try pythonanywhere
