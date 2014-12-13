@@ -17,7 +17,7 @@ Views and models
 15. Admission candidate form acceptance and registration+email to client.
 16. ~Short attendance JS to be worked out
 17. Add basic html for uploading stuff on profile page
-
+18. Write backend for user's inbox
 =======
 Templates
 =======
@@ -30,15 +30,19 @@ Templates
 7. ~Profile page major changes.Logout button.Tabs.Inbox.Etc need to be styled
 8. ~Login page, password change, logout is unstyled. Quicklinks login. 
 9. ~Style alumni page
-10. Fix styles for notices
+10. ~Fix styles for notices (pre tag for notices)
 11. ~Quicklinks login
-12. ECA signing and approval pages need to be styled.
+12. ~ECA styles
 13. ~Dropdown menus on entire site missing. Fix.
 14. Short attendance JS to be Jqueried. Dressitup also reqd
-15. Refine profile view
-16. Inbox view for user profile
-17. Go over attendance styles once
-15. Style the attendance updating for class. If possible submit class attendance via jquery. like in 
+15. ~Refine profile view
+
+16. Fix attendance resize bug
+17. Style the attendance updating for class. If possible submit class attendance via jquery. like in 
 	attendance home
+18. ECA signing styles (Need to talk about this)
+19. 404 and 500 error pages
+20. Refine notices styles
+
 
 -----------add login flag for website during development and public deployment. Try pythonanywhere
