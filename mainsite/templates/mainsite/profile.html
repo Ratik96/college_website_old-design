@@ -186,5 +186,33 @@
 	</div>
 {%endblock%}
 
+<!--{%if uploads%}-->
+<!--	<table>-->
+<!--	<thead>-->
+<!--		<tr>-->
+<!--		<th>Title</th>-->
+<!--		<th>Download Link</th>-->
+<!--		<th>Description</th>-->
+<!--		</tr>-->
+<!--	</thead>-->
+<!--	<tbody>-->
+<!--	{%for upl in uploads%}-->
+<!--		<tr>-->
+<!--			<td>{{upl.title}}</td>-->
+<!--			<td><a target="_blank" href={{upl.associated_file.url}}>Download Link</a></td>-->
+<!--			<td>{{upl.description}}</td>-->
+<!--		</tr>-->
+<!--	{%endfor%}-->
+<!--	</tbody>-->
+<!--	</table>-->
+<!--{%endif%}-->
+
+<!--{%if upload_form%}-->
+<!--	<form action={%url 'profile_material_upload' profile.nickname%} method='post' enctype="multipart/form-data">-->
+<!--		{%csrf_token%}-->
+<!--		{{upload_form}}-->
+<!--		<input type='submit' value='Upload'/>-->
+<!--	</form>-->
+<!--{%endif%}-->
 
 

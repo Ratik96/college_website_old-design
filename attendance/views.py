@@ -276,27 +276,31 @@ def class_attendance(request,paper_id):
 		return render(request,template,data)
 	if request.method=='POST':
 		qset=attendance.models.student_attendance.objects.filter(class_attendance=paper)
-		factory=modelformset_factory(attendance.models.student_attendance,extra=0,can_delete=False,form=attendance.models.stu_attd_form)
-		std=factory(request.POST,queryset=qset)
-		if std.is_valid():
-			std.save()
-			print 'allok stu'
-		else:
-			data['paper']=pap
-			data['students']=std
-			print 'stu error'
-			return render(request,template,data)
-		return redirect('class_attendance',paper_id)
+		if request.user==paper.taught_by.user:#only if authorized
+			factory=modelformset_factory(attendance.models.student_attendance,extra=0,can_delete=False,form=attendance.models.stu_attd_form)
+			std=factory(request.POST,queryset=qset)
+			if std.is_valid():
+				std.save()
+				print 'allok stu'
+			else:
+				data['paper']=pap
+				data['students']=std
+				print 'stu error'
+				return render(request,template,data)
+			return redirect('class_attendance',paper_id)
+			
 @login_required	
 def class_attend_upd(request,paper_id):
+	"paper_attendance_updates"
 	if request.method=='POST':
 		paper=get_object_or_404(attendance.models.paper_attendance,pk=paper_id)
-		pap=attendance.models.paper_attd_form(request.POST,instance=paper)
-		if pap.is_valid():
-			pap.save()
-			return HttpResponse('Successful',content_type='application/json')
-			print 'allok paper'
-		else:
-			print 'paper error'
-	return HttpResponse('UnSuccessful',content_type='application/json')
+		if request.user==paper.taught_by.user:#only if authorized
+			pap=attendance.models.paper_attd_form(request.POST,instance=paper)
+			if pap.is_valid():
+				pap.save()
+				return HttpResponse('Successful',content_type='application/json')
+				print 'allok paper'
+			else:
+				print 'paper error'
+		return HttpResponse('UnSuccessful',content_type='application/json')
 

@@ -161,9 +161,11 @@ def contact(request):
 def profile_upload(request,nick):
 	form=mainsite.models.faculty_upload_form(request.POST,request.FILES)
 	if form.is_valid():
-		upl=form.save(commit=False):
+		upl=form.save(commit=False)
 		#get the current faculty logged in
-		fac=office.models.faculty.objects.get(user=request.user)
+		fac=get_profile(nick)#from mainsite common functions
+		if fac.user!=request.user:#if not authenticated
+			raise Http404
 		upl.uploaded_by=fac
 		upl.save()
 	return redirect('profile_detail',args=[request.user.profile.nickname])
@@ -186,6 +188,7 @@ def profile_detail(request,nick=None):
 	if not student_flag:#profile is of a faculty
 		uploads=mainsite.models.faculty_uploads.objects.filter(uploaded_by=data['profile'])
 		data['uploads']=uploads
+		data['upload_form']=mainsite.models.faculty_upload_form()
 	#handle the request types
 	if request.method=='GET':
 		template='mainsite/profile.html'

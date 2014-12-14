@@ -94,4 +94,3 @@ class faculty_upload_form(forms.ModelForm):
 	class Meta:
 		model=faculty_upload
 		exclude=['uploaded_by']
-		
