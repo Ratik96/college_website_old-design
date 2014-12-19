@@ -161,7 +161,7 @@ def contact(request):
 def profile_upload(request,nick):
 	form=mainsite.models.faculty_upload_form(request.POST,request.FILES)
 	if form.is_valid():
-		upl=form.save(commit=False):
+		upl=form.save(commit=False)
 		#get the current faculty logged in
 		fac=office.models.faculty.objects.get(user=request.user)
 		upl.uploaded_by=fac
