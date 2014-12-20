@@ -37,7 +37,7 @@
 			<div class='slot'>
 				{%if sl.link%}<a href={{sl.link}}>{%endif%}
 				{%if sl.picture%}<img class="img-responsive" style="margin: 0 auto;" src={{sl.picture.url}} alt='Image'/>{%endif%}
-				<p class="notice-text">{{sl.text}}</p>
+				<p class="notice-text">{%autoescape off%}{{sl.text}}{%endautoescape%}</p>
 				{%if sl.link%}</a>{%endif%}
 				{%if sl.associated_file%}
 					<a href={{sl.associated_file.url}}>{{sl.text}}</a>
