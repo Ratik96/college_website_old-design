@@ -1,5 +1,5 @@
 from django.contrib import admin
-import attendance
+from attendance.models import *
 
 
 #---------------------Filters-----------------
@@ -7,7 +7,7 @@ import attendance
 
 class student_attendance_inline(admin.TabularInline):
 	'''Inline addition for student_attendance'''
-	model=attendance.models.student_attendance
+	model=student_attendance
 	extra=20
 	
 class paper_attendance_admin(admin.ModelAdmin):
@@ -26,7 +26,7 @@ class student_attendance_admin(admin.ModelAdmin):
 
 class eca_date_inline(admin.TabularInline):
 	'''Inline addition of dates of absence'''
-	model=attendance.models.eca_date
+	model=eca_date
 	extra=1
 class eca_request_admin(admin.ModelAdmin):
 	'''Admin for eca_request'''
@@ -39,7 +39,7 @@ class eca_log_admin(admin.ModelAdmin):
 	list_display=('req','stamp')
 	list_filter=('req','stamp')
 	
-admin.site.register(attendance.models.student_attendance,student_attendance_admin)
-admin.site.register(attendance.models.paper_attendance,paper_attendance_admin)
-admin.site.register(attendance.models.eca_request,eca_request_admin)
-admin.site.register(attendance.models.eca_log,eca_log_admin)
+admin.site.register(student_attendance,student_attendance_admin)
+admin.site.register(paper_attendance,paper_attendance_admin)
+admin.site.register(eca_request,eca_request_admin)
+admin.site.register(eca_log,eca_log_admin)
