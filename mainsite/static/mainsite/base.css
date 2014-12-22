@@ -1,5 +1,6 @@
 body {
   background-color: #3b5c6b;
+  color: white;
 }
 
 #container {
@@ -142,3 +143,39 @@ nav ul li a:hover {
   color: #eee;
   opacity: 0.2;
 }
+
+/* 404 and 500 styles 
+==================================*/
+
+.page-not-found,
+.server-error {
+  font-size: 3.2rem; 
+  font-family: Roboto, sans-serif;
+}
+
+.server-error-sub,
+.page-not-found-sub {
+  font-size: 1.5rem; 
+  font-family: Roboto, sans-serif;
+  font-weight: 300;
+}
+
+@media (min-width: 768px) {
+  .page-not-found,
+  .server-error {
+    font-size: 5rem; 
+  }  
+  .server-error-sub,
+  .page-not-found-sub {
+    font-size: 2.5rem; 
+  }
+}
+
+
+
+
+
+
+
+
+

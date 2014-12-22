@@ -18,6 +18,7 @@ Views and models
 16. ~Short attendance JS to be worked out
 17. Add basic html for uploading stuff on profile page
 18. Write backend for user's inbox
+19. 404 and 500 pages functionality
 =======
 Templates
 =======
@@ -41,7 +42,7 @@ Templates
 17. Style the attendance updating for class. If possible submit class attendance via jquery. like in 
 	attendance home
 18. ECA signing styles (Need to talk about this)
-19. 404 and 500 error pages
+19. ~404 and 500 error pages
 20. Refine notices styles
 
 
