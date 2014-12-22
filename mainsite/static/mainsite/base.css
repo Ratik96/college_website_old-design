@@ -1,6 +1,5 @@
 body {
   background-color: #3b5c6b;
-  color: white;
 }
 
 #container {
@@ -151,6 +150,7 @@ nav ul li a:hover {
 .server-error {
   font-size: 3.2rem; 
   font-family: Roboto, sans-serif;
+  color: white;
 }
 
 .server-error-sub,
@@ -158,6 +158,7 @@ nav ul li a:hover {
   font-size: 1.5rem; 
   font-family: Roboto, sans-serif;
   font-weight: 300;
+  color: white;
 }
 
 @media (min-width: 768px) {
