@@ -12,6 +12,27 @@
 {%endblock%}
 
 {%block body%}
+	<div class='container'>
+		<p class='lead'>The attendance application provides:-
+			<blockquote>
+			<ul>
+				<li>On login:
+					<ul>
+						<li><a href={%url 'home_eca'%}>ECA applications</a></li>
+						<li><a href={%url 'short_attendance'%}>Short attendance</a></li>
+						<li><a href={%url 'profile_detail_general'%}>Your attendance</a></li>
+					</ul>
+				</li>
+				<li>Without Login:
+					<ul>
+						<li>Student attendance lookup using dropboxes below.</li>
+
+					</ul>
+				</li>
+			</ul>
+			</blockquote>
+		</p>
+	</div>
 	<script>var student_att="{%url 'student_id' 0%}".replace('0/','');</script>
 	<form class="form-horizontal stud-select" id='selectorForm' action="{%url 'attendance_home'%}" method='POST' role="form">
 		{%csrf_token%}
